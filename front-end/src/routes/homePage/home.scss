@@ -1,0 +1,219 @@
+@import "../../responsive.scss";
+
+.home{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    gap: 20px;
+    overflow-y: scroll;
+
+    @include sm{
+        display: flex;
+        flex-direction: column;
+    }
+    .sideNavbar{
+        flex: 1;
+    }
+
+    .homeContainer{
+        flex: 6;
+        
+
+        .wrapper{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding-left: 150px;
+            padding-right: 150px;
+            margin: auto;
+           
+
+            @include md{
+                
+                padding-left: 10px;
+                padding-right: 10px;
+               
+            }
+            
+
+            h1{
+                display: flex;
+                font-size: 24px;
+                font-weight: 600;
+            }
+
+            .top{
+                background-color: white;
+                display: flex;
+                flex-direction: column;
+                border: 1px solid rgba(128, 128, 128, 0.46);
+                border-radius: 5px;
+
+                
+                
+
+                .title{
+                    padding: 20px;
+                    border-bottom: 1px solid rgba(128, 128, 128, 0.46);
+                    font-weight: 600;
+                }
+
+                .container {
+                    display: flex;
+                    flex-direction: row;
+                    padding: 30px;
+                    justify-content: space-between;
+
+                    @include md{
+                        padding: 20px;
+                        display: flex;
+                        align-items: flex-start;
+                        justify-content: center;
+                        flex-direction: column;
+                        gap: 10px;
+                    }
+
+                    .text{
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 10px;
+                        
+                        @include md{
+                            text-overflow: ellipsis;
+                        }
+                        
+                    }
+
+                    &:nth-child(2){
+                        border-bottom: 1px solid rgba(128, 128, 128, 0.46);
+                    }
+
+                    button {
+                        padding: 10px;
+                        border-radius: 5px;
+                        color: white;
+                        background-color: rgb(255, 102, 0);
+                        border: none;
+                        cursor: pointer;
+                        width: fit-content;
+                        transition: 0.3s ease;
+
+                        &:hover {
+                            background-color: rgb(255, 151, 81);
+                        }
+                    }
+                    
+                }
+                
+            }
+
+            .mid{
+                background-color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 1px solid rgba(128, 128, 128, 0.46);
+                border-radius: 5px;
+
+                @include md{
+                    display: flex;
+                    flex-direction: column;
+                }
+
+
+                .text{
+                    padding: 20px;
+                    height: 150px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    gap: 20px;
+
+                    @include sm{
+                        justify-content: center;
+                        height: 250px;
+                        gap: 10px;
+                    }
+
+
+                    button{
+                        padding: 10px;
+                        border-radius: 5px;
+                        color: white;
+                        background-color: rgb(255, 102, 0);
+                        border: none;
+                        cursor: pointer;
+                        width: max-content;
+                        transition: 0.3s ease;
+
+                        &:hover {
+                            background-color: rgb(255, 151, 81);
+                        }
+                    }
+                }
+
+                img{
+                    width: 350px;
+
+                    @include sm{
+                        width: 250px;
+                        margin-top: -50px;
+                    }
+                }
+            }
+
+            .bottom{
+                background-color: white;
+                display: flex;
+                flex-direction: column;
+                border: 1px solid rgba(128, 128, 128, 0.46);
+                border-radius: 5px;
+                margin-bottom: 20px;
+
+                .title{
+                    padding: 20px;
+                    border-bottom: 1px solid rgba(128, 128, 128, 0.46);
+                    font-weight: 600;
+                }
+
+                .container {
+                    display: flex;
+                    flex-direction: row;
+                    padding: 30px;
+                    justify-content: space-between;
+
+                    .text{
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 10px;
+    
+                        
+                    }
+
+                    &:nth-child(2){
+                        border-bottom: 1px solid rgba(128, 128, 128, 0.46);
+                    }
+
+                    button {
+                        padding: 10px;
+                        border-radius: 5px;
+                        color: white;
+                        background-color: rgb(255, 102, 0);
+                        border: none;
+                        cursor: pointer;
+                        width: fit-content;
+                        transition: 0.3s ease;
+
+                        &:hover {
+                            background-color: rgb(255, 151, 81);
+                        }
+                    }
+                    
+                }
+            }
+        }
+    }
+}
