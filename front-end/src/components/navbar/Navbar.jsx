@@ -2,6 +2,12 @@ import React from 'react'
 import { useState } from "react";
 import "./navbar.scss";
 import { Link } from "react-router-dom";
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import MenuIcon from '@mui/icons-material/Menu';
+
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -37,19 +43,30 @@ export default function Navbar() {
           </>
         )}
         <div className="menuIcon">
-          <img
-            src="/menu.png"
-            alt=""
-            onClick={() => setOpen((prev) => !prev)}
-          />
+          <MenuIcon onClick={() => setOpen((prev) => !prev)}/>
         </div>
         <div className={open ? "menu active" : "menu"}>
           <a href="/">Ana Sayfa</a>
           <a href="/">Çalışanlar</a>
           <a href="/">Raporlar</a>
           <a href="/">Ayarlar</a>
+          <Accordion className='accordion'>
+            <AccordionSummary
+              aria-controls="panel1-content"
+              id="panel1-header"
+              expandIcon={<ArrowDropDownIcon />}
+            >
+              Değerlendir <ArrowDropDownIcon />
+            </AccordionSummary>
+            <AccordionDetails className='sideNavbar'>
+              <a href="/">Değerlendirme</a>
+              <a href="/">Katılımcılar</a>
+              <a href="/">Yetkinlikler</a>
+              <a href="/">Hedef Paketleri</a>
+              <a href="/">Şablonlar</a>
+            </AccordionDetails>
+          </Accordion>
           <a href="/">Giriş Yap</a>
-          <a href="/">Kayıt Ol</a>
         </div>
       </div>
     </nav>

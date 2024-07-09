@@ -11,27 +11,48 @@ import PollIcon from '@mui/icons-material/Poll';
 import MessageIcon from '@mui/icons-material/Message';
 import ModeStandbyIcon from '@mui/icons-material/ModeStandby';
 import ViewTimelineIcon from '@mui/icons-material/ViewTimeline';
-import Button from '@mui/material/Button';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import SettingsIcon from '@mui/icons-material/Settings';
+import BadgeIcon from '@mui/icons-material/Badge';
+import HomeIcon from '@mui/icons-material/Home';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
 export default function SideNavbar() {
   return (
     <div className='container'>
-      <Accordion className='accordion'>
+
+      <a href="/home"><HomeIcon />Ana Sayfa</a>
+      <a href="/employees"><BadgeIcon />Çalışanlar</a>
+      <a href="/reports"><BarChartIcon />Raporlar</a>
+      <a href="/settings"><SettingsIcon />Ayarlar</a>
+
+
+     {/*  <Accordion className='accordion'>
         <AccordionSummary
           aria-controls="panel1-content"
           id="panel1-header"
           expandIcon={<ArrowDropDownIcon />}
         >
-          Performans Değerlendirme
+          Performans Değerlendirme <ArrowDropDownIcon/>
         </AccordionSummary>
         <AccordionDetails className='sideNavbar'>
-            <a href="/"><PollIcon/>Değerlendirmeler</a>
-            <a href="/"><PersonIcon/>Katılımcılar</a>
-            <a href="/"><MessageIcon/>Yetkinlikler</a>
-            <a href="/"><ModeStandbyIcon/>Hedef Paketleri</a>
-            <a href="/"><ViewTimelineIcon/>Şablonlar</a>
+          <a href="/"><PollIcon />Değerlendirmeler</a>
+          <a href="/"><PersonIcon />Katılımcılar</a>
+          <a href="/"><MessageIcon />Yetkinlikler</a>
+          <a href="/"><ModeStandbyIcon />Hedef Paketleri</a>
+          <a href="/"><ViewTimelineIcon />Şablonlar</a>
         </AccordionDetails>
-      </Accordion>
+      </Accordion> */}
+
+      <span>Performans Değerlendirme <ArrowDropDownIcon/></span>
+
+      <a href="/"><PollIcon />Değerlendirmeler</a>
+      <a href="/"><PersonIcon />Katılımcılar</a>
+      <a href="/"><MessageIcon />Yetkinlikler</a>
+      <a href="/"><ModeStandbyIcon />Hedef Paketleri</a>
+      <a href="/"><ViewTimelineIcon />Şablonlar</a>
+
+      <a href="/settings">Hedef Değerlendirme<ArrowRightIcon /></a>
     </div>
   );
 }

@@ -1,5 +1,24 @@
 .container{
     display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    a {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        transition: 0.3s ease;
+
+        &:hover{
+            transform: scale(1.02);
+        }
+    }
+
+    span{
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
 
     .accordion{
         background-color: whitesmoke;

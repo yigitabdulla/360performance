@@ -1,5 +1,6 @@
 import React from 'react'
 import SideNavbar from '../../components/navbar/sideNavbar/SideNavbar'
+import "./settings.scss"
 
 export default function Settings() {
   return (
@@ -9,7 +10,7 @@ export default function Settings() {
       </div>
 
       <div className="settingsContainer">
-        
+        settings
       </div>
 
     </div>
