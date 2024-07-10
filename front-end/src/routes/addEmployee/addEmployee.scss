@@ -21,13 +21,13 @@
         display: flex;
         flex-direction: column;
         gap: 20px;
+        overflow: auto;
 
 
         form{
             display: flex;
             flex-direction: column;
             gap: 20px;
-            overflow-y: auto;
 
             .employeeInfo{
                 display: flex;
@@ -132,9 +132,11 @@
                 }
             }
 
-            .language{
+            .languageContainer{
                 display: flex;
+                flex-direction: row;
                 gap: 50px;
+                margin-bottom: 30px;
 
                 @include md{
                     flex-direction: column;
@@ -154,24 +156,15 @@
                     }
                 }
 
-                .item{
+                .itemLanguage{
                     display: flex;
                     flex-direction: column;
                     background-color: white;
                     padding: 15px;
                     border-radius: 5px;
                     gap: 20px;
-                    margin-bottom: 30px;
-
-                    @include md{
-                        width: 500px;
-                    }
-
-                    @include sm{
-                        width: 300px;
-                    }
-
-
+                    
+                    
                     select{
                         width: 400px;
                         height: 30px;
@@ -181,15 +174,25 @@
                         }
 
                     }
+
+                    @include md{
+                        width: 500px;
+                    }
+
+                    @include sm{
+                        width: 300px;
+                    }
+
+                    
                 }
+
+                
             }
 
             .sendButton{
                 width: 150px;
                 padding: 10px;
                 align-self: flex-end;
-                margin-bottom: 30px;
-                margin-right: 20px;
                 border: none;
                 background-color: rgb(255, 199, 96);
                 cursor: pointer;
@@ -206,6 +209,7 @@
                     background-color: rgb(218, 170, 80);
                 }
             }
+            
 
         }
       

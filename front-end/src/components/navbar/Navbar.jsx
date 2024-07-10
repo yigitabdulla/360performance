@@ -70,7 +70,7 @@ export default function Navbar() {
               Değerlendir
             </AccordionSummary>
             <AccordionDetails className='sideNavbar'>
-              <a href="/">Değerlendirme</a>
+              <a href="/reviews">Değerlendirme</a>
               <a href="/">Katılımcılar</a>
               <a href="/">Yetkinlikler</a>
               <a href="/">Hedef Paketleri</a>

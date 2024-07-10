@@ -94,7 +94,7 @@ export default function AddEmployee() {
                         </div>
                     </div>
 
-                    <div className="language">
+                    <div className="languageContainer">
                         <div className="text">
                             <div className="title">
                                 Dil Tercihi
@@ -105,7 +105,7 @@ export default function AddEmployee() {
                                 kısmından seçim yapınız.
                             </span>
                         </div>
-                        <div className="item">
+                        <div className="itemLanguage">
                             <label htmlFor="language">Değerlendirme Dili</label>
                             <select name="language">
                                 <option value="a">Aasdas</option>
@@ -114,12 +114,10 @@ export default function AddEmployee() {
                                 <option value="d">Dasdas</option>
                             </select>
                         </div>
-
-                        <button className="sendButton">Kaydet</button>
-                        {false && <span>error</span>}
                     </div>
 
-                    
+                    <button className="sendButton">Kaydet</button>
+                    {false && <span>error</span>}
 
                 </form>
 
