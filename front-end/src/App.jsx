@@ -11,6 +11,7 @@ import Layout from "./routes/layout/Layout"
 import Employees from "./routes/employees/Employees"
 import Settings from "./routes/settings/Settings"
 import Reports from "./routes/reports/Reports"
+import AddEmployee from './routes/addEmployee/AddEmployee';
 
 function App() {
 
@@ -38,6 +39,10 @@ function App() {
         {
           path: "/employees",
           element: <Employees />
+        },
+        {
+          path: "/employees/add",
+          element: <AddEmployee />
         },
         {
           path: "/settings",

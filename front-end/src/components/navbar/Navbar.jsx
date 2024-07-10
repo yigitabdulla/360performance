@@ -17,13 +17,9 @@ export default function Navbar() {
     <nav>
       <div className="left">
         <a href="/home" className="logo">
-          <img src="/logo.png" alt="" />
-          <span>Performance</span>
+          <img src="https://finartz.com/hs-fs/hubfs/Finartz%20Logo-1.png?width=240&height=77&name=Finartz%20Logo-1.png" alt="" />
+          {/* <span><ApiIcon/>Finartz</span> */}
         </a>
-        <a href="/home">Ana Sayfa</a>
-        <a href="/employees">Çalışanlar</a>
-        <a href="/reports">Raporlar</a>
-        <a href="/settings">Ayarlar</a>
       </div>
       <div className="right">
         {user ? (
@@ -43,20 +39,35 @@ export default function Navbar() {
           </>
         )}
         <div className="menuIcon">
-          <MenuIcon onClick={() => setOpen((prev) => !prev)}/>
+          <MenuIcon onClick={() => setOpen((prev) => !prev)} />
         </div>
         <div className={open ? "menu active" : "menu"}>
           <a href="/">Ana Sayfa</a>
-          <a href="/">Çalışanlar</a>
+          <Accordion className='accordion'>
+            <AccordionSummary
+              aria-controls="panel1-content"
+              id="panel1-header"
+              expandIcon={<ArrowDropDownIcon sx={{ color: 'white' }} />}
+            >
+              Çalışanlar
+            </AccordionSummary>
+            <AccordionDetails className='sideNavbar'>
+              <a href="/employees">Tüm Çalışanlar</a>
+              <a href="/">Pozisyonlar</a>
+              <a href="/">Bölümler</a>
+              <a href="/">Bölgeler</a>
+              <a href="/">İş Kolları</a>
+            </AccordionDetails>
+          </Accordion>
           <a href="/">Raporlar</a>
           <a href="/">Ayarlar</a>
           <Accordion className='accordion'>
             <AccordionSummary
               aria-controls="panel1-content"
               id="panel1-header"
-              expandIcon={<ArrowDropDownIcon />}
+              expandIcon={<ArrowDropDownIcon sx={{ color: 'white' }} />}
             >
-              Değerlendir <ArrowDropDownIcon />
+              Değerlendir
             </AccordionSummary>
             <AccordionDetails className='sideNavbar'>
               <a href="/">Değerlendirme</a>

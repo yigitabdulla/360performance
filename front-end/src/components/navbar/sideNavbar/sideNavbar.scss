@@ -26,6 +26,23 @@
         flex-direction: column;
         justify-content: space-between;
         border: none;
+        box-shadow: none;
+        margin-top: -8px;
+        margin-bottom: -8px;
+        
+        #panel1-header{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-left: -17px;
+            transition: 0.3s ease;
+
+            &:hover{
+                scale: 1.02;
+                color: black;
+            }
+
+        }
     }
     
     .sideNavbar{

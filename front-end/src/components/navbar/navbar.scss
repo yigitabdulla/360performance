@@ -31,13 +31,12 @@ nav {
       gap: 10px;
 
       img {
-        width: 28px;
+        width: 128px;
       }
 
       span {
-        @include md {
-          display: none;
-        }
+        display: flex;
+        gap: 5px;
 
         @include sm {
           display: initial;

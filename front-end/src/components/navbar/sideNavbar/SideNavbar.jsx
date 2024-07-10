@@ -16,18 +16,39 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import BadgeIcon from '@mui/icons-material/Badge';
 import HomeIcon from '@mui/icons-material/Home';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import WorkIcon from '@mui/icons-material/Work';
 
 export default function SideNavbar() {
   return (
     <div className='container'>
 
       <a href="/home"><HomeIcon />Ana Sayfa</a>
-      <a href="/employees"><BadgeIcon />Çalışanlar</a>
+
+      <Accordion className='accordion'>
+        <AccordionSummary
+          aria-controls="panel1-content"
+          id="panel1-header"
+          expandIcon={<ArrowDropDownIcon />}
+        >
+          <PersonIcon />Çalışanlar
+        </AccordionSummary>
+        <AccordionDetails className='sideNavbar'>
+          <a href="/employees"><PeopleAltIcon />Tüm Çalışanlar</a>
+          <a href="/"><BookmarkIcon />Pozisyonlar</a>
+          <a href="/"><BadgeIcon />Bölümler</a>
+          <a href="/"><LocationOnIcon />Bölgeler</a>
+          <a href="/"><WorkIcon />İş Kolları</a>
+        </AccordionDetails>
+      </Accordion>
+
       <a href="/reports"><BarChartIcon />Raporlar</a>
       <a href="/settings"><SettingsIcon />Ayarlar</a>
 
 
-     {/*  <Accordion className='accordion'>
+      {/*  <Accordion className='accordion'>
         <AccordionSummary
           aria-controls="panel1-content"
           id="panel1-header"
@@ -44,7 +65,7 @@ export default function SideNavbar() {
         </AccordionDetails>
       </Accordion> */}
 
-      <span>Performans Değerlendirme <ArrowDropDownIcon/></span>
+      <span>Performans Değerlendirme <ArrowDropDownIcon /></span>
 
       <a href="/"><PollIcon />Değerlendirmeler</a>
       <a href="/"><PersonIcon />Katılımcılar</a>
