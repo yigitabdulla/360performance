@@ -67,7 +67,7 @@ export default function SideNavbar() {
 
       <span>Performans Değerlendirme <ArrowDropDownIcon /></span>
 
-      <a href="/"><PollIcon />Değerlendirmeler</a>
+      <a href="/reviews"><PollIcon />Değerlendirmeler</a>
       <a href="/"><PersonIcon />Katılımcılar</a>
       <a href="/"><MessageIcon />Yetkinlikler</a>
       <a href="/"><ModeStandbyIcon />Hedef Paketleri</a>

@@ -12,6 +12,8 @@ import Employees from "./routes/employees/Employees"
 import Settings from "./routes/settings/Settings"
 import Reports from "./routes/reports/Reports"
 import AddEmployee from './routes/addEmployee/AddEmployee';
+import Reviews from './routes/reviews/Reviews';
+import AddReview from './routes/addReview/AddReview';
 
 function App() {
 
@@ -43,6 +45,14 @@ function App() {
         {
           path: "/employees/add",
           element: <AddEmployee />
+        },
+        {
+          path: "/reviews",
+          element: <Reviews />
+        },
+        {
+          path: "/reviews/add",
+          element: <AddReview />
         },
         {
           path: "/settings",

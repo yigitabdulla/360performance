@@ -18,15 +18,15 @@ export default function AddEmployee() {
                         <div className="inputs">
                             <div className="item">
                                 <label htmlFor="name">İsim</label>
-                                <input id="name" name="name" type="text" />
+                                <input required id="name" name="name" type="text" />
                             </div>
                             <div className="item">
                                 <label htmlFor="lastname">Soyisim</label>
-                                <input id="lastname" name="lastname" type="text" />
+                                <input required id="lastname" name="lastname" type="text" />
                             </div>
                             <div className="item">
                                 <label htmlFor="email">E-posta Adresi</label>
-                                <input id="email" name="email" type="email" />
+                                <input required id="email" name="email" type="email" />
                             </div>
                         </div>
                     </div>
@@ -36,7 +36,7 @@ export default function AddEmployee() {
                         <div className="inputs">
                             <div className="item">
                                 <label htmlFor="position">Pozisyon</label>
-                                <input id="position" name="position" type="text" />
+                                <input required id="position" name="position" type="text" />
                             </div>
                             <div className="item">
                                 <label htmlFor="registration">Sicil No</label>
