@@ -48,28 +48,28 @@
                 a{
                     padding: 10px;
                     border-radius: 5px;
-                    background-color: rgb(103, 205, 103);
+                    background-color: #5dbea3;
                     border: none;
                     transition: 0.3s ease;
                     cursor: pointer;
                     font-size: 16px;
     
                     &:hover{
-                        background-color: rgb(119, 251, 119);
+                        background-color: #58d3b1;
                     }
                 }
 
                 button{
                     padding: 10px;
                     border-radius: 5px;
-                    background-color: rgb(231, 124, 97);
+                    background-color: #dd7973;
                     border: none;
                     transition: 0.3s ease;
                     cursor: pointer;
                     font-size: 16px;
 
                     &:hover{
-                        background-color: rgb(251, 159, 119);
+                        background-color: #ff7871;
                     }
                 }
             }

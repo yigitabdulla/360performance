@@ -53,8 +53,6 @@ export default function Navbar() {
             </AccordionSummary>
             <AccordionDetails className='sideNavbar'>
               <a href="/employees">Tüm Çalışanlar</a>
-              <a href="/">Pozisyonlar</a>
-              <a href="/">Bölümler</a>
             </AccordionDetails>
           </Accordion>
           <a href="/">Raporlar</a>
