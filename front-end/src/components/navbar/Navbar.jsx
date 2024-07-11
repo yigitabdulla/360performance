@@ -55,8 +55,6 @@ export default function Navbar() {
               <a href="/employees">Tüm Çalışanlar</a>
               <a href="/">Pozisyonlar</a>
               <a href="/">Bölümler</a>
-              <a href="/">Bölgeler</a>
-              <a href="/">İş Kolları</a>
             </AccordionDetails>
           </Accordion>
           <a href="/">Raporlar</a>
@@ -67,16 +65,16 @@ export default function Navbar() {
               id="panel1-header"
               expandIcon={<ArrowDropDownIcon sx={{ color: 'white' }} />}
             >
-              Değerlendir
+              Performans Değerlendirme
             </AccordionSummary>
             <AccordionDetails className='sideNavbar'>
               <a href="/reviews">Değerlendirme</a>
               <a href="/">Katılımcılar</a>
               <a href="/">Yetkinlikler</a>
-              <a href="/">Hedef Paketleri</a>
               <a href="/">Şablonlar</a>
             </AccordionDetails>
           </Accordion>
+          <a href="/">Hedef Değerlendirme</a>
           <a href="/">Giriş Yap</a>
         </div>
       </div>

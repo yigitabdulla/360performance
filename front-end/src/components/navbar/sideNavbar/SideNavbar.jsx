@@ -9,7 +9,6 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import PersonIcon from '@mui/icons-material/Person';
 import PollIcon from '@mui/icons-material/Poll';
 import MessageIcon from '@mui/icons-material/Message';
-import ModeStandbyIcon from '@mui/icons-material/ModeStandby';
 import ViewTimelineIcon from '@mui/icons-material/ViewTimeline';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -39,8 +38,6 @@ export default function SideNavbar() {
           <a href="/employees"><PeopleAltIcon />Tüm Çalışanlar</a>
           <a href="/"><BookmarkIcon />Pozisyonlar</a>
           <a href="/"><BadgeIcon />Bölümler</a>
-          <a href="/"><LocationOnIcon />Bölgeler</a>
-          <a href="/"><WorkIcon />İş Kolları</a>
         </AccordionDetails>
       </Accordion>
 
@@ -60,7 +57,6 @@ export default function SideNavbar() {
           <a href="/"><PollIcon />Değerlendirmeler</a>
           <a href="/"><PersonIcon />Katılımcılar</a>
           <a href="/"><MessageIcon />Yetkinlikler</a>
-          <a href="/"><ModeStandbyIcon />Hedef Paketleri</a>
           <a href="/"><ViewTimelineIcon />Şablonlar</a>
         </AccordionDetails>
       </Accordion> */}
@@ -70,7 +66,6 @@ export default function SideNavbar() {
       <a href="/reviews"><PollIcon />Değerlendirmeler</a>
       <a href="/"><PersonIcon />Katılımcılar</a>
       <a href="/"><MessageIcon />Yetkinlikler</a>
-      <a href="/"><ModeStandbyIcon />Hedef Paketleri</a>
       <a href="/"><ViewTimelineIcon />Şablonlar</a>
 
       <a href="/settings">Hedef Değerlendirme<ArrowRightIcon /></a>
