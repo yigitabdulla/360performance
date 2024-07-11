@@ -26,9 +26,10 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 5px;
             
             @include md{
-                width: 55vw;
+                width: 56vw;
             }
 
             @include sm{
@@ -37,16 +38,39 @@
                 gap: 10px;
             }
 
-            a{
-                padding: 10px;
-                border-radius: 5px;
-                background-color: rgb(103, 205, 103);
-                border: none;
-                transition: 0.3s ease;
-                cursor: pointer;
+            .buttons{
+                display: flex;
+                gap: 10px;
 
-                &:hover{
-                    background-color: rgb(119, 251, 119);
+                @include sm{
+                    flex-direction: column;
+                }
+                a{
+                    padding: 10px;
+                    border-radius: 5px;
+                    background-color: rgb(103, 205, 103);
+                    border: none;
+                    transition: 0.3s ease;
+                    cursor: pointer;
+                    font-size: 16px;
+    
+                    &:hover{
+                        background-color: rgb(119, 251, 119);
+                    }
+                }
+
+                button{
+                    padding: 10px;
+                    border-radius: 5px;
+                    background-color: rgb(231, 124, 97);
+                    border: none;
+                    transition: 0.3s ease;
+                    cursor: pointer;
+                    font-size: 16px;
+
+                    &:hover{
+                        background-color: rgb(251, 159, 119);
+                    }
                 }
             }
         }
