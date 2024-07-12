@@ -15,6 +15,7 @@ import AddEmployee from './routes/addEmployee/AddEmployee';
 import Reviews from './routes/reviews/Reviews';
 import AddReview from './routes/addReview/AddReview';
 import AddEmployeeExcel from './routes/addEmployeeExcel/AddEmployeeExcel';
+import Employee from './routes/employee/Employee';
 
 function App() {
 
@@ -42,6 +43,10 @@ function App() {
         {
           path: "/employees",
           element: <Employees />
+        },
+        {
+          path: "/employees/:id",
+          element: <Employee />,
         },
         {
           path: "/employees/add",
