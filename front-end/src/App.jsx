@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import Home from "./routes/homePage/Home"
 import Login from "./routes/login/Login"
-import Register from "./routes/register/Register"
+import Reset from "./routes/resetPassword/Reset"
 import Layout from "./routes/layout/Layout"
 import Employees from "./routes/employees/Employees"
 import Settings from "./routes/settings/Settings"
@@ -36,8 +36,8 @@ function App() {
           element: <Login />
         },
         {
-          path: "/register",
-          element: <Register />
+          path: "/reset",
+          element: <Reset />
         },
         {
           path: "/employees",

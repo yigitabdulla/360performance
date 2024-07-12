@@ -1,8 +1,7 @@
-.login {
+.reset {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
     /* background-image: url("https://cdn.pixabay.com/photo/2020/07/08/04/12/work-5382501_1280.jpg");
     background-size: cover;
     background-position: center; */
@@ -13,7 +12,6 @@
     left: 0;
 
     .formContainer {
-        filter: none;
         z-index: 9;
         form {
             background-color: rgba(255, 255, 255, 0.895);
@@ -73,7 +71,6 @@
             }
 
             .resetButton {
-                display: flex;
                 align-self: center;
                 color: rgb(213, 135, 56);
                 transition: 0.3s ease;

@@ -4,7 +4,7 @@ import { Outlet , useLocation } from "react-router-dom";
 
 function Layout() {
   const location = useLocation();
-  const noNavPaths = ["/login", "/register"];
+  const noNavPaths = ["/login", "/register", "/reset"];
 
   return (
     <div className="layout">

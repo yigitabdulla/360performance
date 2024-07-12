@@ -82,7 +82,7 @@ export default function Login() {
           )}
 
           <button>Giriş Yap</button>
-          <Link to="/register" className='reset'>Şifremi yenile</Link>
+          <a href="/reset" className='resetButton'>Şifremi yenile</a>
         </form>
       </div>
 

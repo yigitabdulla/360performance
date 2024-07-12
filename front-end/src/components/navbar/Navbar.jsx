@@ -1,7 +1,6 @@
 import React from 'react'
 import { useState } from "react";
 import "./navbar.scss";
-import { Link } from "react-router-dom";
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
