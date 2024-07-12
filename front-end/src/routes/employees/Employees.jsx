@@ -1,16 +1,17 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import SideNavbar from '../../components/navbar/sideNavbar/SideNavbar'
 import "./employees.scss"
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import { employeeData } from '../../lib/dummyData'
 import * as XLSX from 'xlsx';
+import { EmployeeContext } from '../../context/EmployeeContext';
 
-const VISIBLE_FIELDS = ['name', 'rating', 'country', 'dateCreated', 'isAdmin'];
 
 export default function Employees() {
 
-  const [rows, setRows] = useState([]);
-  const [columns, setColumns] = useState([]);
+  const { rows, columns } = useContext(EmployeeContext);
+
+  console.log('DataDisplay:', { rows, columns });
 
   /* const columns = [
     { field: 'id', headerName: 'ID', width: 90 },
@@ -20,7 +21,7 @@ export default function Employees() {
     { field: 'position', headerName: 'Position', width: 150 },
   ] */
 
-  const handleFileUpload = (event) => {
+  /* const handleFileUpload = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
 
@@ -56,7 +57,7 @@ export default function Employees() {
 
   const handleCustomButtonClick = () => {
     document.getElementById('fileInput').click();
-  };
+  }; */
 
 
 
@@ -70,9 +71,11 @@ export default function Employees() {
         <div className='title'>
           <h1>Çalışanlar</h1>
           <div className="buttons">
-            <input id="fileInput" style={{ display: 'none' }} type="file" accept=".xlsx, .xls" onChange={handleFileUpload} />
-            <button onClick={handleCustomButtonClick}>Çalışanları İçe Aktar</button>
-            <a href='/employees/add'>Çalışan Ekle</a>
+            {/* <input id="fileInput" style={{ display: 'none' }} type="file" accept=".xlsx, .xls" onChange={handleFileUpload} /> */}
+            {/* <button onClick={handleCustomButtonClick}>Çalışanları İçe Aktar</button> */}
+            <a className='addExcel' href="/employees/addExcel">Çalışanları İçe Aktar</a>
+            <a className='addEmployee' href='/employees/add'>Çalışan Ekle</a>
+            
           </div>
         </div>
         <div style={{ height: 400, width: '80vw' }}>
