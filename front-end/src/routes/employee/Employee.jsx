@@ -6,7 +6,6 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import UploadWidget from '../../components/uploadWidget/UploadWidget';
 
 export default function Employee() {
 
@@ -22,7 +21,6 @@ export default function Employee() {
         email: employee[3],
         position: employee[4],
         status: employee[5],
-        avatar: employee[6]
 
     })
 
@@ -46,7 +44,6 @@ export default function Employee() {
                 email: "",
                 position: "",
                 status: "",
-                avatar: ""
             })
         } catch (error) {
             console.error(error)
@@ -80,17 +77,6 @@ export default function Employee() {
                     <div className="employeeInfo">
                         <div className="employee-title">
                             <h3>Çalışan Bilgileri</h3>
-                            <img src={avatar} alt="" />
-                            <UploadWidget 
-                            uwConfig={{
-                                cloudName:'dlbivoyha',
-                                uploadPreset:'360performance',
-                                multiple: false,
-                                maxImageFileSize: 2000000,
-                                folder:'avatars'
-                            }}
-                            setAvatar={setAvatar}
-                            />
                         </div>
                         <div className="inputs">
                             <div className="item">
@@ -110,7 +96,7 @@ export default function Employee() {
                                 <input required id="position" name="position" type="text" defaultValue={person.position} />
                             </div>
                             <div className="buttons">
-                                {person.status === "true" ? <Button onClick={handleOpen} className='changeStatus'>Çalışanı pasif et</Button> :
+                                {person.status === "true" ? <button onClick={handleOpen} className='changeStatus'>Çalışanı pasif et</button> :
                                     <button onClick={handleOpen} className='changeStatus'>Çalışanı Aktif Et</button>}
                                 {person.status === "true" ? <Modal
                                     open={open}

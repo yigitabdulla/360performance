@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react'
 import SideNavbar from '../../components/navbar/sideNavbar/SideNavbar'
 import "./employees.scss"
-import { DataGrid, GridToolbar } from '@mui/x-data-grid';
+import { DataGrid } from '@mui/x-data-grid';
 import { EmployeeContext } from '../../context/EmployeeContext';
 import { useNavigate } from 'react-router-dom';
+import GridToolbar from "../../components/toolbar/GridToolbar"
 
 
 export default function Employees() {
@@ -44,7 +45,6 @@ export default function Employees() {
             <h1>Çalışanlar</h1>
             <a className='addEmployee' href='/employees/add'>Çalışan Ekle</a>
           </div>
-          <a className='addExcel' href="/employees/addExcel">Çalışanları İçe Aktar</a>
         </div>
         <div style={{ height: 400, width: '80vw' }}>
           <DataGrid
@@ -52,6 +52,9 @@ export default function Employees() {
             checkboxSelection
             rows={rows}
             columns={columnsWithAvatarRender}
+            components={{
+              Toolbar: GridToolbar,
+            }}
             slots={{ toolbar: GridToolbar }}
             onRowClick={handleRowClick}
             localeText={{
