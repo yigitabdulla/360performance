@@ -42,7 +42,7 @@ export default function Home() {
               </div>
             </div>
 
-            <img src="./reports.svg" alt="" />
+            <img src="./analytic.svg" alt="" />
           </div>
 
           <div className="mid">

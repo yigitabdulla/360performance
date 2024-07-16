@@ -33,8 +33,8 @@ export default function AddEmployeeExcel() {
 
             const transformedColumns = cols.map((col) => ({
                 ...col,
-                headerName: col.headerName.toUpperCase(),
-            }));
+                headerName: col.headerName.charAt(0).toUpperCase() + col.headerName.slice(1).toLowerCase(),
+            }));            
 
             setTempColumns(transformedColumns);
             setTempRows(rowData);

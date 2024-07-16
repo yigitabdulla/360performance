@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import UploadWidget from '../../components/uploadWidget/UploadWidget';
 
 export default function Employee() {
 
@@ -25,6 +26,8 @@ export default function Employee() {
 
     })
 
+    const [avatar, setAvatar] = useState(person.avatar)
+
     const handleChange = (event) => {
         const { name, value } = event.target
         setPerson({ ...person, [name]: value })
@@ -42,6 +45,8 @@ export default function Employee() {
                 lastname: "",
                 email: "",
                 position: "",
+                status: "",
+                avatar: ""
             })
         } catch (error) {
             console.error(error)
@@ -75,7 +80,17 @@ export default function Employee() {
                     <div className="employeeInfo">
                         <div className="employee-title">
                             <h3>Çalışan Bilgileri</h3>
-                            <img src={person.avatar} alt="" />
+                            <img src={avatar} alt="" />
+                            <UploadWidget 
+                            uwConfig={{
+                                cloudName:'dlbivoyha',
+                                uploadPreset:'360performance',
+                                multiple: false,
+                                maxImageFileSize: 2000000,
+                                folder:'avatars'
+                            }}
+                            setAvatar={setAvatar}
+                            />
                         </div>
                         <div className="inputs">
                             <div className="item">
@@ -96,7 +111,7 @@ export default function Employee() {
                             </div>
                             <div className="buttons">
                                 {person.status === "true" ? <Button onClick={handleOpen} className='changeStatus'>Çalışanı pasif et</Button> :
-                                    <Button onClick={handleOpen} className='changeStatus'>Çalışanı aktif et</Button>}
+                                    <button onClick={handleOpen} className='changeStatus'>Çalışanı Aktif Et</button>}
                                 {person.status === "true" ? <Modal
                                     open={open}
                                     onClose={handleClose}
@@ -112,8 +127,8 @@ export default function Employee() {
                                             çıkarılacaktır. Bu işlem geri alınamaz. Pasif etmek istiyor musunuz?
                                         </Typography>
                                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', marginTop: '10px' }} className='decision'>
-                                            <Button style={{ backgroundColor: 'rgb(0, 156, 156)', color: 'white', width: '100px' }}>Evet</Button>
                                             <Button style={{ backgroundColor: 'rgb(255, 130, 96)', color: 'white', width: '100px' }}>Hayır</Button>
+                                            <Button style={{ backgroundColor: 'rgb(0, 156, 156)', color: 'white', width: '100px' }}>Evet</Button>
                                         </div>
                                     </Box>
                                 </Modal> : <Modal
@@ -131,8 +146,8 @@ export default function Employee() {
                                             istediğinize emin misiniz?
                                         </Typography>
                                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', marginTop: '10px' }} className='decision'>
-                                            <Button style={{ backgroundColor: 'rgb(0, 156, 156)', color: 'white', width: '100px' }}>Evet</Button>
                                             <Button style={{ backgroundColor: 'rgb(255, 130, 96)', color: 'white', width: '100px' }}>Hayır</Button>
+                                            <Button style={{ backgroundColor: 'rgb(0, 156, 156)', color: 'white', width: '100px' }}>Evet</Button>
                                         </div>
                                     </Box>
                                 </Modal>}

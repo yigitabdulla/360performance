@@ -70,9 +70,13 @@
     
                     .container {
                         display: flex;
-                        flex-direction: row;
+                        flex-direction: column;
                         padding: 30px;
                         justify-content: space-between;
+
+                        @include lg{
+                            align-items: flex-start;
+                        }
     
                         @include md{
                             padding: 20px;
@@ -103,14 +107,14 @@
                             padding: 10px;
                             border-radius: 5px;
                             color: white;
-                            background-color: rgb(255, 102, 0);
+                            background-color: #004c99;
                             border: none;
                             cursor: pointer;
                             width: fit-content;
                             transition: 0.3s ease;
     
                             &:hover {
-                                background-color: rgb(255, 151, 81);
+                                background-color: #0063c6;
                             }
                         }
                         
@@ -120,7 +124,7 @@
                 }
                 img{
                     align-self: center;
-                    width: 200px;
+                    width: 250px;
                     height: 100%;
                 }
                 
@@ -159,14 +163,14 @@
                         padding: 10px;
                         border-radius: 5px;
                         color: white;
-                        background-color: rgb(255, 102, 0);
+                        background-color: #004c99;
                         border: none;
                         cursor: pointer;
                         width: max-content;
                         transition: 0.3s ease;
 
                         &:hover {
-                            background-color: rgb(255, 151, 81);
+                            background-color: #0063c6;
                         }
                     }
                 }
@@ -230,14 +234,14 @@
                         padding: 10px;
                         border-radius: 5px;
                         color: white;
-                        background-color: rgb(255, 102, 0);
+                        background-color: #004c99;
                         border: none;
                         cursor: pointer;
                         width: fit-content;
                         transition: 0.3s ease;
 
                         &:hover {
-                            background-color: rgb(255, 151, 81);
+                            background-color: #0063c6;
                         }
                     }
                     

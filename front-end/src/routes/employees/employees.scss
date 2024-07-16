@@ -22,6 +22,7 @@
         flex-direction: column;
         gap: 20px;
 
+
         .title {
             display: flex;
             flex-direction: column;
@@ -30,9 +31,7 @@
 
 
             .addExcel {
-                padding: 10px;
-                border-radius: 5px;
-                background-color: #64b2ff;
+                color: #0063c6;
                 border: none;
                 transition: 0.3s ease;
                 cursor: pointer;
@@ -40,7 +39,7 @@
                 width: fit-content;
 
                 &:hover {
-                    background-color: #86c3ff;
+                    scale: 1.02;
                 }
             }
 

@@ -20,16 +20,16 @@ export default function Employees() {
   };
 
   const columnsWithAvatarRender = columns.map((column) => {
-    if (column.field === "6" && column.headerName === "AVATAR") {
-        return {
-            ...column,
-            renderCell: (params) => (
-                <img src={params.row["6"]} alt="Avatar" style={{ width: 35, height: 35, borderRadius: '50%', marginTop:'7px', marginLeft:'7px'}} />
-            ),
-        };
+    if (column.field === "6" && column.headerName === "Avatar") {
+      return {
+        ...column,
+        renderCell: (params) => (
+          <img src={params.row["6"]} alt="Avatar" style={{ width: 35, height: 35, borderRadius: '50%', marginTop: '7px', marginLeft: '7px' }} />
+        ),
+      };
     }
     return column;
-});
+  });
 
 
   return (
@@ -54,6 +54,35 @@ export default function Employees() {
             columns={columnsWithAvatarRender}
             slots={{ toolbar: GridToolbar }}
             onRowClick={handleRowClick}
+            localeText={{
+              toolbarDensity: 'Yoğunluk',
+              toolbarDensityLabel: 'Yoğunluk',
+              toolbarDensityCompact: 'Sıkışık',
+              toolbarDensityStandard: 'Standart',
+              toolbarDensityComfortable: 'Rahat',
+              toolbarColumns: 'Sütunlar',
+              toolbarFilters: 'Filtreler',
+              toolbarExport: 'Dışa Aktar',
+              columnMenuLabel: 'Sütunlar',
+              columnMenuShowColumns: 'Sütunları Göster',
+              columnMenuFilter: 'Filtrele',
+              columnMenuHideColumn: 'Sütunu Gizle',
+              columnMenuUnsort: 'Sıralamayı Kaldır',
+              columnMenuSortAsc: 'Artan Sıralama',
+              columnMenuSortDesc: 'Azalan Sıralama',
+              columnMenuManageColumns: 'Kolonları yönet',
+              filterPanelOperator: 'Operatör',
+              filterPanelColumns: 'Sütunlar',
+              filterPanelInputLabel: 'Değer',
+              filterPanelInputPlaceholder: 'Filtre değeri girin',
+              filterOperatorContains: 'İçeren',
+              filterOperatorEquals: 'Eşit',
+              filterOperatorStartsWith: 'İle Başlayan',
+              filterOperatorEndsWith: 'İle Biten',
+              filterOperatorIsEmpty: 'Boş Olan',
+              filterOperatorIsNotEmpty: 'Boş Olmayan',
+              filterOperatorIsAnyOf: 'Herhangi Biri',
+            }}
           />
         </div>
       </div>
