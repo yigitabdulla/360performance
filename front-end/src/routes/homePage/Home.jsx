@@ -16,27 +16,33 @@ export default function Home() {
         <div className="wrapper">
           <h1>Merhaba Finartz</h1>
           <div className="top">
-            <div className="title">Değerlendirmeye başlayın</div>
 
-            <div className='container'>
-              <div className="text">
-                <MessageIcon />
-                Katılımcıları belirleyin ve değerlendirme formunuzu oluşturun. 
-                <br></br>
-                Değerlendirme sürecine hemen başlayın.
+            <div className="top-info">
+              <div className="title">Değerlendirmeye başlayın</div>
+
+
+              <div className='container'>
+                <div className="text">
+                  <MessageIcon />
+                  Katılımcıları belirleyin ve değerlendirme formunuzu oluşturun.
+                  <br></br>
+                  Değerlendirme sürecine hemen başlayın.
+                </div>
+                <button>360 değerlendirme oluştur</button>
               </div>
-              <button>360 değerlendirme oluştur</button>
+
+              <div className='container'>
+                <div className="text">
+                  <ModeStandbyIcon />
+                  Hedeflerinizi tanımlayın ve değerlendirme sürecini başlatın.
+                  <br></br>
+                  Performans hedeflerinizi yönetin.
+                </div>
+                <button>Hedef değerlendirme oluştur</button>
+              </div>
             </div>
 
-            <div className='container'>
-              <div className="text">
-                <ModeStandbyIcon />
-                Hedeflerinizi tanımlayın ve değerlendirme sürecini başlatın.
-                <br></br>
-                Performans hedeflerinizi yönetin.
-              </div>
-              <button>Hedef değerlendirme oluştur</button>
-            </div>
+            <img src="./reports.svg" alt="" />
           </div>
 
           <div className="mid">
@@ -46,7 +52,7 @@ export default function Home() {
               <button>Videoyu izle</button>
             </div>
 
-            <img src="https://img.freepik.com/free-vector/concept-website-setup-landing-page_52683-26521.jpg?t=st=1720520381~exp=1720523981~hmac=36d5f1ef0afbd34de851cf03a2e331b7c17ea17896eef2d69c6a1cea74b1e081&w=1060" alt="" />
+            <img src="./tutorial.svg" alt="" />
 
           </div>
 
@@ -56,7 +62,7 @@ export default function Home() {
             <div className='container'>
               <div className="text">
                 <QuestionMarkIcon />
-                Sistem kullanımıyla ilgili bilgilere destek merkezimizden erişebilirsiniz. 
+                Sistem kullanımıyla ilgili bilgilere destek merkezimizden erişebilirsiniz.
                 <br></br>
                 Kullanım videoları, sıkça sorulan sorular ve daha fazlası için destek merkezimize başvurun.
               </div>
@@ -70,7 +76,7 @@ export default function Home() {
                 <br></br>
                 +12 345 678 99 99.
               </div>
-              
+
             </div>
           </div>
 

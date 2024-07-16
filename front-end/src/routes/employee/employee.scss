@@ -37,10 +37,32 @@
                     flex-direction: column;
                 }
 
-                h3 {
-                    width: 300px;
-                }
+                .employee-title{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+                    text-align: center;
 
+                    
+
+                    h3 {
+                        font-size: 32px;
+                        width: 300px;
+
+                    }
+
+                    img{
+                        border-radius: 50%;
+                        object-fit: cover;
+
+                        @include md{
+                            width: 250px;
+                            align-self: flex-start;
+                            margin-left: 20px;
+                        }
+                    }
+
+                }
 
                 .inputs {
                     display: flex;
@@ -53,6 +75,7 @@
                     @include md {
                         flex-direction: column;
                         width: 500px;
+                        margin-bottom: 20px;
                     }
 
                     @include sm {
@@ -80,6 +103,12 @@
                         display: flex;
                         align-items: center;
                         justify-content: space-between;
+
+                        @include sm{
+                            flex-direction: column;
+                            gap: 10px;
+
+                        }
                         .sendButton {
                             width: 150px;
                             padding: 10px;

@@ -19,7 +19,10 @@ export default function Employee() {
         name: employee[1],
         lastname: employee[2],
         email: employee[3],
-        position: employee[4]
+        position: employee[4],
+        status: employee[5],
+        avatar: employee[6]
+
     })
 
     const handleChange = (event) => {
@@ -44,8 +47,6 @@ export default function Employee() {
             console.error(error)
         } */
     }
-
-    const status = "aktif"
 
     const style = {
         position: 'absolute',
@@ -72,7 +73,10 @@ export default function Employee() {
             <div className="formContainer">
                 {employee ? <form onSubmit={updatePerson}>
                     <div className="employeeInfo">
-                        <h3>Çalışan Bilgileri</h3>
+                        <div className="employee-title">
+                            <h3>Çalışan Bilgileri</h3>
+                            <img src={person.avatar} alt="" />
+                        </div>
                         <div className="inputs">
                             <div className="item">
                                 <label htmlFor="name">İsim</label>
@@ -91,9 +95,9 @@ export default function Employee() {
                                 <input required id="position" name="position" type="text" defaultValue={person.position} />
                             </div>
                             <div className="buttons">
-                                {status === "aktif" ? <Button onClick={handleOpen} className='changeStatus'>Çalışanı pasif et</Button> :
+                                {person.status === "true" ? <Button onClick={handleOpen} className='changeStatus'>Çalışanı pasif et</Button> :
                                     <Button onClick={handleOpen} className='changeStatus'>Çalışanı aktif et</Button>}
-                                {status === "aktif" ? <Modal
+                                {person.status === "true" ? <Modal
                                     open={open}
                                     onClose={handleClose}
                                     aria-labelledby="modal-modal-title"
@@ -107,9 +111,9 @@ export default function Employee() {
                                             {person.name + " " + person.lastname} tüm aktif değerlendirmelerden
                                             çıkarılacaktır. Bu işlem geri alınamaz. Pasif etmek istiyor musunuz?
                                         </Typography>
-                                        <div style={{display:'flex', alignItems: 'center', justifyContent:'space-around', marginTop:'10px'}} className='decision'>
-                                            <Button style={{backgroundColor:'rgb(0, 156, 156)',color:'white',width:'100px'}}>Evet</Button>
-                                            <Button style={{backgroundColor:'rgb(255, 130, 96)',color:'white',width:'100px'}}>Hayır</Button>
+                                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', marginTop: '10px' }} className='decision'>
+                                            <Button style={{ backgroundColor: 'rgb(0, 156, 156)', color: 'white', width: '100px' }}>Evet</Button>
+                                            <Button style={{ backgroundColor: 'rgb(255, 130, 96)', color: 'white', width: '100px' }}>Hayır</Button>
                                         </div>
                                     </Box>
                                 </Modal> : <Modal
@@ -126,9 +130,9 @@ export default function Employee() {
                                             {person.name + " " + person.lastname} çalışanını aktif etmek
                                             istediğinize emin misiniz?
                                         </Typography>
-                                        <div style={{display:'flex', alignItems: 'center', justifyContent:'space-around', marginTop:'10px'}} className='decision'>
-                                            <Button style={{backgroundColor:'rgb(0, 156, 156)',color:'white',width:'100px'}}>Evet</Button>
-                                            <Button style={{backgroundColor:'rgb(255, 130, 96)',color:'white',width:'100px'}}>Hayır</Button>
+                                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', marginTop: '10px' }} className='decision'>
+                                            <Button style={{ backgroundColor: 'rgb(0, 156, 156)', color: 'white', width: '100px' }}>Evet</Button>
+                                            <Button style={{ backgroundColor: 'rgb(255, 130, 96)', color: 'white', width: '100px' }}>Hayır</Button>
                                         </div>
                                     </Box>
                                 </Modal>}

@@ -50,65 +50,78 @@
             .top{
                 background-color: white;
                 display: flex;
-                flex-direction: column;
+                flex-direction: row;
                 border: 1px solid rgba(128, 128, 128, 0.46);
                 border-radius: 5px;
 
-                
-                
-
-                .title{
-                    padding: 20px;
-                    border-bottom: 1px solid rgba(128, 128, 128, 0.46);
-                    font-weight: 600;
+                @include lg{
+                    flex-direction: column;
                 }
 
-                .container {
-                    display: flex;
-                    flex-direction: row;
-                    padding: 30px;
-                    justify-content: space-between;
+                
+                
 
-                    @include md{
+                .top-info{
+                    .title{
                         padding: 20px;
-                        display: flex;
-                        align-items: flex-start;
-                        justify-content: center;
-                        flex-direction: column;
-                        gap: 10px;
-                    }
-
-                    .text{
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        gap: 10px;
-                        
-                        @include md{
-                            text-overflow: ellipsis;
-                        }
-                        
-                    }
-
-                    &:nth-child(2){
                         border-bottom: 1px solid rgba(128, 128, 128, 0.46);
+                        font-weight: 600;
                     }
-
-                    button {
-                        padding: 10px;
-                        border-radius: 5px;
-                        color: white;
-                        background-color: rgb(255, 102, 0);
-                        border: none;
-                        cursor: pointer;
-                        width: fit-content;
-                        transition: 0.3s ease;
-
-                        &:hover {
-                            background-color: rgb(255, 151, 81);
+    
+                    .container {
+                        display: flex;
+                        flex-direction: row;
+                        padding: 30px;
+                        justify-content: space-between;
+    
+                        @include md{
+                            padding: 20px;
+                            display: flex;
+                            align-items: flex-start;
+                            justify-content: center;
+                            flex-direction: column;
+                            gap: 10px;
                         }
+    
+                        .text{
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 10px;
+                            
+                            @include md{
+                                text-overflow: ellipsis;
+                            }
+                            
+                        }
+    
+                        &:nth-child(2){
+                            border-bottom: 1px solid rgba(128, 128, 128, 0.46);
+                        }
+    
+                        button {
+                            padding: 10px;
+                            border-radius: 5px;
+                            color: white;
+                            background-color: rgb(255, 102, 0);
+                            border: none;
+                            cursor: pointer;
+                            width: fit-content;
+                            transition: 0.3s ease;
+    
+                            &:hover {
+                                background-color: rgb(255, 151, 81);
+                            }
+                        }
+                        
                     }
+
                     
+                }
+                img{
+                    align-self: center;
+                    width: 200px;
+                    height: 100%;
                 }
                 
             }
@@ -159,11 +172,12 @@
                 }
 
                 img{
-                    width: 350px;
+                    padding: 10px;
+                    width: 250px;
 
                     @include sm{
                         width: 250px;
-                        margin-top: -50px;
+                        
                     }
                 }
             }
@@ -187,6 +201,17 @@
                     flex-direction: row;
                     padding: 30px;
                     justify-content: space-between;
+
+                    @include sm{
+                        &:nth-child(2){
+                            flex-direction: column;
+
+                            button{
+                                align-self: center;
+                                width: 100%;
+                            }
+                        }
+                    }
 
                     .text{
                         display: flex;

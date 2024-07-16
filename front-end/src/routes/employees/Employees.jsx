@@ -19,6 +19,19 @@ export default function Employees() {
     navigate(`/employees/${params.id}`, { state: { employee: employeeData } });
   };
 
+  const columnsWithAvatarRender = columns.map((column) => {
+    if (column.field === "6" && column.headerName === "AVATAR") {
+        return {
+            ...column,
+            renderCell: (params) => (
+                <img src={params.row["6"]} alt="Avatar" style={{ width: 35, height: 35, borderRadius: '50%', marginTop:'7px', marginLeft:'7px'}} />
+            ),
+        };
+    }
+    return column;
+});
+
+
   return (
     <div className='employees'>
       <div className="sideNavbar">
@@ -38,7 +51,7 @@ export default function Employees() {
             className='dataGrid'
             checkboxSelection
             rows={rows}
-            columns={columns}
+            columns={columnsWithAvatarRender}
             slots={{ toolbar: GridToolbar }}
             onRowClick={handleRowClick}
           />
