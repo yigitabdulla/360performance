@@ -27,14 +27,11 @@ export default function Employees() {
 
       <div className="employeesContainer">
         <div className='title'>
-          <h1>Çalışanlar</h1>
-          <div className="buttons">
-            {/* <input id="fileInput" style={{ display: 'none' }} type="file" accept=".xlsx, .xls" onChange={handleFileUpload} /> */}
-            {/* <button onClick={handleCustomButtonClick}>Çalışanları İçe Aktar</button> */}
-            <a className='addExcel' href="/employees/addExcel">Çalışanları İçe Aktar</a>
+          <div className="first">
+            <h1>Çalışanlar</h1>
             <a className='addEmployee' href='/employees/add'>Çalışan Ekle</a>
-            
           </div>
+          <a className='addExcel' href="/employees/addExcel">Çalışanları İçe Aktar</a>
         </div>
         <div style={{ height: 400, width: '80vw' }}>
           <DataGrid

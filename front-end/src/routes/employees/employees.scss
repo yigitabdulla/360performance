@@ -9,44 +9,61 @@
 
     .sideNavbar {
         flex: 1;
-        
-        @include sm{
+
+        @include sm {
             display: none;
         }
     }
 
 
-    .employeesContainer{
+    .employeesContainer {
         flex: 6;
         display: flex;
         flex-direction: column;
         gap: 20px;
 
-        .title{
+        .title {
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: space-between;
-            gap: 5px;
-            
-            @include md{
+            gap: 10px;
+
+
+            .addExcel {
+                padding: 10px;
+                border-radius: 5px;
+                background-color: #64b2ff;
+                border: none;
+                transition: 0.3s ease;
+                cursor: pointer;
+                font-size: 16px;
+                width: fit-content;
+
+                &:hover {
+                    background-color: #86c3ff;
+                }
+            }
+
+            @include md {
                 width: 56vw;
             }
 
-            @include sm{
+            @include sm {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 10px;
             }
 
-            .buttons{
+            .first {
                 display: flex;
+                justify-content: space-between;
                 gap: 10px;
 
-                @include sm{
+                @include sm {
                     flex-direction: column;
                 }
 
-                .addEmployee{
+                .addEmployee {
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -58,50 +75,23 @@
                     transition: 0.3s ease;
                     cursor: pointer;
                     font-size: 16px;
-    
-                    &:hover{
+
+                    &:hover {
                         background-color: #58d3b1;
                     }
 
                 }
 
-                .addExcel{
-                    padding: 10px;
-                    border-radius: 5px;
-                    background-color: #dd7973;
-                    border: none;
-                    transition: 0.3s ease;
-                    cursor: pointer;
-                    font-size: 16px;
-
-                    &:hover{
-                        background-color: #ff7871;
-                    }
-                }
-
-                
-
-                button{
-                    padding: 10px;
-                    border-radius: 5px;
-                    background-color: #dd7973;
-                    border: none;
-                    transition: 0.3s ease;
-                    cursor: pointer;
-                    font-size: 16px;
-
-                    &:hover{
-                        background-color: #ff7871;
-                    }
-                }
             }
         }
 
-        .dataGrid{
-            @include md{
+        .dataGrid {
+            background-color: rgba(255, 255, 255, 0.601);
+            @include md {
                 width: 550px;
             }
-            @include sm{
+
+            @include sm {
                 width: 82vw;
                 height: 500px;
             }

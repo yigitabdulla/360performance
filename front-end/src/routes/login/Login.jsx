@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from "react-router-dom";
 import "./login.scss"
+import ReCAPTCHA from "react-google-recaptcha";
 
 export default function Login() {
   const login = false
@@ -58,6 +59,12 @@ export default function Login() {
     }
   };
 
+  function onChange(value) {
+    console.log("Captcha value:", value);
+  }
+
+
+  console.log(import.meta.env.VITE_SITE_KEY)
 
   return (
     <div className='login'>
@@ -80,7 +87,10 @@ export default function Login() {
               ))}
             </div>
           )}
-
+          <ReCAPTCHA
+            sitekey={import.meta.env.VITE_SITE_KEY}
+            onChange={onChange}
+          />
           <button>Giriş Yap</button>
           <a href="/reset" className='resetButton'>Şifremi yenile</a>
         </form>
