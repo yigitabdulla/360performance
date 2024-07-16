@@ -18,9 +18,7 @@ export default function Home() {
           <div className="top">
 
             <div className="top-info">
-              <div className="title">Değerlendirmeye başlayın</div>
-
-
+              <div className="title">Değerlendirmeye Başlayın</div>
               <div className='container'>
                 <div className="text">
                   <MessageIcon />
@@ -28,7 +26,7 @@ export default function Home() {
                   <br></br>
                   Değerlendirme sürecine hemen başlayın.
                 </div>
-                <button>360 değerlendirme oluştur</button>
+                <button>360 Değerlendirme Oluştur</button>
               </div>
 
               <div className='container'>
@@ -38,7 +36,7 @@ export default function Home() {
                   <br></br>
                   Performans hedeflerinizi yönetin.
                 </div>
-                <button>Hedef değerlendirme oluştur</button>
+                <button>Hedef Değerlendirme Oluştur</button>
               </div>
             </div>
 
@@ -49,7 +47,7 @@ export default function Home() {
             <div className="text">
               <h2>360 Değerlendirme Nasıl Yapılır?</h2>
               <span>Üç basit adımda değerlendirme oluşturmayı öğrenmek için videomuzu izleyin.</span>
-              <button>Videoyu izle</button>
+              <button>Videoyu İzle</button>
             </div>
 
             <img src="./tutorial.svg" alt="" />
