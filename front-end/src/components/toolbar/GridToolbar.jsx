@@ -6,8 +6,8 @@ import "./gridToolbar.scss"
 const CustomToolbar = () => {
   return (
     <GridToolbarContainer>
-      <GridToolbarColumnsButton />
-      <GridToolbarDensitySelector />
+      {/* <GridToolbarColumnsButton />
+      <GridToolbarDensitySelector /> */}
       <a className='importExcel' href="/employees/addExcel">
         <SaveAltIcon style={{ transform: 'rotate(180deg)', fontSize: '20px', marginRight: '7px'}}/>İÇE AKTAR
       </a>

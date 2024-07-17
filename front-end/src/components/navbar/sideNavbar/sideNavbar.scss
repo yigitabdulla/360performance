@@ -8,6 +8,9 @@
         align-items: center;
         justify-content: flex-start;
         transition: 0.3s ease;
+        font-weight: 100;
+        font-size: 14px;
+        color: rgb(75, 75, 75);
 
         &:hover{
             transform: scale(1.02);
@@ -35,7 +38,10 @@
             align-items: center;
             justify-content: space-between;
             margin-left: -17px;
+            text-align: center;
+            color: rgb(75, 75, 75);
             transition: 0.3s ease;
+            font-size: 14px;
 
             &:hover{
                 scale: 1.02;

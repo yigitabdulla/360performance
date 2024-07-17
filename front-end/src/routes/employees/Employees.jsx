@@ -27,7 +27,7 @@ export default function Employees() {
       return (
         (filters.name ? row[0]?.toLowerCase().includes(filters.name.toLowerCase()) : true) &&
         (filters.lastname ? row[1]?.toLowerCase().includes(filters.lastname.toLowerCase()) : true) &&
-        (filters.email ? row[2]?.toLowerCase().includes(filters.email.toLowerCase()) : true) &&
+        /* (filters.email ? row[2]?.toLowerCase().includes(filters.email.toLowerCase()) : true) && */
         (filters.position ? row[3]?.toLowerCase().includes(filters.position.toLowerCase()) : true) &&
         (filters.status ? row[4] === filters.status : true)
       );
@@ -54,7 +54,10 @@ export default function Employees() {
             className='dataGrid'
             checkboxSelection
             rows={filteredRows}
-            columns={columns}
+            columns={columns.map((column) => ({
+              ...column,
+              width: '220',
+            }))}
             components={{
               Toolbar: CustomToolbar,
             }}

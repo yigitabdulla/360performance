@@ -38,7 +38,7 @@ export default function Navbar() {
           </>
         )}
         <div className="menuIcon">
-          <MenuIcon onClick={() => setOpen((prev) => !prev)} />
+          <MenuIcon style={{color:'gray'}} onClick={() => setOpen((prev) => !prev)} />
         </div>
         <div className={open ? "menu active" : "menu"}>
           <a href="/">Ana Sayfa</a>

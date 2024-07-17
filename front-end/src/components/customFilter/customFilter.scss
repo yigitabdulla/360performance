@@ -2,48 +2,57 @@
 
 .customFilter {
     display: flex;
+    width: 80vw;
+    align-items: center;
+    justify-content: flex-start;
 
     .gridContainer {
         display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-start;
+        
+
+        .singleGrid {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0;
+            width: 100%;
+
+            .gridText {
+                width: 100%;
+            }
+
+            &:nth-child(5) {
+                display: flex;
+                align-self: flex-end;
+                
+            }
+        }
+
+
+    }
+
+    .filterButton {
+        display: flex;
         align-items: center;
         justify-content: center;
+        background-color: #0063c6;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s ease;
+        margin-left: 20px;
+
+        &:hover {
+            background-color: #0077ee;
+        }
 
         @include md {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-
+            width: 100px;
         }
-
-        .singleGrid{
-            margin-right: 0;
-            .gridText{
-                @include md {
-                    width: 100px;
-                    padding: 0;
-        
-                }
-
-            }
-
-            .filterButton{
-                background-color: #0063c6;
-                color: white;
-                padding: 10px;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                transition: 0.3s ease;
-
-                &:hover{
-                    background-color: #0077ee;
-                }
-
-                @include md{
-                    width: 100px;
-                }
-            }
-            
-        }
-
     }
 }

@@ -29,22 +29,8 @@
             justify-content: space-between;
             gap: 10px;
 
-
-            .addExcel {
-                color: #0063c6;
-                border: none;
-                transition: 0.3s ease;
-                cursor: pointer;
-                font-size: 16px;
-                width: fit-content;
-
-                &:hover {
-                    scale: 1.02;
-                }
-            }
-
             @include md {
-                width: 56vw;
+                width: 80%
             }
 
             @include sm {
@@ -88,7 +74,7 @@
         .dataGrid {
             background-color: rgba(255, 255, 255, 0.601);
             @include md {
-                width: 550px;
+                width: 70vw;
             }
 
             @include sm {

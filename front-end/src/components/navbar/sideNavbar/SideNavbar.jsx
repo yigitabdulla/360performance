@@ -12,13 +12,9 @@ import MessageIcon from '@mui/icons-material/Message';
 import ViewTimelineIcon from '@mui/icons-material/ViewTimeline';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import SettingsIcon from '@mui/icons-material/Settings';
-import BadgeIcon from '@mui/icons-material/Badge';
 import HomeIcon from '@mui/icons-material/Home';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
-import BookmarkIcon from '@mui/icons-material/Bookmark';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import WorkIcon from '@mui/icons-material/Work';
 
 export default function SideNavbar() {
   return (
@@ -32,7 +28,7 @@ export default function SideNavbar() {
           id="panel1-header"
           expandIcon={<ArrowDropDownIcon />}
         >
-          <PersonIcon />Çalışanlar
+          <span><PersonIcon />Çalışanlar</span>
         </AccordionSummary>
         <AccordionDetails className='sideNavbar'>
           <a href="/employees"><PeopleAltIcon />Tüm Çalışanlar</a>
@@ -59,7 +55,7 @@ export default function SideNavbar() {
         </AccordionDetails>
       </Accordion> */}
 
-      <span>Performans Değerlendirme <ArrowDropDownIcon /></span>
+      <span style={{fontSize:'14px', color:'rgb(75, 75, 75)'}}>Performans Değerlendirme <ArrowDropDownIcon /></span>
 
       <a href="/reviews"><PollIcon />Değerlendirmeler</a>
       <a href="/"><PersonIcon />Katılımcılar</a>

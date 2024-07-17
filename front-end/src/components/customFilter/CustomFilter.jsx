@@ -24,7 +24,7 @@ const CustomFilter = ({ applyFilters }) => {
 
   return (
     <div className="customFilter">
-      <Grid className='gridContainer' container spacing={1}>
+      <Grid className='gridContainer' container spacing={1} >
         <Grid className='singleGrid' item xs={2}>
           <TextField
             className='gridText'
@@ -32,7 +32,6 @@ const CustomFilter = ({ applyFilters }) => {
             name="name"
             value={filters.name}
             onChange={handleInputChange}
-            fullWidth
           />
         </Grid>
         <Grid className='singleGrid' item xs={2}>
@@ -42,10 +41,9 @@ const CustomFilter = ({ applyFilters }) => {
             name="lastname"
             value={filters.lastname}
             onChange={handleInputChange}
-            fullWidth
           />
         </Grid>
-        <Grid className='singleGrid' item xs={2}>
+        {/* <Grid className='singleGrid' item xs={2}>
           <TextField
             className='gridText'
             label="E-posta"
@@ -54,7 +52,7 @@ const CustomFilter = ({ applyFilters }) => {
             onChange={handleInputChange}
             fullWidth
           />
-        </Grid>
+        </Grid> */}
         <Grid className='singleGrid' item xs={2}>
           <TextField
             className='gridText'
@@ -62,19 +60,16 @@ const CustomFilter = ({ applyFilters }) => {
             name="position"
             value={filters.position}
             onChange={handleInputChange}
-            fullWidth
           />
         </Grid>
         <Grid className='singleGrid' item xs={2}>
-          <FormControl fullWidth>
+          <FormControl className='gridText'>
             <InputLabel>Durum</InputLabel>
             <Select
-              className='gridText'
               label="Durum"
               name="status"
               value={filters.status}
               onChange={handleInputChange}
-              fullWidth
             >
               <MenuItem value="true">Aktif</MenuItem>
               <MenuItem value="false">Pasif</MenuItem>
@@ -87,7 +82,6 @@ const CustomFilter = ({ applyFilters }) => {
             variant="contained"
             color="primary"
             onClick={handleApplyFilters}
-            fullWidth
           >
             Filtreleri Uygula
           </button>
