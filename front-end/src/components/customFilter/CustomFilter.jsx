@@ -24,69 +24,32 @@ const CustomFilter = ({ applyFilters }) => {
 
   return (
     <div className="customFilter">
-      <Grid className='gridContainer' container spacing={1} >
-        <Grid className='singleGrid' item xs={2}>
-          <TextField
-            className='gridText'
-            label="Ad"
-            name="name"
-            value={filters.name}
-            onChange={handleInputChange}
-          />
-        </Grid>
-        <Grid className='singleGrid' item xs={2}>
-          <TextField
-            className='gridText'
-            label="Soyad"
-            name="lastname"
-            value={filters.lastname}
-            onChange={handleInputChange}
-          />
-        </Grid>
-        {/* <Grid className='singleGrid' item xs={2}>
-          <TextField
-            className='gridText'
-            label="E-posta"
-            name="email"
-            value={filters.email}
-            onChange={handleInputChange}
-            fullWidth
-          />
-        </Grid> */}
-        <Grid className='singleGrid' item xs={2}>
-          <TextField
-            className='gridText'
-            label="Pozisyon"
-            name="position"
-            value={filters.position}
-            onChange={handleInputChange}
-          />
-        </Grid>
-        <Grid className='singleGrid' item xs={2}>
-          <FormControl className='gridText'>
-            <InputLabel>Durum</InputLabel>
-            <Select
-              label="Durum"
-              name="status"
-              value={filters.status}
-              onChange={handleInputChange}
-            >
-              <MenuItem value="true">Aktif</MenuItem>
-              <MenuItem value="false">Pasif</MenuItem>
-            </Select>
-          </FormControl>
-        </Grid>
-        <Grid className='singleGrid' item xs={2}>
-          <button
-            className='filterButton'
-            variant="contained"
-            color="primary"
-            onClick={handleApplyFilters}
-          >
-            Filtreleri Uygula
-          </button>
-        </Grid>
-      </Grid>
+      <div className='gridContainer'>
+        <div className="inputContainer">
+          <div className='singleGrid'>
+            <input placeholder='Ad' className='gridText' onChange={handleInputChange} value={filters.name} id="name" name="name" type="text" />
+          </div>
+          <div className='singleGrid'>
+            <input placeholder='Soyad' className='gridText' onChange={handleInputChange} value={filters.lastname} id="lastname" name="lastname" type="text" />
+          </div>
+          <div className='singleGrid'>
+            <input placeholder='Pozisyon' className='gridText' onChange={handleInputChange} value={filters.position} id="position" name="position" type="text" />
+          </div>
+          <div className='singleGrid'>
+            <select onChange={handleInputChange} name="status">
+              <option value="">Durum</option>
+              <option value="true">Aktif</option>
+              <option value="false">Pasif</option>
+            </select>
+          </div>
+        </div>
+        <button
+          className='filterButton'
+          onClick={handleApplyFilters}
+        >
+          Filtreleri Uygula
+        </button>
+      </div>
     </div>
   );
 };
