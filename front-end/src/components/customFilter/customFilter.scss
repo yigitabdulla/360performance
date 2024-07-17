@@ -1,0 +1,49 @@
+@import "../../responsive.scss";
+
+.customFilter {
+    display: flex;
+
+    .gridContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @include md {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+
+        }
+
+        .singleGrid{
+            margin-right: 0;
+            .gridText{
+                @include md {
+                    width: 100px;
+                    padding: 0;
+        
+                }
+
+            }
+
+            .filterButton{
+                background-color: #0063c6;
+                color: white;
+                padding: 10px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: 0.3s ease;
+
+                &:hover{
+                    background-color: #0077ee;
+                }
+
+                @include md{
+                    width: 100px;
+                }
+            }
+            
+        }
+
+    }
+}

@@ -4,13 +4,15 @@ import "./employees.scss"
 import { DataGrid } from '@mui/x-data-grid';
 import { EmployeeContext } from '../../context/EmployeeContext';
 import { useNavigate } from 'react-router-dom';
-import GridToolbar from "../../components/toolbar/GridToolbar"
+import CustomToolbar from "../../components/toolbar/GridToolbar"
+import CustomFilter from '../../components/customFilter/CustomFilter';
 
 
 export default function Employees() {
   const navigate = useNavigate();
 
   const { rows, columns } = useContext(EmployeeContext);
+  const [filteredRows, setFilteredRows] = useState(rows);
 
   /* console.log('DataDisplay:', { rows, columns }); */
 
@@ -20,18 +22,18 @@ export default function Employees() {
     navigate(`/employees/${params.id}`, { state: { employee: employeeData } });
   };
 
-  const columnsWithAvatarRender = columns.map((column) => {
-    if (column.field === "6" && column.headerName === "Avatar") {
-      return {
-        ...column,
-        renderCell: (params) => (
-          <img src={params.row["6"]} alt="Avatar" style={{ width: 35, height: 35, borderRadius: '50%', marginTop: '7px', marginLeft: '7px' }} />
-        ),
-      };
-    }
-    return column;
-  });
-
+  const applyFilters = (filters) => {
+    const filteredData = rows.filter(row => {
+      return (
+        (filters.name ? row[0]?.toLowerCase().includes(filters.name.toLowerCase()) : true) &&
+        (filters.lastname ? row[1]?.toLowerCase().includes(filters.lastname.toLowerCase()) : true) &&
+        (filters.email ? row[2]?.toLowerCase().includes(filters.email.toLowerCase()) : true) &&
+        (filters.position ? row[3]?.toLowerCase().includes(filters.position.toLowerCase()) : true) &&
+        (filters.status ? row[4] === filters.status : true)
+      );
+    });
+    setFilteredRows(filteredData);
+  };
 
   return (
     <div className='employees'>
@@ -46,16 +48,17 @@ export default function Employees() {
             <a className='addEmployee' href='/employees/add'>Çalışan Ekle</a>
           </div>
         </div>
-        <div style={{ height: 400, width: '80vw' }}>
+        <CustomFilter applyFilters={applyFilters} />
+        <div style={{ height: 500, width: '80vw' }}>
           <DataGrid
             className='dataGrid'
             checkboxSelection
-            rows={rows}
-            columns={columnsWithAvatarRender}
+            rows={filteredRows}
+            columns={columns}
             components={{
-              Toolbar: GridToolbar,
+              Toolbar: CustomToolbar,
             }}
-            slots={{ toolbar: GridToolbar }}
+            slots={{ toolbar: CustomToolbar }}
             onRowClick={handleRowClick}
             localeText={{
               toolbarDensity: 'Yoğunluk',
@@ -74,17 +77,6 @@ export default function Employees() {
               columnMenuSortAsc: 'Artan Sıralama',
               columnMenuSortDesc: 'Azalan Sıralama',
               columnMenuManageColumns: 'Kolonları yönet',
-              filterPanelOperator: 'Operatör',
-              filterPanelColumns: 'Sütunlar',
-              filterPanelInputLabel: 'Değer',
-              filterPanelInputPlaceholder: 'Filtre değeri girin',
-              filterOperatorContains: 'İçeren',
-              filterOperatorEquals: 'Eşit',
-              filterOperatorStartsWith: 'İle Başlayan',
-              filterOperatorEndsWith: 'İle Biten',
-              filterOperatorIsEmpty: 'Boş Olan',
-              filterOperatorIsNotEmpty: 'Boş Olmayan',
-              filterOperatorIsAnyOf: 'Herhangi Biri',
             }}
           />
         </div>
