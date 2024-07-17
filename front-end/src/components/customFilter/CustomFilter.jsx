@@ -36,19 +36,21 @@ const CustomFilter = ({ applyFilters }) => {
             <input placeholder='Pozisyon' className='gridText' onChange={handleInputChange} value={filters.position} id="position" name="position" type="text" />
           </div>
           <div className='singleGrid'>
-            <select onChange={handleInputChange} name="status">
+            <select style={{color:'#8d8d8d'}}  onChange={handleInputChange} name="status">
               <option value="">Durum</option>
               <option value="true">Aktif</option>
               <option value="false">Pasif</option>
             </select>
           </div>
         </div>
-        <button
-          className='filterButton'
-          onClick={handleApplyFilters}
-        >
-          Filtreleri Uygula
-        </button>
+        <div>
+          <button
+            className='filterButton'
+            onClick={handleApplyFilters}
+          >
+            Filtreleri Uygula
+          </button>
+        </div>
       </div>
     </div>
   );
