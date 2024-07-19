@@ -3,13 +3,16 @@ import "./addEmployeeExcel.scss"
 import * as XLSX from 'xlsx';
 import SideNavbar from '../../components/navbar/sideNavbar/SideNavbar';
 import ArrowRightOutlinedIcon from '@mui/icons-material/ArrowRightOutlined';
-import { EmployeeContext } from '../../context/EmployeeContext';
+import { useDispatch , useSelector } from "react-redux"
+import { updateEmployees } from '../../redux/slices/employeesSlice'
 
 export default function AddEmployeeExcel() {
 
-    const { updateRow, updateColumn } = useContext(EmployeeContext);
     const [tempColumns, setTempColumns] = useState([]);
     const [tempRows, setTempRows] = useState([]);
+
+    const dispatch = useDispatch();
+    const employees = useSelector(state => state.employees);
 
     const handleFileUpload = (event) => {
         const file = event.target.files[0];
@@ -34,7 +37,7 @@ export default function AddEmployeeExcel() {
             const transformedColumns = cols.map((col) => ({
                 ...col,
                 headerName: col.headerName.charAt(0).toUpperCase() + col.headerName.slice(1).toLowerCase(),
-            }));            
+            }));
 
             setTempColumns(transformedColumns);
             setTempRows(rowData);
@@ -48,8 +51,8 @@ export default function AddEmployeeExcel() {
         localStorage.setItem('columns', JSON.stringify(tempColumns));
         localStorage.setItem('rows', JSON.stringify(tempRows));
 
-        updateColumn(tempColumns);
-        updateRow(tempRows);
+        dispatch(updateEmployees({ rows: tempRows,columns: tempColumns }));
+        
     };
 
     return (
@@ -69,7 +72,7 @@ export default function AddEmployeeExcel() {
                         <a href="">Boş Şablon</a>
                         <a href="">Örnek Şablon</a>
                     </div>
-                    <span><ArrowRightOutlinedIcon/>Örnek şablonu inceleyebilirsiniz, boş şablonu güncelleyerek yükleyebebilirsiniz</span>
+                    <span><ArrowRightOutlinedIcon />Örnek şablonu inceleyebilirsiniz, boş şablonu güncelleyerek yükleyebebilirsiniz</span>
                 </div>
                 <div className="info">
                     <span>Dosyanızı seçerek kaydet butonuna tıklayın</span>

@@ -2,17 +2,20 @@ import React, { useContext, useState } from 'react'
 import SideNavbar from '../../components/navbar/sideNavbar/SideNavbar'
 import "./employees.scss"
 import { DataGrid } from '@mui/x-data-grid';
-import { EmployeeContext } from '../../context/EmployeeContext';
 import { useNavigate } from 'react-router-dom';
 import CustomToolbar from "../../components/toolbar/GridToolbar"
 import CustomFilter from '../../components/customFilter/CustomFilter';
+import {useSelector} from "react-redux"
 
 
 export default function Employees() {
   const navigate = useNavigate();
 
-  const { rows, columns } = useContext(EmployeeContext);
+  const rows = useSelector(state => state.employees.rows)
+  const columns = useSelector(state => state.employees.columns)
+
   const [filteredRows, setFilteredRows] = useState(rows);
+
 
   /* console.log('DataDisplay:', { rows, columns }); */
 

@@ -26,9 +26,6 @@ export const EmployeeProvider = ({ children }) => {
     }, [rows,columns]);
 
 
-    console.log('EmployeeProvider:', { rows, columns });
-
-
     return (
         <EmployeeContext.Provider value={{ rows, updateColumn, columns, updateRow }}>
             {children}
