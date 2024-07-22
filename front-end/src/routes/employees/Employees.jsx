@@ -8,6 +8,7 @@ import CustomFilter from '../../components/customFilter/CustomFilter';
 import {useSelector} from "react-redux"
 
 
+
 export default function Employees() {
   const navigate = useNavigate();
 
@@ -15,7 +16,6 @@ export default function Employees() {
   const columns = useSelector(state => state.employees.columns)
 
   const [filteredRows, setFilteredRows] = useState(rows);
-
 
   /* console.log('DataDisplay:', { rows, columns }); */
 
