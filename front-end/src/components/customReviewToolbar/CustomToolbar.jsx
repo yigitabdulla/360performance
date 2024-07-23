@@ -27,16 +27,13 @@ const CustomToolbar = () => {
   const handleOpen = () => {
     setOpen(true);
   };
-  const handleClose = () => {
+  const handleClose2= () => {
     setOpen(false);
   };
 
   const handleSelectChange = (e) => {
     const { value } = e.target;
     setSelectedOption(value);
-    if (value) {
-      setAdditionalSelects(value);
-    }
   };
 
   function ChildModal() {
@@ -51,7 +48,7 @@ const CustomToolbar = () => {
     return (
       <React.Fragment>
         <div className="editButtons">
-          <button onClick={handleClose}>İptal</button>
+          <button onClick={handleClose2}>İptal</button>
           <button onClick={handleOpen}>Düzenle</button>
         </div>
         <Modal
@@ -100,7 +97,7 @@ const CustomToolbar = () => {
       </a>
       <Modal
         open={open}
-        onClose={handleClose}
+        onClose={handleClose2}
       >
         <Box sx={{ ...style, margin: 0, padding: 0, borderRadius: '10px', border: 'none' }}>
           <div className="editContainer">
@@ -119,8 +116,8 @@ const CustomToolbar = () => {
               {
                 selectedOption && 
                 <>
-                <span style={{ color: 'rgb(75, 75, 75)', marginTop: '10px' }}>{selectedOption == "name" ? "Dönem adı" : ""} seçin</span>
-                <select style={{ color: 'rgb(75, 75, 75)', marginTop: '5px' }}>
+                <span style={{ color: 'rgb(75, 75, 75)', marginTop: '10px', marginBottom:'-5px' }}>{selectedOption == "name" ? "Dönem adı" : ""} seçin</span>
+                <select style={{ color: 'rgb(75, 75, 75)', marginTop: '5px'}}>
                   <option value={selectedOption}>{selectedOption == "name" ? "Dönem adı" : ""} seçin</option>
                   <option value="1">1.</option>
                   <option value="2">2.</option>

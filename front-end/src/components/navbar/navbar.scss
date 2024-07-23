@@ -133,13 +133,19 @@ nav {
     .menu {
       position: absolute;
       top: 0;
-      right: -50%;
+      right: 0;
       background-color: black;
       color: white;
       height: 100vh;
-      width: 50%;
+      width: 0;
+      /* Start with width 0 */
+      opacity: 0;
+      /* Start with opacity 0 */
       transition: all 1s ease;
+      overflow: hidden;
+      /* Ensure no content is shown when width is 0 */
       display: flex;
+      /* Always display flex, but control visibility with width and opacity */
       flex-direction: column;
       align-items: flex-start;
       justify-content: flex-start;
@@ -187,15 +193,18 @@ nav {
       }
 
       &.active {
-        right: 0;
+        width: 50%;
+        /* Target width */
+        opacity: 1;
+        /* Target opacity */
       }
+    }
 
-      @include sm {
-        z-index: 9;
+    @include sm {
+      z-index: 9;
 
-        a {
-          display: initial;
-        }
+      a {
+        display: initial;
       }
     }
   }

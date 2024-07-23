@@ -6,8 +6,12 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Employee() {
+
+    const isMobile = window.innerWidth < 640;
 
     const location = useLocation();
     const { employee } = location.state || {}; // Get the employee data from location state
@@ -16,15 +20,14 @@ export default function Employee() {
     }
 
     const [person, setPerson] = useState({
-        name: employee[1],
-        lastname: employee[2],
-        email: employee[3],
-        position: employee[4],
-        status: employee[5],
+        name: employee[0],
+        lastname: employee[1],
+        email: employee[2],
+        position: employee[3],
+        status: employee[4],
 
     })
 
-    const [avatar, setAvatar] = useState(person.avatar)
 
     const handleChange = (event) => {
         const { name, value } = event.target
@@ -51,20 +54,14 @@ export default function Employee() {
     }
 
     const style = {
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: 400,
-        bgcolor: 'background.paper',
-        border: '2px solid #000',
-        boxShadow: 24,
-        p: 4,
+       
     };
 
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    const notify = (status) => status == "aktif" ? toast("Çalışan aktif edildi!") : toast("Çalışan pasif edildi!")
 
     return (
         <div className='employee'>
@@ -75,70 +72,79 @@ export default function Employee() {
             <div className="formContainer">
                 {employee ? <form onSubmit={updatePerson}>
                     <div className="employeeInfo">
-                        <div className="employee-title">
-                            <h3>Çalışan Bilgileri</h3>
+
+                        <div className="page-title">
+                            <h1>{person.name} {person.lastname}</h1>
                         </div>
-                        <div className="inputs">
-                            <div className="item">
-                                <label htmlFor="name">İsim</label>
-                                <input required id="name" name="name" type="text" onChange={handleChange} defaultValue={person.name} />
+
+                        <div className="employee-details">
+                            <div className="employee-title">
+                                <h3>Çalışan Bilgileri</h3>
                             </div>
-                            <div className="item">
-                                <label htmlFor="lastname">Soyisim</label>
-                                <input required id="lastname" name="lastname" type="text" onChange={handleChange} defaultValue={person.lastname} />
-                            </div>
-                            <div className="item">
-                                <label htmlFor="email">E-posta Adresi</label>
-                                <input required id="email" name="email" type="email" onChange={handleChange} defaultValue={person.email} />
-                            </div>
-                            <div className="item">
-                                <label htmlFor="position">Pozisyon</label>
-                                <input required id="position" name="position" type="text" defaultValue={person.position} />
-                            </div>
-                            <div className="buttons">
-                                {person.status === "true" ? <button onClick={handleOpen} className='changeStatus'>Çalışanı pasif et</button> :
-                                    <button onClick={handleOpen} className='changeStatus'>Çalışanı Aktif Et</button>}
-                                {person.status === "true" ? <Modal
-                                    open={open}
-                                    onClose={handleClose}
-                                    aria-labelledby="modal-modal-title"
-                                    aria-describedby="modal-modal-description"
-                                >
-                                    <Box sx={style}>
-                                        <Typography id="modal-modal-title" variant="h6" component="h2">
-                                            {person.name + " " + person.lastname} pasif edilsin mi ?
-                                        </Typography>
-                                        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                                            {person.name + " " + person.lastname} tüm aktif değerlendirmelerden
-                                            çıkarılacaktır. Bu işlem geri alınamaz. Pasif etmek istiyor musunuz?
-                                        </Typography>
-                                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', marginTop: '10px' }} className='decision'>
-                                            <Button style={{ backgroundColor: 'rgb(255, 130, 96)', color: 'white', width: '100px' }}>Hayır</Button>
-                                            <Button style={{ backgroundColor: 'rgb(0, 156, 156)', color: 'white', width: '100px' }}>Evet</Button>
-                                        </div>
-                                    </Box>
-                                </Modal> : <Modal
-                                    open={open}
-                                    onClose={handleClose}
-                                    aria-labelledby="modal-modal-title"
-                                    aria-describedby="modal-modal-description"
-                                >
-                                    <Box sx={style}>
-                                        <Typography id="modal-modal-title" variant="h6" component="h2">
-                                            {person.name + " " + person.lastname} aktif edilsin mi ?
-                                        </Typography>
-                                        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                                            {person.name + " " + person.lastname} çalışanını aktif etmek
-                                            istediğinize emin misiniz?
-                                        </Typography>
-                                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', marginTop: '10px' }} className='decision'>
-                                            <Button style={{ backgroundColor: 'rgb(255, 130, 96)', color: 'white', width: '100px' }}>Hayır</Button>
-                                            <Button style={{ backgroundColor: 'rgb(0, 156, 156)', color: 'white', width: '100px' }}>Evet</Button>
-                                        </div>
-                                    </Box>
-                                </Modal>}
-                                <button className="sendButton">Kaydet</button>
-                                {false && <span>error</span>}
+
+                            <div className="inputs">
+                                <div className="item">
+                                    <label htmlFor="name">İsim</label>
+                                    <input required id="name" name="name" type="text" onChange={handleChange} defaultValue={person.name} />
+                                </div>
+                                <div className="item">
+                                    <label htmlFor="lastname">Soyisim</label>
+                                    <input required id="lastname" name="lastname" type="text" onChange={handleChange} defaultValue={person.lastname} />
+                                </div>
+                                <div className="item">
+                                    <label htmlFor="email">E-posta Adresi</label>
+                                    <input required id="email" name="email" type="email" onChange={handleChange} defaultValue={person.email} />
+                                </div>
+                                <div className="item">
+                                    <label htmlFor="position">Pozisyon</label>
+                                    <input required id="position" name="position" type="text" defaultValue={person.position} />
+                                </div>
+                                <div className="buttons">
+                                    {person.status === "true" ? <button onClick={handleOpen} className='changeStatus'>Çalışanı pasif et</button> :
+                                        <button onClick={handleOpen} className='changeStatus'>Çalışanı Aktif Et</button>}
+                                    {person.status === "true" ? <Modal
+                                        open={open}
+                                        onClose={handleClose}
+                                        aria-labelledby="modal-modal-title"
+                                        aria-describedby="modal-modal-description"
+                                    >
+                                        <Box className="modal-box" sx={style}>
+                                            <Typography style={{ color: 'rgb(75, 75, 75)', textAlign:'center' }} id="modal-modal-title" variant="h6" component="h2">
+                                                {person.name + " " + person.lastname} pasif edilsin mi ?
+                                            </Typography>
+                                            <Typography style={{ color: 'rgb(75, 75, 75)', textAlign:'center' }} id="modal-modal-description" sx={{ mt: 2 }}>
+                                                {person.name + " " + person.lastname} tüm aktif değerlendirmelerden
+                                                çıkarılacaktır. Bu işlem geri alınamaz. Pasif etmek istiyor musunuz?
+                                            </Typography>
+                                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', marginTop: '10px' }} className='decision'>
+                                                <Button onClick={handleClose} style={{ backgroundColor: 'rgb(255, 130, 96)', color: 'white', width: '100px', textTransform: 'none' }}>İptal</Button>
+                                                <Button onClick={() => notify("pasif")} style={{ backgroundColor: 'rgb(0, 156, 156)', color: 'white', width: '100px', textTransform: 'none' }}>Evet</Button>
+                                            </div>
+                                        </Box>
+                                    </Modal> : <Modal
+                                        open={open}
+                                        onClose={handleClose}
+                                        aria-labelledby="modal-modal-title"
+                                        aria-describedby="modal-modal-description"
+                                    >
+                                        <Box sx={style}>
+                                            <Typography style={{ color: 'rgb(75, 75, 75)', textAlign:'center' }} id="modal-modal-title" variant="h6" component="h2">
+                                                {person.name + " " + person.lastname} aktif edilsin mi ?
+                                            </Typography>
+                                            <Typography style={{ color: 'rgb(75, 75, 75)', textAlign:'center' }} id="modal-modal-description" sx={{ mt: 2 }}>
+                                                {person.name + " " + person.lastname} çalışanını aktif etmek
+                                                istediğinize emin misiniz?
+                                            </Typography>
+                                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', marginTop: '10px' }} className='decision'>
+                                                <Button onClick={handleClose} style={{ backgroundColor: 'rgb(255, 130, 96)', color: 'white', width: '100px', textTransform: 'none' }}>İptal</Button>
+                                                <Button onClick={() => notify("aktif")} style={{ backgroundColor: 'rgb(0, 156, 156)', color: 'white', width: '100px', textTransform: 'none' }}>Evet</Button>
+                                            </div>
+                                        </Box>
+                                    </Modal>}
+                                    <button className="sendButton">Kaydet</button>
+                                    <ToastContainer position="bottom-right" />
+                                    {false && <span>error</span>}
+                                </div>
                             </div>
                         </div>
                     </div>
