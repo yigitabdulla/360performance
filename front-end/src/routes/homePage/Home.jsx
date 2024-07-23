@@ -45,7 +45,7 @@ export default function Home() {
 
           <div className="mid">
             <div className="text">
-              <h2>360 Değerlendirme Nasıl Yapılır?</h2>
+              <div className='title'>360 Değerlendirme Nasıl Yapılır?</div>
               <span>Üç basit adımda değerlendirme oluşturmayı öğrenmek için videomuzu izleyin.</span>
               <button>Videoyu İzle</button>
             </div>

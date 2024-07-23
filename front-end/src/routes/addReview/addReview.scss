@@ -1,4 +1,9 @@
 @import "../../responsive.scss";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+}
 
 .addEmployee {
     display: flex;
@@ -22,8 +27,9 @@
         flex-direction: column;
         gap: 20px;
 
-        h1{
+        h1 {
             color: rgb(75, 75, 75);
+            font-weight: 400;
         }
 
 
@@ -37,7 +43,7 @@
                 display: flex;
                 gap: 50px;
 
-                @include lg{
+                @include lg {
                     display: flex;
                     flex-direction: column;
                 }
@@ -46,23 +52,24 @@
                     flex-direction: column;
                 }
 
-                @include sm{
+                @include sm {
                     width: 80vw;
                 }
 
-                
+
 
                 .text {
                     width: 350px;
                     color: rgb(75, 75, 75);
 
-                    @include sm{
+                    @include sm {
                         width: 100%;
                     }
 
                     h3 {
                         width: 300px;
                         color: rgb(75, 75, 75);
+                        font-weight: 400;
                     }
                 }
 
@@ -96,7 +103,7 @@
                             height: 30px;
                             padding: 10px;
 
-                            @include md{
+                            @include md {
                                 width: 100%;
                             }
 
@@ -109,7 +116,7 @@
                             display: flex;
                             justify-content: space-between;
                             color: rgb(75, 75, 75);
-                            
+
 
                             input {
                                 width: 300px;
@@ -127,9 +134,10 @@
                 gap: 50px;
                 color: rgb(75, 75, 75);
 
-                @include lg{
+                @include lg {
                     flex-direction: column;
                 }
+
                 @include md {
                     flex-direction: column;
                 }
@@ -141,16 +149,19 @@
                 .text {
                     width: 350px;
                     color: rgb(75, 75, 75);
-                    @include sm{
+
+                    @include sm {
                         width: 100%;
                     }
 
                     h3 {
                         width: 300px;
+                        color: rgb(75, 75, 75);
+                        font-weight: 400;
                     }
                 }
 
-                
+
 
                 h3 {
                     width: 300px;
@@ -167,43 +178,46 @@
                     width: 700px;
                     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 
-                    @include md{
+                    @include md {
                         width: 500px;
                     }
 
                     @include sm {
-                        width: 100%;;
+                        width: 100%;
+                        ;
                     }
-                    
+
 
                     .personalInfo {
                         display: flex;
                         justify-content: space-between;
 
-                        @include md{
+                        @include md {
                             flex-direction: column;
-                            
+
                         }
-                        
-                        
+
+
 
                         .item {
-                            @include md{
+                            @include md {
                                 gap: 7px;
                             }
+
                             input {
                                 width: 300px;
-                                @include sm{
+
+                                @include sm {
                                     width: 100%;
                                 }
 
-                                @include md{
+                                @include md {
                                     width: 100%;
                                 }
-                                
+
 
                             }
-                            
+
                         }
                     }
 
@@ -211,42 +225,44 @@
                         display: flex;
                         justify-content: space-between;
 
-                        @include md{
+                        @include md {
                             flex-direction: column;
                         }
 
                         .item {
-                            @include md{
+                            @include md {
                                 gap: 7px;
                             }
+
                             input {
-                                @include md{
+                                @include md {
                                     width: 100%;
                                 }
+
                                 width: 300px;
                             }
                         }
                     }
 
-                    
+
 
                     .item {
                         display: flex;
                         flex-direction: column;
-                        
+
 
                         input {
                             width: 670px;
                             height: 30px;
                             padding: 10px;
 
-                            @include md{
+                            @include md {
                                 width: 100%;
                             }
 
                             @include sm {
                                 width: 100%;
-                                
+
                             }
                         }
 
@@ -259,7 +275,7 @@
                 display: flex;
                 gap: 50px;
 
-                @include lg{
+                @include lg {
                     flex-direction: column;
                     width: fit-content;
                 }
@@ -269,7 +285,7 @@
                     gap: 20px;
                 }
 
-                @include sm{
+                @include sm {
                     width: 80vw;
                 }
 
@@ -280,7 +296,7 @@
                         width: 300px;
                     }
 
-                    @include sm{
+                    @include sm {
                         width: 100%;
                     }
                 }
@@ -289,7 +305,7 @@
                     background-color: white;
                 }
 
-                
+
 
 
                 .item {
@@ -314,7 +330,7 @@
                         width: 670px;
                         height: 30px;
 
-                        @include md{
+                        @include md {
                             width: 100%;
                         }
 
@@ -339,7 +355,7 @@
                         justify-content: center;
                         transition: 0.3s ease;
 
-                        &:hover{
+                        &:hover {
                             background-color: rgb(69, 178, 67);
                         }
                     }

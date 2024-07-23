@@ -108,7 +108,8 @@ export default function Employee() {
                                         aria-labelledby="modal-modal-title"
                                         aria-describedby="modal-modal-description"
                                     >
-                                        <Box className="modal-box" sx={style}>
+                                        <Box className="modal-box">
+                                            <span onClick={handleClose} className='close-x2'>X</span>
                                             <Typography style={{ color: 'rgb(75, 75, 75)', textAlign:'center' }} id="modal-modal-title" variant="h6" component="h2">
                                                 {person.name + " " + person.lastname} pasif edilsin mi ?
                                             </Typography>
@@ -117,7 +118,7 @@ export default function Employee() {
                                                 çıkarılacaktır. Bu işlem geri alınamaz. Pasif etmek istiyor musunuz?
                                             </Typography>
                                             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', marginTop: '10px' }} className='decision'>
-                                                <Button onClick={handleClose} style={{ backgroundColor: 'rgb(255, 130, 96)', color: 'white', width: '100px', textTransform: 'none' }}>İptal</Button>
+                                                <Button onClick={handleClose} style={{ backgroundColor: 'white', color: 'black', width: '100px', textTransform: 'none', border:'1px solid black' }}>İptal</Button>
                                                 <Button onClick={() => notify("pasif")} style={{ backgroundColor: 'rgb(0, 156, 156)', color: 'white', width: '100px', textTransform: 'none' }}>Evet</Button>
                                             </div>
                                         </Box>
@@ -127,7 +128,8 @@ export default function Employee() {
                                         aria-labelledby="modal-modal-title"
                                         aria-describedby="modal-modal-description"
                                     >
-                                        <Box sx={style}>
+                                        <Box className="modal-box">
+                                            <span onClick={handleClose} className='close-x2'>X</span>
                                             <Typography style={{ color: 'rgb(75, 75, 75)', textAlign:'center' }} id="modal-modal-title" variant="h6" component="h2">
                                                 {person.name + " " + person.lastname} aktif edilsin mi ?
                                             </Typography>
@@ -136,7 +138,7 @@ export default function Employee() {
                                                 istediğinize emin misiniz?
                                             </Typography>
                                             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', marginTop: '10px' }} className='decision'>
-                                                <Button onClick={handleClose} style={{ backgroundColor: 'rgb(255, 130, 96)', color: 'white', width: '100px', textTransform: 'none' }}>İptal</Button>
+                                                <Button onClick={handleClose} style={{ backgroundColor: 'white', color: 'black', width: '100px', textTransform: 'none', border:'1px solid black' }}>İptal</Button>
                                                 <Button onClick={() => notify("aktif")} style={{ backgroundColor: 'rgb(0, 156, 156)', color: 'white', width: '100px', textTransform: 'none' }}>Evet</Button>
                                             </div>
                                         </Box>

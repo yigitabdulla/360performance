@@ -1,5 +1,9 @@
 @import "../../responsive.scss";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
+* {
+    font-family: 'Poppins', sans-serif;
+}
 .reviews {
     display: flex;
     flex-direction: row;
@@ -35,6 +39,7 @@
 
             h1{
                 color: rgb(75, 75, 75);
+                font-weight: 400;
             }
 
             a{

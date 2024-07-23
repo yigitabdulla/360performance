@@ -1,6 +1,11 @@
 @import "../../responsive.scss";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-.home{
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+.home {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -8,40 +13,41 @@
     gap: 20px;
     overflow-y: scroll;
 
-    @include sm{
+    @include sm {
         display: flex;
         flex-direction: column;
     }
-    .sideNavbar{
+
+    .sideNavbar {
         flex: 1;
-        
-        @include sm{
+
+        @include sm {
             display: none;
         }
     }
 
-    .homeContainer{
+    .homeContainer {
         flex: 6;
-        
 
-        .wrapper{
+
+        .wrapper {
             display: flex;
             flex-direction: column;
             gap: 20px;
             padding-left: 100px;
             padding-right: 100px;
             margin: auto;
-           
 
-            @include md{
-                
+
+            @include md {
+
                 padding-left: 10px;
                 padding-right: 10px;
-               
-            }
-            
 
-            h1{
+            }
+
+
+            h1 {
                 display: flex;
                 font-size: 24px;
                 font-weight: 600;
@@ -49,39 +55,39 @@
                 color: rgb(75, 75, 75);
             }
 
-            .top{
+            .top {
                 background-color: white;
                 display: flex;
                 flex-direction: row;
                 border: 1px solid rgba(128, 128, 128, 0.46);
                 border-radius: 5px;
 
-                @include lg{
+                @include lg {
                     flex-direction: column;
                 }
 
-                
-                
 
-                .top-info{
-                    .title{
+
+
+                .top-info {
+                    .title {
                         padding: 20px;
                         border-bottom: 1px solid rgba(128, 128, 128, 0.46);
                         font-weight: 600;
                         color: rgb(75, 75, 75);
                     }
-    
+
                     .container {
                         display: flex;
                         flex-direction: column;
                         padding: 30px;
                         justify-content: space-between;
 
-                        @include lg{
+                        @include lg {
                             align-items: flex-start;
                         }
-    
-                        @include md{
+
+                        @include md {
                             padding: 20px;
                             display: flex;
                             align-items: flex-start;
@@ -90,24 +96,24 @@
                             color: rgb(75, 75, 75);
                             gap: 10px;
                         }
-    
-                        .text{
+
+                        .text {
                             display: flex;
                             align-items: center;
                             justify-content: center;
                             gap: 10px;
                             color: rgb(75, 75, 75);
-                            
-                            @include md{
+
+                            @include md {
                                 text-overflow: ellipsis;
                             }
-                            
+
                         }
-    
-                        &:nth-child(2){
+
+                        &:nth-child(2) {
                             border-bottom: 1px solid rgba(128, 128, 128, 0.46);
                         }
-    
+
                         button {
                             padding: 10px;
                             border-radius: 5px;
@@ -117,29 +123,30 @@
                             cursor: pointer;
                             width: 250px;
                             transition: 0.3s ease;
-    
+
                             &:hover {
                                 background-color: #0063c6;
                             }
                         }
-                        
+
                     }
 
-                    
+
                 }
-                img{
+
+                img {
                     align-self: center;
                     width: 350px;
                     height: 100%;
 
-                    @include md{
+                    @include md {
                         width: 275px;
                     }
                 }
-                
+
             }
 
-            .mid{
+            .mid {
                 background-color: white;
                 display: flex;
                 align-items: center;
@@ -147,13 +154,13 @@
                 border: 1px solid rgba(128, 128, 128, 0.46);
                 border-radius: 5px;
 
-                @include md{
+                @include md {
                     display: flex;
                     flex-direction: column;
                 }
 
 
-                .text{
+                .text {
                     padding: 20px;
                     height: 150px;
                     display: flex;
@@ -162,14 +169,19 @@
                     gap: 20px;
                     color: rgb(75, 75, 75);
 
-                    @include sm{
+                    .title{
+                        font-weight: 600;
+                        font-size: 18px;
+                    }
+
+                    @include sm {
                         justify-content: center;
                         height: 250px;
                         gap: 10px;
                     }
 
 
-                    button{
+                    button {
                         padding: 10px;
                         border-radius: 5px;
                         color: white;
@@ -185,18 +197,18 @@
                     }
                 }
 
-                img{
+                img {
                     padding: 10px;
                     width: 250px;
 
-                    @include sm{
+                    @include sm {
                         width: 250px;
-                        
+
                     }
                 }
             }
 
-            .bottom{
+            .bottom {
                 background-color: white;
                 display: flex;
                 flex-direction: column;
@@ -204,7 +216,7 @@
                 border-radius: 5px;
                 margin-bottom: 20px;
 
-                .title{
+                .title {
                     padding: 20px;
                     border-bottom: 1px solid rgba(128, 128, 128, 0.46);
                     font-weight: 600;
@@ -217,28 +229,28 @@
                     padding: 30px;
                     justify-content: space-between;
 
-                    @include sm{
-                        &:nth-child(2){
+                    @include sm {
+                        &:nth-child(2) {
                             flex-direction: column;
 
-                            button{
+                            button {
                                 align-self: center;
                                 width: 100%;
                             }
                         }
                     }
 
-                    .text{
+                    .text {
                         display: flex;
                         align-items: center;
                         justify-content: center;
                         gap: 10px;
                         color: rgb(75, 75, 75);
-    
-                        
+
+
                     }
 
-                    &:nth-child(2){
+                    &:nth-child(2) {
                         border-bottom: 1px solid rgba(128, 128, 128, 0.46);
                     }
 
@@ -256,7 +268,7 @@
                             background-color: #0063c6;
                         }
                     }
-                    
+
                 }
             }
         }

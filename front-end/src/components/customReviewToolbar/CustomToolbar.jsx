@@ -3,7 +3,8 @@ import { GridToolbarContainer, GridToolbarExport } from '@mui/x-data-grid';
 import "./customToolbar.scss"
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import Button from '@mui/material/Button';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Typography } from '@mui/material';
 
 const style = {
@@ -13,7 +14,7 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: 400,
   bgcolor: 'background.paper',
-  border: '2px solid #000',
+  border: '1px solid #000',
   boxShadow: 24,
   pt: 2,
   px: 4,
@@ -23,12 +24,12 @@ const style = {
 const CustomToolbar = () => {
 
   const [selectedOption, setSelectedOption] = useState('');
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => {
-    setOpen(true);
+  const [editOpen, setEditOpen] = useState(false);
+  const handleEditOpen = () => {
+    setEditOpen(true);
   };
-  const handleClose2= () => {
-    setOpen(false);
+  const handleCloseEdit= () => {
+    setEditOpen(false);
   };
 
   const handleSelectChange = (e) => {
@@ -37,34 +38,37 @@ const CustomToolbar = () => {
   };
 
   function ChildModal() {
-    const [open, setOpen] = useState(false);
+    const [innerEditOpen, setInnerEditOpen] = useState(false);
     const handleOpen = () => {
-      setOpen(true);
+      setInnerEditOpen(true);
     };
     const handleClose = () => {
-      setOpen(false);
+      setInnerEditOpen(false);
     };
+
+    const notify = () =>toast("Değerlendirmeler güncellendi!")
   
     return (
       <React.Fragment>
         <div className="editButtons">
-          <button onClick={handleClose2}>İptal</button>
-          <button onClick={handleOpen}>Düzenle</button>
+          <button onClick={handleCloseEdit}>İptal</button>
+          <button style={{backgroundColor:'#1976d2'}} onClick={handleOpen}>Düzenle</button>
         </div>
         <Modal
-          open={open}
+          open={innerEditOpen}
           onClose={handleClose}
         >
           <Box sx={style}>
-            <Typography style={{display:'flex', alignItems:'center',justifyContent:'center', borderBottom:'1px solid gray'}} id="modal-modal-title" variant="h6" component="h2">
+            <span onClick={handleClose} className='close-x2'>X</span>
+            <Typography style={{display:'flex', alignItems:'center',justifyContent:'center', borderBottom:'1px solid gray', color:'rgb(75, 75, 75)'}} id="modal-modal-title" variant="h6" component="h2">
               Uyarı
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            <span style={{display:'flex', alignItems:'center',justifyContent:'center', padding:'10px'}}>Güncellemek istediğinize emin misiniz ?</span>
-              <div className="modalButtons">
+              <span style={{marginBottom:'20px',display:'flex', alignItems:'center',justifyContent:'center', padding:'5px', textAlign:'center'}}>Güncellemek istediğinize emin misiniz ?</span>
+              <span className="editButtons">
                 <button onClick={handleClose}>İptal</button>
-                <button>Evet</button>
-              </div>
+                <button onClick={notify} style={{backgroundColor:'#1976d2'}}>Evet</button>
+              </span>
             </Typography>
           </Box>
         </Modal>
@@ -74,7 +78,7 @@ const CustomToolbar = () => {
 
   return (
     <GridToolbarContainer className='gridContainer'>
-      <a className='item' onClick={handleOpen}>
+      <a className='item' onClick={handleEditOpen}>
         Düzenle
       </a>
       <a className='item' href="/reviews/weights">
@@ -96,11 +100,12 @@ const CustomToolbar = () => {
         Bitir
       </a>
       <Modal
-        open={open}
-        onClose={handleClose2}
+        open={editOpen}
+        onClose={handleCloseEdit}
       >
         <Box sx={{ ...style, margin: 0, padding: 0, borderRadius: '10px', border: 'none' }}>
           <div className="editContainer">
+            <span onClick={handleCloseEdit} className='close-x'>X</span>
             <h2>Değerlendirme Düzenle</h2>
             <div className="inputs">
               <span>Değerlendirmek istediğiniz alanı seçiniz</span>
@@ -132,6 +137,7 @@ const CustomToolbar = () => {
           <ChildModal />
         </Box>
       </Modal>
+      <ToastContainer position="bottom-right" />
     </GridToolbarContainer>
   );
 };

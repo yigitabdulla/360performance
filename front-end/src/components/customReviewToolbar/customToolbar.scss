@@ -12,17 +12,17 @@
         text-decoration: none;
         transition: 0.3s ease;
         cursor: pointer;
-    
+
         &:hover {
             background-color: #1932d20c;
-            
-          }
-      }
 
-      
+        }
+    }
+
+
 }
 
-.editContainer{
+.editContainer {
     display: flex;
     width: 100%;
     height: 400px;
@@ -33,16 +33,26 @@
     border-radius: 10px;
     gap: 20px;
 
-    h2{
+    .close-x{
+        align-self: flex-end;
+        margin-right: 10px;
+        font-size: 18px;
+        cursor: pointer;
+        padding: 5px;
+    }
+
+    h2 {
+        margin-top: -35px;
         padding: 10px;
         border-bottom: 1px solid rgba(128, 128, 128, 0.404);
         width: 100%;
         text-align: center;
         color: rgb(75, 75, 75);
+        font-weight: 400;
     }
-    
 
-    .inputs{
+
+    .inputs {
         width: 100%;
         padding-left: 10px;
         padding-right: 10px;
@@ -50,29 +60,30 @@
         display: flex;
         flex-direction: column;
         gap: 10px;
+        color: rgb(75, 75, 75);
 
-        span{
+        span {
             color: rgb(75, 75, 75);
         }
 
-        select{
+        select {
             border: 1px solid rgb(75, 75, 75);
             height: 30px;
         }
 
-        .buttons{
+        .buttons {
             margin-top: 50px;
             display: flex;
             gap: 20px;
             justify-content: space-around;
-            
-            button{
+
+            button {
                 padding: 5px;
 
-                &:first-child{
-                    background-color: rgb(255, 124, 110);
-                    border: none;
-                    color: white;
+                &:first-child {
+                    background-color: white;
+                    color: black;
+                    border: 1px solid black;
                     border-radius: 5px;
                     width: 100px;
                     cursor: pointer;
@@ -88,28 +99,28 @@
                 }
             }
 
-            
+
         }
 
     }
-    
+
 }
-  
-  
-.editButtons{
+
+
+.editButtons {
     margin-top: 5px;
     margin-bottom: 5px;
     display: flex;
     gap: 20px;
     justify-content: space-around;
-    
-    button{
+
+    button {
         padding: 5px;
 
-        &:first-child{
-            background-color: rgb(255, 124, 110);
-            border: none;
-            color: white;
+        &:first-child {
+            background-color: white;
+            color: black;
+            border: 1px solid black;
             border-radius: 5px;
             width: 100px;
             cursor: pointer;
@@ -125,6 +136,16 @@
         }
     }
 
-    
+
 }
-  
+
+.close-x2{
+    display: flex;
+    align-self: flex-end;
+    justify-content: flex-end;
+    margin-bottom: -15px;
+    margin-right: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 5px;
+}

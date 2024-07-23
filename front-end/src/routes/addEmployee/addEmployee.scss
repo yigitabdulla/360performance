@@ -1,4 +1,9 @@
 @import "../../responsive.scss";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+}
 
 .addEmployee {
     display: flex;
@@ -10,39 +15,46 @@
     .sideNavbar {
         flex: 1;
 
-        @include sm{
+        @include sm {
             display: none;
         }
     }
 
 
-    .formContainer{
+    .formContainer {
         flex: 6;
         display: flex;
         flex-direction: column;
         gap: 20px;
         overflow: auto;
 
+        h1 {
+            color: rgb(75, 75, 75);
+            font-weight: 400;
+        }
 
-        form{
+
+        form {
             display: flex;
             flex-direction: column;
             gap: 20px;
 
-            .employeeInfo{
+            .employeeInfo {
                 display: flex;
                 gap: 50px;
 
-                @include md{
+                @include md {
                     flex-direction: column;
                 }
 
-                h3{
+                h3 {
                     width: 300px;
+                    color: rgb(75, 75, 75);
+                    font-weight: 400;
                 }
-                
 
-                .inputs{
+
+                .inputs {
                     display: flex;
                     flex-direction: column;
                     background-color: white;
@@ -50,32 +62,33 @@
                     border-radius: 5px;
                     gap: 20px;
 
-                    @include md{
+                    @include md {
                         flex-direction: column;
                         width: 500px;
                     }
 
-                    @include sm{
+                    @include sm {
                         width: 300px;
                     }
 
-                    .item{
+                    .item {
                         display: flex;
                         flex-direction: column;
 
-                        input{
+                        input {
                             width: 400px;
                             height: 30px;
                             padding: 10px;
-                            @include sm{
+
+                            @include sm {
                                 width: 250px;
                             }
                         }
 
-                        
+
                     }
 
-                    .sendButton{
+                    .sendButton {
                         width: 150px;
                         padding: 10px;
                         border: none;
@@ -85,22 +98,22 @@
                         display: flex;
                         align-items: center;
                         justify-content: center;
-        
-                        @include sm{
+
+                        @include sm {
                             align-self: flex-start;
                         }
-        
-                        &:hover{
+
+                        &:hover {
                             background-color: #58d3b1;
                         }
                     }
                 }
             }
 
-            
-            
+
+
 
         }
-      
+
     }
 }
