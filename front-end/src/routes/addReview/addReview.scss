@@ -133,6 +133,7 @@
                 display: flex;
                 gap: 50px;
                 color: rgb(75, 75, 75);
+                margin-bottom: 20px;
 
                 @include lg {
                     flex-direction: column;
@@ -268,6 +269,45 @@
 
 
                     }
+
+                    .buttons{
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        margin-top: 10px;
+
+                        @include sm{
+                            flex-direction: column;
+                            gap: 10px;
+                        }
+
+                        a{
+                            width: 170px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            cursor: pointer;
+
+                            &:first-child{
+                                padding: 5px;
+                                background-color: white;
+                                border: 1px solid black
+                            }
+
+                            &:nth-child(2){
+                                padding: 5px;
+                                background-color: #004c99;
+                                border: none;
+                                transition: 0.3s ease;
+                                color: white;
+
+                                &:hover {
+                                    background-color: #0063c6;
+                                }
+                            }
+                        }
+                        
+                    }
                 }
             }
 
@@ -362,7 +402,7 @@
                 }
             }
 
-            .sendButton {
+            /* .sendButton {
                 width: 150px;
                 padding: 10px;
                 align-self: flex-end;
@@ -384,7 +424,7 @@
                 &:hover {
                     background-color: #0063c6;
                 }
-            }
+            } */
 
         }
 

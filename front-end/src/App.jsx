@@ -16,7 +16,6 @@ import Reviews from './routes/reviews/Reviews';
 import AddReview from './routes/addReview/AddReview';
 import AddEmployeeExcel from './routes/addEmployeeExcel/AddEmployeeExcel';
 import Employee from './routes/employee/Employee';
-import ReviewEdit from './routes/reviewEdit/ReviewEdit';
 
 function App() {
 
@@ -60,10 +59,6 @@ function App() {
         {
           path: "/reviews",
           element: <Reviews />
-        },
-        {
-          path: "/reviews/edit",
-          element: <ReviewEdit />
         },
         {
           path: "/reviews/add",

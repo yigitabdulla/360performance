@@ -72,6 +72,7 @@
                 .top-info {
                     .title {
                         padding: 20px;
+                        margin-left: 10px;
                         border-bottom: 1px solid rgba(128, 128, 128, 0.46);
                         font-weight: 600;
                         color: rgb(75, 75, 75);
@@ -138,6 +139,7 @@
                     align-self: center;
                     width: 350px;
                     height: 100%;
+                    padding: 10px;
 
                     @include md {
                         width: 275px;
@@ -161,7 +163,7 @@
 
 
                 .text {
-                    padding: 20px;
+                    padding: 30px;
                     height: 150px;
                     display: flex;
                     flex-direction: column;
@@ -172,6 +174,7 @@
                     .title{
                         font-weight: 600;
                         font-size: 18px;
+                        margin-top: -30px;
                     }
 
                     @include sm {

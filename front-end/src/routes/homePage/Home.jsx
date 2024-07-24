@@ -21,7 +21,7 @@ export default function Home() {
               <div className="title">Değerlendirmeye Başlayın</div>
               <div className='container'>
                 <div className="text">
-                  <MessageIcon />
+                  {/* <MessageIcon /> */}
                   Katılımcıları belirleyin ve değerlendirme formunuzu oluşturun.
                   <br></br>
                   Değerlendirme sürecine hemen başlayın.
@@ -29,7 +29,7 @@ export default function Home() {
                 <button>360 Değerlendirme Oluştur</button>
               </div>
 
-              <div className='container'>
+              {/* <div className='container'>
                 <div className="text">
                   <ModeStandbyIcon />
                   Hedeflerinizi tanımlayın ve değerlendirme sürecini başlatın.
@@ -37,7 +37,7 @@ export default function Home() {
                   Performans hedeflerinizi yönetin.
                 </div>
                 <button>Hedef Değerlendirme Oluştur</button>
-              </div>
+              </div> */}
             </div>
 
             <img src="./analytic.svg" alt="" />
@@ -54,7 +54,7 @@ export default function Home() {
 
           </div>
 
-          <div className="bottom">
+          {/* <div className="bottom">
             <div className="title">Yardıma mı ihtiyacınız var?</div>
 
             <div className='container'>
@@ -76,7 +76,7 @@ export default function Home() {
               </div>
 
             </div>
-          </div>
+          </div> */}
 
 
         </div>

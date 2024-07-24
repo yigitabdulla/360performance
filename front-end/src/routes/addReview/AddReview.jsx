@@ -33,8 +33,8 @@ export default function AddReview() {
                             <div className="item">
                                 <label for="startDate">Başlangıç - Bitiş Tarihi</label>
                                 <div className="dates">
-                                    <input type="date" id="startDate" name="startDate" />
-                                    <input type="date" id="endDate" name="endDate" />
+                                    <input required type="date" id="startDate" name="startDate" />
+                                    <input required type="date" id="endDate" name="endDate" />
                                 </div>
                             </div>
                         </div>
@@ -47,17 +47,20 @@ export default function AddReview() {
                         <div className="inputs">
                             <div className="item">
                                 <label htmlFor="email">E-posta</label>
-                                <input id="email" name="email" type="email" />
+                                <input required id="email" name="email" type="email" />
                             </div>
                             <div className="item">
                                 <label htmlFor="phone">Telefon</label>
-                                <input id="phone" name="phone" type="text" />
+                                <input required id="phone" name="phone" type="text" />
                             </div>
 
+                            <div className="buttons">
+                                <a href='/reviews'>İptal</a>
+                                <a className="sendButton">Kaydet ve Devam Et</a>
+                            </div>
                         </div>
                     </div>
 
-                    <button className="sendButton">Kaydet ve Devam Et</button>
                     {false && <span>error</span>}
 
 
