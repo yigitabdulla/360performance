@@ -20,13 +20,37 @@ const style = {
     pb: 3,
 };
 
-export default function EditReview({openEditModal , handleEditClose}) {
+export default function EditReview({ openEditModal, handleEditClose }) {
 
     const [selectedOption, setSelectedOption] = useState('');
+    const [inputType, setInputType] = useState('')
 
     const handleSelectChange = (e) => {
         const { value } = e.target;
         setSelectedOption(value);
+        handleInputType(value)
+    };
+
+    const handleSelect = (value) => {
+        const options = {
+            "name": "Dönem Adı",
+            "start": "Değerlendirme Başlangıç Tarihi",
+            "finish": "Değerlendirme Bitiş Tarihi",
+            "email": "E-posta",
+            "phone": "Telefon"
+        };
+
+        return options[value] || "";
+    };
+
+    const handleInputType = (value) => {
+        if (value === 'start' || value === 'finish') {
+            setInputType('Date');
+        } else if (value === 'email' || value === 'phone') {
+            setInputType('Text');
+        } else {
+            setInputType('Option');
+        }
     };
 
     function ChildModal() {
@@ -75,34 +99,68 @@ export default function EditReview({openEditModal , handleEditClose}) {
                 onClose={handleEditClose}
             >
                 <Box sx={{ ...style, margin: 0, padding: 0, borderRadius: '10px', border: 'none' }}>
-                    <div className="editContainer">
-                        <span onClick={handleEditClose} className='close-x'>X</span>
-                        <h2>Değerlendirme Düzenle</h2>
-                        <div className="inputs">
-                            <span>Değerlendirmek istediğiniz alanı seçiniz</span>
-                            <select style={{ color: 'rgb(75, 75, 75)' }} onChange={handleSelectChange} name="status">
-                                <option value="">Bir alan seçin</option>
-                                <option value="name">Dönem Adı</option>
-                                <option value="start">Değerlendirme Başlangıç Tarihi</option>
-                                <option value="finish">Değerlendirme Bitiş Tarihi</option>
-                                <option value="email">E-Posta</option>
-                                <option value="phone">Telefon</option>
-                            </select>
+                    <div className="wrapper">
+                        <div className="editContainer">
+                            <span onClick={handleEditClose} className='close-x'>X</span>
+                            <h2>Değerlendirme Düzenle</h2>
+                            <div className="inputs">
+                                <span>Değerlendirmek istediğiniz alanı seçiniz</span>
+                                <select style={{ color: 'rgb(75, 75, 75)' }} onChange={handleSelectChange} name="status">
+                                    <option disabled selected hidden value="">Bir alan seçin</option>
+                                    <option value="name">Dönem Adı</option>
+                                    <option value="start">Değerlendirme Başlangıç Tarihi</option>
+                                    <option value="finish">Değerlendirme Bitiş Tarihi</option>
+                                    <option value="email">E-Posta</option>
+                                    <option value="phone">Telefon</option>
+                                </select>
 
-                            {
-                                selectedOption &&
-                                <>
-                                    <span style={{ color: 'rgb(75, 75, 75)', marginTop: '10px', marginBottom: '-5px' }}>{selectedOption == "name" ? "Dönem adı" : ""} seçin</span>
-                                    <select style={{ color: 'rgb(75, 75, 75)', marginTop: '5px' }}>
-                                        <option value={selectedOption}>{selectedOption == "name" ? "Dönem adı" : ""} seçin</option>
-                                        <option value="1">1.</option>
-                                        <option value="2">2.</option>
-                                        <option value="3">3.</option>
-                                        <option value="4">4.</option>
-                                        <option value="5">5.</option>
-                                    </select>
-                                </>
-                            }
+                                {
+                                    inputType ? (
+                                        inputType === "Date" ? (
+                                            <>
+                                                <span style={{ color: 'rgb(75, 75, 75)', marginTop: '10px', marginBottom: '-5px' }}>
+                                                    {handleSelect(selectedOption)} Seçiniz
+                                                </span>
+                                                <input
+                                                    style={{ color: 'rgb(75, 75, 75)', marginTop: '5px', padding: '3px' }}
+                                                    required
+                                                    type="date"
+                                                    id="startDate"
+                                                    name="startDate"
+                                                />
+                                            </>
+                                        ) : inputType === "Text" ? (
+                                            <>
+                                                <span style={{ color: 'rgb(75, 75, 75)', marginTop: '10px', marginBottom: '-5px' }}>
+                                                    {handleSelect(selectedOption)} Giriniz
+                                                </span>
+                                                <input
+                                                    style={{ color: 'rgb(75, 75, 75)', marginTop: '5px', padding: '3px' }}
+                                                    required
+                                                    type="text"
+                                                    id={selectedOption}
+                                                    name={selectedOption}
+                                                />
+                                            </>
+                                        ) : (
+                                            <>
+                                                <span style={{ color: 'rgb(75, 75, 75)', marginTop: '10px', marginBottom: '-5px' }}>
+                                                    {handleSelect(selectedOption)} Seçiniz
+                                                </span>
+                                                <select style={{ color: 'rgb(75, 75, 75)', marginTop: '5px' }}>
+                                                    <option value={selectedOption}>{handleSelect(selectedOption)} seçin</option>
+                                                    <option value="1">1.</option>
+                                                    <option value="2">2.</option>
+                                                    <option value="3">3.</option>
+                                                    <option value="4">4.</option>
+                                                    <option value="5">5.</option>
+                                                </select>
+                                            </>
+                                        )
+                                    ) : null
+                                }
+
+                            </div>
                         </div>
                     </div>
                     <ChildModal />

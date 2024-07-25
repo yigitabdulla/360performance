@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import "./deleteReview.scss"
 
 const style = {
     position: 'absolute',
@@ -40,7 +41,6 @@ export default function DeleteReview({ openDeleteModal, handleDeleteOpen, handle
 
     return (
         <>
-            <Button onClick={handleDeleteOpen}>Open modal</Button>
             <Modal
                 open={openDeleteModal}
                 onClose={handleDeleteClose}
@@ -48,13 +48,13 @@ export default function DeleteReview({ openDeleteModal, handleDeleteOpen, handle
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <span onClick={handleDeleteClose} className='close-x2'>X</span>
+                    <span onClick={handleDeleteClose} className='close-button'>X</span>
                     <Typography style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', borderBottom: '1px solid gray', color: 'rgb(75, 75, 75)' }} id="modal-modal-title" variant="h6" component="h2">
-                        Değerlendirme silinsin ?
+                        Değerlendirme silinsin mi?
                     </Typography>
                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                         
-                        <span style={{ marginBottom: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '5px', textAlign: 'center' }}>Değerlendirmeyi silmek istediğinize emin misiniz ? Bu işlem geri alınamaz.</span>
+                        <span style={{ marginBottom: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '5px', textAlign: 'center' }}>Değerlendirmeyi silmek istediğinize emin misiniz? Bu işlem geri alınamaz.</span>
                             <span className="editButtons">
                                 <button onClick={handleDeleteClose}>İptal</button>
                                 <button disabled={isDeleting} onClick={handleDelete} style={{ backgroundColor: '#1976d2' }}>Evet</button>
