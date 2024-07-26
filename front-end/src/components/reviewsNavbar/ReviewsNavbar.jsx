@@ -7,78 +7,60 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import "./reviewsNavbar.scss"
 import { useDispatch, useSelector } from "react-redux"
-import { updateStep } from '../../redux/slices/reviewsNavbarSlice'
-
-const steps = ['Değerlendirme', 'Kaynak', 'Katılımcılar', 'Yetkinlikler', 'Başlat'];
+import { updateStep, completeStep, resetSteps, setSteps, totalSteps, completedSteps, isLastStep, allStepsCompleted, updateRender } from '../../redux/slices/reviewsNavbarSlice';
 
 export default function HorizontalNonLinearStepper() {
     const dispatch = useDispatch();
-    const step = useSelector(state => state.step.step);
-
-    console.log()
-    const [activeStep, setActiveStep] = React.useState(0);
-    const [completed, setCompleted] = React.useState({});
-
-    const totalSteps = () => {
-        return steps.length;
-    };
-
-    const completedSteps = () => {
-        return Object.keys(completed).length;
-    };
-
-    const isLastStep = () => {
-        return activeStep === totalSteps() - 1;
-    };
-
-    const allStepsCompleted = () => {
-        return completedSteps() === totalSteps();
-    };
+    const activeStep = useSelector(state => state.step.activeStep);
+    const completed = useSelector(state => state.step.completed);
+    const steps = useSelector(state => state.step.steps);
+    const render = useSelector(state => state.step.render);
 
     const handleNext = () => {
         const newActiveStep =
-            isLastStep() && !allStepsCompleted()
+            isLastStep({ step: { activeStep, steps } }) && !allStepsCompleted({ step: { completed, steps } })
                 ? // It's the last step, but not all steps have been completed,
                 // find the first step that has been completed
                 steps.findIndex((step, i) => !(i in completed))
                 : activeStep + 1;
-        setActiveStep(newActiveStep);
-        dispatch(updateStep({ step: steps[newActiveStep] }));
+        dispatch(updateStep(newActiveStep));
+        dispatch(updateRender())
     };
 
     const handleBack = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
-        dispatch(updateStep({ step: steps[activeStep-1] }));
+        dispatch(updateStep(activeStep - 1));
     };
 
     const handleStep = (step) => () => {
-        setActiveStep(step);
-        dispatch(updateStep({ step: steps[step] }));
+        dispatch(updateStep(step));
+        dispatch(updateRender({render:false}))
     };
 
     const handleComplete = () => {
-        const newCompleted = completed;
-        newCompleted[activeStep] = true;
-        setCompleted(newCompleted);
+        dispatch(completeStep(activeStep));
         handleNext();
     };
 
     const handleReset = () => {
-        setActiveStep(0);
-        setCompleted({});
-        dispatch(updateStep({ step: steps[step] }));
+        dispatch(resetSteps());
     };
+
+    const handleSelect = () => {
+        dispatch(updateRender({render:false}))
+    }
+
+    
 
     return (
         <div className="reviewsNavbar">
-            <select className='select-review' style={{ color: 'rgb(75, 75, 75)' }} name="review" defaultValue="">
+            <select onChange={handleSelect} className='select-review' style={{ color: 'rgb(75, 75, 75)' }} name="review" defaultValue="">
                 <option disabled hidden value="">360° Değerlendirme Seçin</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
             </select>
 
             <div className="stepperContainer">
-                <Box sx={{ width: '50vw'}}>
+                <Box sx={{ width: '50vw' }}>
                     <Stepper className='stepper' nonLinear activeStep={activeStep}>
                         {steps.map((label, index) => (
                             <Step key={label} completed={completed[index]}>
@@ -89,7 +71,7 @@ export default function HorizontalNonLinearStepper() {
                         ))}
                     </Stepper>
                     <div>
-                        {allStepsCompleted() ? (
+                        {allStepsCompleted({ step: { completed, steps } }) ? (
                             <React.Fragment>
                                 <Typography sx={{ mt: 2, mb: 1 }}>
                                     Tüm adımlar tamamlandı
@@ -101,7 +83,7 @@ export default function HorizontalNonLinearStepper() {
                             </React.Fragment>
                         ) : (
                             <React.Fragment>
-                                <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+                                {/* <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
                                     <Button
                                         color="inherit"
                                         disabled={activeStep === 0}
@@ -121,18 +103,17 @@ export default function HorizontalNonLinearStepper() {
                                             </Typography>
                                         ) : (
                                             <Button onClick={handleComplete}>
-                                                {completedSteps() === totalSteps() - 1
+                                                {completedSteps({ step: { completed, steps } }) === totalSteps({ step: { steps } }) - 1
                                                     ? 'Bitir'
                                                     : 'Adımı tamamla'}
                                             </Button>
                                         ))}
-                                </Box>
+                                </Box> */}
                             </React.Fragment>
                         )}
                     </div>
                 </Box>
             </div>
         </div>
-
     );
 }

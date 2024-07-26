@@ -6,15 +6,44 @@ import { reviewData } from "../../lib/reviews"
 import ReviewFilter from '../../components/customReviewFilter/ReviewFilter';
 import CustomToolbar from '../../components/customReviewToolbar/CustomToolbar';
 import ReviewsNavbar from '../../components/reviewsNavbar/ReviewsNavbar';
-import { useSelector } from "react-redux"
-
+import { useDispatch, useSelector } from "react-redux"
+import { updateStep, completeStep, resetSteps, setSteps, totalSteps, completedSteps, isLastStep, allStepsCompleted , updateRender} from '../../redux/slices/reviewsNavbarSlice';
+import { Button } from '@mui/material';
+import Typography from '@mui/material/Typography';
 
 
 export default function Reviews() {
 
-  const [selectionModel, setSelectionModel] = useState([]);
+  const dispatch = useDispatch();
+    const activeStep = useSelector(state => state.step.activeStep);
+    const completed = useSelector(state => state.step.completed);
+    const steps = useSelector(state => state.step.steps);
+    const render = useSelector(state => state.step.render);
 
-  const step = useSelector(state => state.step.step);
+
+    const handleNext = () => {
+        const newActiveStep =
+            isLastStep({ step: { activeStep, steps } }) && !allStepsCompleted({ step: { completed, steps } })
+                ? // It's the last step, but not all steps have been completed,
+                // find the first step that has been completed
+                steps.findIndex((step, i) => !(i in completed))
+                : activeStep + 1;
+        dispatch(updateStep(newActiveStep));
+        dispatch(updateRender({render:false}))
+    };
+
+    const handleComplete = () => {
+        dispatch(completeStep(activeStep));
+        dispatch(updateRender({render:false}))
+        handleNext();
+    };
+
+    const handleReset = () => {
+        dispatch(resetSteps());
+        dispatch(updateRender({render:true}))
+    };
+
+  const [selectionModel, setSelectionModel] = useState([]);
 
 
   const columns = [
@@ -55,10 +84,22 @@ export default function Reviews() {
 
       <div className="reviewsContainer">
         <div className="reviewNavbar"><ReviewsNavbar /></div>
-        {step === null ?<> <div className='title'>
+        {render ?<> <div className='title'>
           <h1>Değerlendirmeler</h1>
           <a href='/reviews/add'>Değerlendirme Oluştur</a>
         </div>
+        {activeStep !== steps.length &&
+                                        (completed[activeStep] ? (
+                                            <Typography variant="caption" sx={{ display: 'inline-block' }}>
+                                                Adım {activeStep + 1} tamamlandı
+                                            </Typography>
+                                        ) : (
+                                            <Button onClick={handleComplete}>
+                                                {completedSteps({ step: { completed, steps } }) === totalSteps({ step: { steps } }) - 1
+                                                    ? 'Bitir'
+                                                    : 'Adımı tamamla'}
+                                            </Button>
+                                        ))}
         <div style={{ height: 400, width: '100%' }}>
           <ReviewFilter applyFilters={applyFilters} />
           <DataGrid

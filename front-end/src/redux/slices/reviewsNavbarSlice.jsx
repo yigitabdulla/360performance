@@ -1,15 +1,51 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
+
+const initialState = {
+    render: true,
+    activeStep: 0,
+    completed: {},
+    steps: ['Değerlendirme', 'Kaynak', 'Katılımcılar', 'Yetkinlikler', 'Başlat']
+};
 
 export const reviewsNavbarSlice = createSlice({
-    name: "step",
-    initialState: { step: null }, // Update the initial state to be an object
+    name: 'step',
+    initialState,
     reducers: {
         updateStep: (state, action) => {
-            state.step = action.payload.step
+            state.activeStep = action.payload;
+        },
+        completeStep: (state, action) => {
+            state.completed[action.payload] = true;
+        },
+        resetSteps: (state) => {
+            state.completed = {};
+            state.activeStep = 0;
+        },
+        setSteps: (state, action) => {
+            state.steps = action.payload;
+        },
+        updateRender: (state, action) => {
+            state.render = action.payload.render;
         }
     }
-})
+});
 
-export const { updateStep } = reviewsNavbarSlice.actions
+export const { updateStep, completeStep, resetSteps, setSteps , updateRender } = reviewsNavbarSlice.actions;
 
-export default reviewsNavbarSlice.reducer
+export const totalSteps = (state) => {
+    return state.step.steps.length;
+};
+
+export const completedSteps = (state) => {
+    return Object.keys(state.step.completed).length;
+};
+
+export const isLastStep = (state) => {
+    return state.step.activeStep === totalSteps(state) - 1;
+};
+
+export const allStepsCompleted = (state) => {
+    return completedSteps(state) === totalSteps(state);
+};
+
+export default reviewsNavbarSlice.reducer;
