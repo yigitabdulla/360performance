@@ -10,14 +10,12 @@ const ReviewFilter = ({ applyFilters }) => {
   });
 
   const handleInputChange = (e) => {
-    setFilters({
+    const newFilters = {
       ...filters,
       [e.target.name]: e.target.value
-    });
-  };
-
-  const handleApplyFilters = () => {
-    applyFilters(filters);
+    };
+    setFilters(newFilters);
+    applyFilters(newFilters); // Apply filters automatically on change
   };
 
   return (
@@ -31,20 +29,12 @@ const ReviewFilter = ({ applyFilters }) => {
             <input placeholder='İlerleme' className='gridText' onChange={handleInputChange} value={filters.ilerleme} id="ilerleme" name="ilerleme" type="text" />
           </div>
           <div className='singleGrid'>
-            <select style={{color:'#8d8d8d'}}  onChange={handleInputChange} name="durum">
+            <select style={{color:'#8d8d8d'}} onChange={handleInputChange} name="durum" value={filters.durum}>
               <option value="">Durum</option>
               <option value="true">Aktif</option>
               <option value="false">Pasif</option>
             </select>
           </div>
-        </div>
-        <div>
-          <button
-            className='filterButton'
-            onClick={handleApplyFilters}
-          >
-            Filtreleri Uygula
-          </button>
         </div>
       </div>
     </div>

@@ -20,12 +20,12 @@ export const reviewData = [
         ilerleme: "27",
         ad: "Kuhn - Berge",
         tarih: "Jul 22nd 24",
-        durum: false
+        durum: true
 
     },
     {
         id: 4,
-        ilerleme: "00",
+        ilerleme: "20",
         ad: "Kuhic - Fadel",
         tarih: "Jul 22nd 24",
         durum: false

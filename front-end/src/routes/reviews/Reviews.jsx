@@ -5,20 +5,28 @@ import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import { reviewData } from "../../lib/reviews"
 import ReviewFilter from '../../components/customReviewFilter/ReviewFilter';
 import CustomToolbar from '../../components/customReviewToolbar/CustomToolbar';
-
+import ReviewsNavbar from '../../components/reviewsNavbar/ReviewsNavbar';
+import { useSelector } from "react-redux"
 
 
 
 export default function Reviews() {
 
   const [selectionModel, setSelectionModel] = useState([]);
-  
+
+  const step = useSelector(state => state.step.step);
+
 
   const columns = [
-    { field: 'ilerleme', headerName: 'İlerleme', width: 150 },
-    { field: 'ad', headerName: 'Değerlendirme Adı', width: 200 },
+    {
+      field: 'ilerleme',
+      headerName: 'Durum',
+      width: 150,
+      renderCell: (params) => `%${params.value}`
+    },
+    { field: 'ad', headerName: 'Değerlendirme Adı', width: 250 },
     { field: 'tarih', headerName: 'Başlangıç-Bitiş Tarihi', width: 200 },
-    { field: 'durum', headerName: 'Durum', width: 150 }
+    { field: 'durum', headerName: '', width: 150 }
   ];
   const rows = reviewData
 
@@ -36,7 +44,7 @@ export default function Reviews() {
     setFilteredRows(filteredData);
   };
 
-  
+
 
 
   return (
@@ -46,7 +54,8 @@ export default function Reviews() {
       </div>
 
       <div className="reviewsContainer">
-        <div className='title'>
+        <div className="reviewNavbar"><ReviewsNavbar /></div>
+        {step === null ?<> <div className='title'>
           <h1>Değerlendirmeler</h1>
           <a href='/reviews/add'>Değerlendirme Oluştur</a>
         </div>
@@ -60,8 +69,8 @@ export default function Reviews() {
             onRowSelectionModelChange={itm => setSelectionModel(itm)}
             slots={{ toolbar: selectionModel.length > 0 ? CustomToolbar : null }}
           />
-        </div>
-        
+        </div></> : <div></div>}
+
       </div>
     </div>
   )

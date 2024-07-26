@@ -1,0 +1,38 @@
+@import "../../responsive.scss";
+
+.reviewsNavbar{
+    display: flex;
+    gap: 10px;
+    justify-content: space-around;
+
+    .stepper{
+        background-color: transparent;
+    }
+
+    @include lg{
+        flex-direction: column;
+    }
+
+    @include sm{
+        .stepperContainer{
+            display: flex;
+
+            .stepper{
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+                margin-left: 5px;
+
+                .stepButton{
+                    padding: 10px;
+                }
+            }
+        }
+    }
+
+    .select-review{
+        height: 30px;
+        width: 250px;
+    }
+}

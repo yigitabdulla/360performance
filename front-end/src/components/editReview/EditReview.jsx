@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { ToastContainer, toast } from 'react-toastify';
@@ -23,35 +23,26 @@ const style = {
 export default function EditReview({ openEditModal, handleEditClose }) {
 
     const [selectedOption, setSelectedOption] = useState('');
-    const [inputType, setInputType] = useState('')
 
     const handleSelectChange = (e) => {
         const { value } = e.target;
         setSelectedOption(value);
-        handleInputType(value)
     };
 
     const handleSelect = (value) => {
         const options = {
-            "name": "Dönem Adı",
             "start": "Değerlendirme Başlangıç Tarihi",
             "finish": "Değerlendirme Bitiş Tarihi",
-            "email": "E-posta",
-            "phone": "Telefon"
         };
 
         return options[value] || "";
     };
 
-    const handleInputType = (value) => {
-        if (value === 'start' || value === 'finish') {
-            setInputType('Date');
-        } else if (value === 'email' || value === 'phone') {
-            setInputType('Text');
-        } else {
-            setInputType('Option');
+    useEffect(() => {
+        if (!openEditModal) {
+            setSelectedOption('');
         }
-    };
+    }, [openEditModal]);
 
     function ChildModal() {
         const [innerEditOpen, setInnerEditOpen] = useState(false);
@@ -107,57 +98,25 @@ export default function EditReview({ openEditModal, handleEditClose }) {
                                 <span>Değerlendirmek istediğiniz alanı seçiniz</span>
                                 <select style={{ color: 'rgb(75, 75, 75)' }} onChange={handleSelectChange} name="status">
                                     <option disabled selected hidden value="">Bir alan seçin</option>
-                                    <option value="name">Dönem Adı</option>
                                     <option value="start">Değerlendirme Başlangıç Tarihi</option>
                                     <option value="finish">Değerlendirme Bitiş Tarihi</option>
-                                    <option value="email">E-Posta</option>
-                                    <option value="phone">Telefon</option>
                                 </select>
 
                                 {
-                                    inputType ? (
-                                        inputType === "Date" ? (
-                                            <>
-                                                <span style={{ color: 'rgb(75, 75, 75)', marginTop: '10px', marginBottom: '-5px' }}>
-                                                    {handleSelect(selectedOption)} Seçiniz
-                                                </span>
-                                                <input
-                                                    style={{ color: 'rgb(75, 75, 75)', marginTop: '5px', padding: '3px' }}
-                                                    required
-                                                    type="date"
-                                                    id="startDate"
-                                                    name="startDate"
-                                                />
-                                            </>
-                                        ) : inputType === "Text" ? (
-                                            <>
-                                                <span style={{ color: 'rgb(75, 75, 75)', marginTop: '10px', marginBottom: '-5px' }}>
-                                                    {handleSelect(selectedOption)} Giriniz
-                                                </span>
-                                                <input
-                                                    style={{ color: 'rgb(75, 75, 75)', marginTop: '5px', padding: '3px' }}
-                                                    required
-                                                    type="text"
-                                                    id={selectedOption}
-                                                    name={selectedOption}
-                                                />
-                                            </>
-                                        ) : (
-                                            <>
-                                                <span style={{ color: 'rgb(75, 75, 75)', marginTop: '10px', marginBottom: '-5px' }}>
-                                                    {handleSelect(selectedOption)} Seçiniz
-                                                </span>
-                                                <select style={{ color: 'rgb(75, 75, 75)', marginTop: '5px' }}>
-                                                    <option value={selectedOption}>{handleSelect(selectedOption)} seçin</option>
-                                                    <option value="1">1.</option>
-                                                    <option value="2">2.</option>
-                                                    <option value="3">3.</option>
-                                                    <option value="4">4.</option>
-                                                    <option value="5">5.</option>
-                                                </select>
-                                            </>
-                                        )
-                                    ) : null
+                                    selectedOption && (
+                                        <>
+                                            <span style={{ color: 'rgb(75, 75, 75)', marginTop: '10px', marginBottom: '-5px' }}>
+                                                {handleSelect(selectedOption)} Seçiniz
+                                            </span>
+                                            <input
+                                                style={{ color: 'rgb(75, 75, 75)', marginTop: '5px', padding: '3px' }}
+                                                required
+                                                type="date"
+                                                id={selectedOption}
+                                                name={selectedOption}
+                                            />
+                                        </>
+                                    )
                                 }
 
                             </div>

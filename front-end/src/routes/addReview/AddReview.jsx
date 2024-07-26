@@ -1,6 +1,20 @@
 import React from 'react'
 import "./addReview.scss"
 import SideNavbar from '../../components/navbar/sideNavbar/SideNavbar'
+import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
+import Tooltip , { tooltipClasses } from '@mui/material/Tooltip';
+import { styled } from '@mui/material/styles';
+
+const LightTooltip = styled(({ className, ...props }) => (
+    <Tooltip {...props} classes={{ popper: className }} />
+  ))(({ theme }) => ({
+    [`& .${tooltipClasses.tooltip}`]: {
+      backgroundColor: theme.palette.common.gray,
+      color: 'white',
+      boxShadow: theme.shadows[1],
+      fontSize: 17,
+    },
+  }));
 
 export default function AddReview() {
     return (
@@ -19,19 +33,39 @@ export default function AddReview() {
                         </div>
                         <div className="inputs">
                             <div className="item">
-                                <label htmlFor="period">Dönem Adı</label>
-                                <input required id="period" name="period" type="text" />
+                                <label htmlFor="period">
+                                    Dönem Adı
+                                    <LightTooltip title="Değerlendirmeleriniz için dönem belirleyip, değerlendirmelerinizi aynı dönemin altında toplayabilirsiniz." placement="right">
+                                        <HelpOutlineOutlinedIcon style={{fontSize:'18px'}} />
+                                    </LightTooltip>
+                                </label>
+                                <input required maxLength={100} id="period" name="period" type="text" />
                             </div>
                             <div className="item">
-                                <label htmlFor="internalReviewName">İç Değerlendirme Adı</label>
-                                <input required id="internalReviewName" name="internalReviewName" type="text" />
+                                <label htmlFor="internalReviewName">
+                                    İç Değerlendirme Adı
+                                    <LightTooltip title="Bu adı sadece yönetim panelinde siz görebilirsiniz diğer değerlendirmelerden ayırt edebilmeniz için dizayn edilmiştir." placement="right">
+                                        <HelpOutlineOutlinedIcon style={{fontSize:'18px'}} />
+                                    </LightTooltip>
+                                </label>
+                                <input required maxLength={100} id="internalReviewName" name="internalReviewName" type="text" />
                             </div>
                             <div className="item">
-                                <label htmlFor="reviewName">Değerlendirme Adı</label>
-                                <input required id="reviewName" name="reviewName" type="text" />
+                                <label htmlFor="reviewName">
+                                    Değerlendirme Adı
+                                    <LightTooltip title="Değerlendirme formunun başlığı olarak değerlendirici kişilerde görünür." placement="right">
+                                        <HelpOutlineOutlinedIcon style={{fontSize:'18px'}} />
+                                    </LightTooltip>
+                                </label>
+                                <input required maxLength={100} id="reviewName" name="reviewName" type="text" />
                             </div>
                             <div className="item">
-                                <label for="startDate">Başlangıç - Bitiş Tarihi</label>
+                                <label htmlFor="startDate">
+                                    Başlangıç - Bitiş Tarihi
+                                    <LightTooltip title="Değerlendirmenin başlangıç ve bitiş tarihini değerlendirme başlamadan önce veya başladıktan sonra güncelleyebilirsiniz." placement="right">
+                                        <HelpOutlineOutlinedIcon style={{fontSize:'18px'}} />
+                                    </LightTooltip>
+                                </label>
                                 <div className="dates">
                                     <input required type="date" id="startDate" name="startDate" />
                                     <input required type="date" id="endDate" name="endDate" />
