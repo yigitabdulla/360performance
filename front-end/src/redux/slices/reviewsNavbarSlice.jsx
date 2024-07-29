@@ -4,7 +4,7 @@ const initialState = {
     render: true,
     activeStep: 0,
     completed: {},
-    steps: ['Değerlendirme', 'Kaynak', 'Katılımcılar', 'Yetkinlikler', 'Başlat'],
+    steps: ['Değerlendirme', 'Kaynaklar', 'Katılımcılar', 'Yetkinlikler', 'Başlat'],
     formData: {
         period: '',
         internalReviewName: '',

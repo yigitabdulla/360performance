@@ -6,6 +6,7 @@ import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 import { styled } from '@mui/material/styles';
 import { useDispatch, useSelector } from "react-redux"
 import { updateStep, completeStep, totalSteps, completedSteps, isLastStep, allStepsCompleted, updateRender , updateFormData } from '../../redux/slices/reviewsNavbarSlice';
+import { updateReviewFormData } from '../../redux/slices/formDataSlice';
 
 const LightTooltip = styled(({ className, ...props }) => (
     <Tooltip {...props} classes={{ popper: className }} />
@@ -24,7 +25,7 @@ export default function AddReview() {
     const activeStep = useSelector(state => state.step.activeStep);
     const completed = useSelector(state => state.step.completed);
     const steps = useSelector(state => state.step.steps);
-    const formData = useSelector(state => state.step.formData);
+    const reviewFormData = useSelector(state => state.formData.reviewFormData);
 
     const handleNext = () => {
         const newActiveStep =
@@ -52,16 +53,17 @@ export default function AddReview() {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        dispatch(updateFormData({ [name]: value }));
+        dispatch(updateReviewFormData({ [name]: value }));
     };
 
     useEffect(() => {
         // Populate the form with the data from the Redux store when the component mounts
         const inputs = document.querySelectorAll('input');
         inputs.forEach(input => {
-            input.value = formData[input.name] || '';
+            input.value = reviewFormData[input.name] || '';
         });
-    }, [formData]);
+    }, [reviewFormData]);
+    
     return (
         <div className='addEmployee'>
             {/*  <div className="sideNavbar">

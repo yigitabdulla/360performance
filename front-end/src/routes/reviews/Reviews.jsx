@@ -7,10 +7,11 @@ import ReviewFilter from '../../components/customReviewFilter/ReviewFilter';
 import CustomToolbar from '../../components/customReviewToolbar/CustomToolbar';
 import ReviewsNavbar from '../../components/reviewsNavbar/ReviewsNavbar';
 import { useSelector } from "react-redux"
-import Source from '../../components/source/Source';
 import Start from '../../components/start/Start';
+import Source from '../../components/source/Source';
 import Participants from '../../components/participants/Participants';
 import Competencies from '../../components/competencies/Competencies';
+import SourcesParticipants from '../../components/sourcesAndParticipants/SourcesParticipants';
 import AddReview from "../../routes/addReview/AddReview"
 
 export default function Reviews() {
@@ -55,7 +56,7 @@ export default function Reviews() {
         return <AddReview />;
       case 1:
         return <Source />;
-      case 2:
+        case 2:
         return <Participants />;
       case 3:
         return <Competencies />;
