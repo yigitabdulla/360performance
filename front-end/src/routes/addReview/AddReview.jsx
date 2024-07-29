@@ -63,9 +63,9 @@ export default function AddReview() {
             input.value = reviewFormData[input.name] || '';
         });
     }, [reviewFormData]);
-    
+
     return (
-        <div className='addEmployee'>
+        <div className='reviews'>
             {/*  <div className="sideNavbar">
                 <SideNavbar />
             </div> */}
