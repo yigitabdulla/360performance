@@ -63,9 +63,6 @@ export default function Login() {
     console.log("Captcha value:", value);
   }
 
-
-  console.log(import.meta.env.VITE_SITE_KEY)
-
   return (
     <div className='login'>
 

@@ -4,7 +4,16 @@ const initialState = {
     render: true,
     activeStep: 0,
     completed: {},
-    steps: ['Değerlendirme', 'Kaynak', 'Katılımcılar', 'Yetkinlikler', 'Başlat']
+    steps: ['Değerlendirme', 'Kaynak', 'Katılımcılar', 'Yetkinlikler', 'Başlat'],
+    formData: {
+        period: '',
+        internalReviewName: '',
+        reviewName: '',
+        startDate: '',
+        endDate: '',
+        email: '',
+        phone: ''
+    }
 };
 
 export const reviewsNavbarSlice = createSlice({
@@ -26,11 +35,14 @@ export const reviewsNavbarSlice = createSlice({
         },
         updateRender: (state, action) => {
             state.render = action.payload.render;
+        },
+        updateFormData: (state, action) => {
+            state.formData = { ...state.formData, ...action.payload };
         }
     }
 });
 
-export const { updateStep, completeStep, resetSteps, setSteps , updateRender } = reviewsNavbarSlice.actions;
+export const { updateStep, completeStep, resetSteps, setSteps , updateRender , updateFormData } = reviewsNavbarSlice.actions;
 
 export const totalSteps = (state) => {
     return state.step.steps.length;

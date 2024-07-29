@@ -7,14 +7,13 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import "./reviewsNavbar.scss"
 import { useDispatch, useSelector } from "react-redux"
-import { updateStep, completeStep, resetSteps, setSteps, totalSteps, completedSteps, isLastStep, allStepsCompleted, updateRender } from '../../redux/slices/reviewsNavbarSlice';
+import { updateStep, completeStep, resetSteps, isLastStep, allStepsCompleted, updateRender } from '../../redux/slices/reviewsNavbarSlice';
 
 export default function HorizontalNonLinearStepper() {
     const dispatch = useDispatch();
     const activeStep = useSelector(state => state.step.activeStep);
     const completed = useSelector(state => state.step.completed);
     const steps = useSelector(state => state.step.steps);
-    const render = useSelector(state => state.step.render);
 
     const handleNext = () => {
         const newActiveStep =
@@ -27,26 +26,24 @@ export default function HorizontalNonLinearStepper() {
         dispatch(updateRender())
     };
 
-    const handleBack = () => {
-        dispatch(updateStep(activeStep - 1));
-    };
-
     const handleStep = (step) => () => {
         dispatch(updateStep(step));
         dispatch(updateRender({render:false}))
-    };
-
-    const handleComplete = () => {
-        dispatch(completeStep(activeStep));
-        handleNext();
     };
 
     const handleReset = () => {
         dispatch(resetSteps());
     };
 
-    const handleSelect = () => {
-        dispatch(updateRender({render:false}))
+    const handleSelect = (event) => {
+        const selectedValue = event.target.value;
+        if (selectedValue === "all") {
+            dispatch(updateRender({ render: true }));
+            dispatch(updateStep(null));
+            dispatch(resetSteps());
+        } else {
+            dispatch(updateRender({ render: false }));
+        }
     }
 
     
@@ -55,6 +52,7 @@ export default function HorizontalNonLinearStepper() {
         <div className="reviewsNavbar">
             <select onChange={handleSelect} className='select-review' style={{ color: 'rgb(75, 75, 75)' }} name="review" defaultValue="">
                 <option disabled hidden value="">360° Değerlendirme Seçin</option>
+                <option value="all">Tüm değerlendirmeler</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
             </select>

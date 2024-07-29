@@ -5,7 +5,7 @@
     font-family: 'Poppins', sans-serif;
 }
 
-.addEmployee {
+.reviews {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -26,6 +26,7 @@
         display: flex;
         flex-direction: column;
         gap: 20px;
+        height: 900px; //sonradan eklendi
 
         h1 {
             color: rgb(75, 75, 75);
@@ -37,8 +38,7 @@
             display: flex;
             flex-direction: column;
             gap: 20px;
-            overflow-y: auto;
-
+            overflow: auto; //scroll normalde
             .reviewInfo {
                 display: flex;
                 gap: 50px;
@@ -98,7 +98,7 @@
                         flex-direction: column;
                         color: rgb(75, 75, 75);
 
-                        label{
+                        label {
                             display: flex;
                             align-items: center;
                             gap: 5px;
@@ -277,31 +277,31 @@
 
                     }
 
-                    .buttons{
+                    .buttons {
                         display: flex;
                         align-items: center;
                         justify-content: space-between;
                         margin-top: 10px;
 
-                        @include sm{
+                        @include sm {
                             flex-direction: column;
                             gap: 10px;
                         }
 
-                        a{
+                        a {
                             width: 170px;
                             display: flex;
                             align-items: center;
                             justify-content: center;
                             cursor: pointer;
 
-                            &:first-child{
+                            &:first-child {
                                 padding: 5px;
                                 background-color: white;
                                 border: 1px solid black
                             }
 
-                            &:nth-child(2){
+                            &:nth-child(2) {
                                 padding: 5px;
                                 background-color: #004c99;
                                 border: none;
@@ -313,7 +313,7 @@
                                 }
                             }
                         }
-                        
+
                     }
                 }
             }
@@ -435,5 +435,22 @@
 
         }
 
+    }
+}
+
+.sendButton {
+    width: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 8px;
+    background-color: #004c99;
+    border: none;
+    transition: 0.3s ease;
+    color: white;
+
+    &:hover {
+        background-color: #0063c6;
     }
 }
