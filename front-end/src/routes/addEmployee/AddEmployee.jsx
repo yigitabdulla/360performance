@@ -29,8 +29,12 @@ export default function AddEmployee() {
                                 <input required id="email" name="email" type="email" />
                             </div>
                             <div className="item">
-                                <label htmlFor="position">Pozisyon</label>
-                                <input required id="position" name="position" type="text" />
+                            <label htmlFor="position">Pozisyon</label>
+                                <select style={{ color: '#8d8d8d' , padding:'5px' }} name="position">
+                                    <option value="">Pozisyon seçiniz</option>
+                                    <option value="true">Aktif</option>
+                                    <option value="false">Pasif</option>
+                                </select>
                             </div>
                             <button className="sendButton">Kaydet</button>
                             {false && <span>error</span>}

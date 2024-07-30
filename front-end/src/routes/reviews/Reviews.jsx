@@ -11,8 +11,7 @@ import Start from '../../components/start/Start';
 import Source from '../../components/source/Source';
 import Participants from '../../components/participants/Participants';
 import Competencies from '../../components/competencies/Competencies';
-import SourcesParticipants from '../../components/sourcesAndParticipants/SourcesParticipants';
-import AddReview from "../../routes/addReview/AddReview"
+import AddReviewStepper from "../../components/addReviewStepper/AddReviewStepper"
 
 export default function Reviews() {
 
@@ -53,7 +52,7 @@ export default function Reviews() {
   const renderComponent = () => {
     switch (activeStep) {
       case 0:
-        return <AddReview />;
+        return <AddReviewStepper />;
       case 1:
         return <Source />;
         case 2:

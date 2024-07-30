@@ -2,12 +2,17 @@ import React, { useState } from 'react'
 import { Link } from "react-router-dom";
 import "./login.scss"
 import ReCAPTCHA from "react-google-recaptcha";
+import axios from "axios"
+import { useCookies } from "react-cookie"
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const login = false
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
+  const [, setCookies] = useCookies(["access_token"])
+  const navigate = useNavigate()
 
   const validatePassword = (password) => {
     const errors = [];
@@ -32,7 +37,7 @@ export default function Login() {
   const validateForm = () => {
     const newErrors = {};
 
-    if (!username) {
+    if (!email) {
       newErrors.username = 'E-Posta alanı boş bırakılamaz';
     }
     if (!password) {
@@ -52,10 +57,19 @@ export default function Login() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      console.log('Form submitted successfully');
+      try {
+        console.log(email,password)
+        const response = await axios.post("http://localhost:8080/api/auth/login", { email:email, password:password })
+        //setCookies("access_token", response.data.token)
+        console.log(response)
+        navigate("/home")
+
+      } catch (error) {
+        console.error(error)
+      }
     }
   };
 
@@ -72,7 +86,7 @@ export default function Login() {
             <img src="https://finartz.com/hs-fs/hubfs/Finartz%20Logo-1.png?width=240&height=77&name=Finartz%20Logo-1.png" alt="" />
             <h1>Kullanıcı Girişi</h1>
           </div>
-          <input value={username} onChange={(e) => setUsername(e.target.value)} name="username" type="text" placeholder="Kullanıcı Adı" />
+          <input value={email} onChange={(e) => setEmail(e.target.value)} name="email" type="text" placeholder="Kullanıcı Adı" />
           <input value={password} onChange={(e) => setPassword(e.target.value)} name="password" type="password" placeholder="Şifre" />
           {login && <span className='error'>Yanlış kullanıcı adı ve/veya şifre</span>}
           {errors.username && <span style={{ color: 'red' }}>{errors.username}</span>}

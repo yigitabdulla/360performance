@@ -26,6 +26,12 @@
         flex-direction: column;
         gap: 20px;
         overflow-y: auto;
+
+        @include md{   
+            overflow-x: hidden;
+            min-width: 70vw;
+            margin-bottom: 30px;
+        }
         @include sm{
             overflow-y: scroll;
         }

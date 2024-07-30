@@ -16,6 +16,7 @@ import Reviews from './routes/reviews/Reviews';
 import AddReview from './routes/addReview/AddReview';
 import AddEmployeeExcel from './routes/addEmployeeExcel/AddEmployeeExcel';
 import Employee from './routes/employee/Employee';
+import Register from './routes/register/Register';
 
 function App() {
 
@@ -71,6 +72,10 @@ function App() {
         {
           path: "/reports",
           element: <Reports />
+        },
+        {
+          path: "/register",
+          element: <Register />
         },
         
       ]
