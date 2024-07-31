@@ -79,6 +79,17 @@ nav {
       }
 
       span {
+        display: flex;
+        gap: 10px;
+
+        .logout-btn{
+          cursor: pointer;
+          transition: 0.3s ease;
+
+          &:hover{
+            transform: scale(1.05);
+          }
+        }
 
         @include sm {
           display: none;

@@ -17,6 +17,7 @@ import AddReview from './routes/addReview/AddReview';
 import AddEmployeeExcel from './routes/addEmployeeExcel/AddEmployeeExcel';
 import Employee from './routes/employee/Employee';
 import Register from './routes/register/Register';
+import ProtectedRoute from './components/protectedRoute/ProtectedRoute';
 
 function App() {
 
@@ -31,7 +32,7 @@ function App() {
         },
         {
           path: "/home",
-          element: <Home />
+          element: <ProtectedRoute><Home /></ProtectedRoute>
         },
         {
           path: "/login",
@@ -43,35 +44,35 @@ function App() {
         },
         {
           path: "/employees",
-          element: <Employees />
+          element: <ProtectedRoute><Employees /></ProtectedRoute>
         },
         {
           path: "/employees/:id",
-          element: <Employee />,
+          element: <ProtectedRoute><Employee /></ProtectedRoute>,
         },
         {
           path: "/employees/add",
-          element: <AddEmployee />
+          element:<ProtectedRoute> <AddEmployee /></ProtectedRoute>
         },
         {
           path: "/employees/addExcel",
-          element: <AddEmployeeExcel />
+          element:<ProtectedRoute> <AddEmployeeExcel /></ProtectedRoute>
         },
         {
           path: "/reviews",
-          element: <Reviews />
+          element:<ProtectedRoute> <Reviews /></ProtectedRoute>
         },
         {
           path: "/reviews/add",
-          element: <AddReview />
+          element: <ProtectedRoute> <AddReview /></ProtectedRoute>
         },
         {
           path: "/settings",
-          element: <Settings />
+          element: <ProtectedRoute> <Settings /></ProtectedRoute>
         },
         {
           path: "/reports",
-          element: <Reports />
+          element: <ProtectedRoute> <Reports /></ProtectedRoute>
         },
         {
           path: "/register",

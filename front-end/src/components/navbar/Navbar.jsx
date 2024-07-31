@@ -6,10 +6,16 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import MenuIcon from '@mui/icons-material/Menu';
-
+import LogoutIcon from '@mui/icons-material/Logout';
+import { useCookies } from 'react-cookie';
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [cookies, setCookies, removeCookie] = useCookies(['access_token']);
+
+  const handleClick = () => {
+    removeCookie('access_token', { path: '/' });
+  }
 
   const user = true;
   return (
@@ -27,7 +33,7 @@ export default function Navbar() {
               src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
               alt=""
             />
-            <span>John Doe</span>
+            <span>John Doe <LogoutIcon onClick={handleClick} className='logout-btn'/></span>
           </div>
         ) : (
           <>
