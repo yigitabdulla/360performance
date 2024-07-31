@@ -1,12 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "./home.scss"
 import SideNavbar from '../../components/navbar/sideNavbar/SideNavbar'
-import MessageIcon from '@mui/icons-material/Message';
-import ModeStandbyIcon from '@mui/icons-material/ModeStandby';
-import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
-import PhoneIcon from '@mui/icons-material/Phone';
+import { jwtDecode } from "jwt-decode";
+import { useCookies } from 'react-cookie';
 
 export default function Home() {
+
+  const [cookies, setCookie] = useCookies(['access_token']);
+
+  useEffect(() => {
+    if (cookies.access_token) {
+      const decodedToken = jwtDecode(cookies.access_token);
+      console.log('Decoded Token:', decodedToken);
+      // Use the decoded token as needed
+    }
+  }, [cookies]);
+
   return (
     <div className='home'>
       <div className="sideNavbar">
