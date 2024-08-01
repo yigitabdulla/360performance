@@ -18,6 +18,7 @@ import AddEmployeeExcel from './routes/addEmployeeExcel/AddEmployeeExcel';
 import Employee from './routes/employee/Employee';
 import Register from './routes/register/Register';
 import ProtectedRoute from './components/protectedRoute/ProtectedRoute';
+import AddComptenciesExcel from './components/addComptenciesExcel/AddCompetenciesExcel';
 
 function App() {
 
@@ -57,6 +58,10 @@ function App() {
         {
           path: "/employees/addExcel",
           element:<ProtectedRoute> <AddEmployeeExcel /></ProtectedRoute>
+        },
+        {
+          path: "/comptencies/addExcel",
+          element:<ProtectedRoute> <AddComptenciesExcel /></ProtectedRoute>
         },
         {
           path: "/reviews",

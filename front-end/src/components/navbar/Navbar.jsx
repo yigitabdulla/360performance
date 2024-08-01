@@ -78,7 +78,7 @@ export default function Navbar() {
             </AccordionDetails>
           </Accordion>
           <a href="/">Hedef Değerlendirme</a>
-          <a href="/">Giriş Yap</a>
+          {cookies ? <a onClick={handleClick}>Çıkış Yap</a>  :  <a href="/">Giriş Yap</a>}
         </div>
       </div>
     </nav>

@@ -1,0 +1,105 @@
+@import "../../responsive.scss";
+
+.participants{
+    display: flex;
+    gap: 10px;
+    margin-top: 30px;
+
+    @include md{
+        flex-direction: column;
+    }
+
+    .left{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .title{
+            font-size: 36px;
+            color: rgb(75, 75, 75);
+        }
+
+        .text{
+            width: 500px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: start;
+            flex-direction: column;
+            gap: 10px;
+            color: rgb(75, 75, 75);
+        }
+
+        .buttons{
+            display: flex;
+            justify-content: space-between;
+
+            @include md{
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            a{
+                cursor: pointer;
+            }
+
+            button{
+                width: 300px;
+                padding: 5px;
+                border: none;
+                background-color: #0063c6;
+                color: white;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: 0.3s ease;
+    
+                &:hover{
+                    background-color: #0077ee;
+                }
+            }
+        }
+    }
+
+    .right{
+        display: flex;
+
+        @include md{
+            align-self: center;
+        }
+
+        img{
+            padding: 5px;
+            height: 500px;
+            width: 400px;
+        }
+    }
+}
+
+.participantsForm{
+    display: flex;
+    flex-direction: column;
+
+    .title{
+        font-size: 36px;
+        color: rgb(75, 75, 75);
+        border-bottom: 1px solid rgba(75, 75, 75, 0.425);
+        margin-bottom: 20px;
+    }
+
+    .selectEmployee{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        width: 500px;
+
+        select{
+            height: 30px;
+        }
+
+        h3{
+            font-weight: 400;
+            font-size: 24px;
+        }
+    }
+}

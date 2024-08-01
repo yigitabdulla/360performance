@@ -7,24 +7,13 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import "./reviewsNavbar.scss"
 import { useDispatch, useSelector } from "react-redux"
-import { updateStep, completeStep, resetSteps, isLastStep, allStepsCompleted, updateRender } from '../../redux/slices/reviewsNavbarSlice';
+import { updateStep, resetSteps , allStepsCompleted, updateRender , updateSelectedReview } from '../../redux/slices/reviewsNavbarSlice';
 
 export default function HorizontalNonLinearStepper() {
     const dispatch = useDispatch();
     const activeStep = useSelector(state => state.step.activeStep);
     const completed = useSelector(state => state.step.completed);
     const steps = useSelector(state => state.step.steps);
-
-    const handleNext = () => {
-        const newActiveStep =
-            isLastStep({ step: { activeStep, steps } }) && !allStepsCompleted({ step: { completed, steps } })
-                ? // It's the last step, but not all steps have been completed,
-                // find the first step that has been completed
-                steps.findIndex((step, i) => !(i in completed))
-                : activeStep + 1;
-        dispatch(updateStep(newActiveStep));
-        dispatch(updateRender())
-    };
 
     const handleStep = (step) => () => {
         dispatch(updateStep(step));
@@ -37,6 +26,7 @@ export default function HorizontalNonLinearStepper() {
 
     const handleSelect = (event) => {
         const selectedValue = event.target.value;
+        dispatch(updateSelectedReview({selectedReview:selectedValue}))
         if (selectedValue === "all") {
             dispatch(updateRender({ render: true }));
             dispatch(updateStep(null));

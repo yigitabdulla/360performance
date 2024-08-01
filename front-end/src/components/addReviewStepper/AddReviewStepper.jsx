@@ -5,7 +5,7 @@ import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 import { styled } from '@mui/material/styles';
 import { useDispatch, useSelector } from "react-redux"
-import { updateStep, completeStep, totalSteps, completedSteps, isLastStep, allStepsCompleted, updateRender , updateFormData } from '../../redux/slices/reviewsNavbarSlice';
+import { updateStep, completeStep, totalSteps, completedSteps, isLastStep, allStepsCompleted, updateRender } from '../../redux/slices/reviewsNavbarSlice';
 import { updateReviewFormData } from '../../redux/slices/formDataSlice';
 
 const LightTooltip = styled(({ className, ...props }) => (

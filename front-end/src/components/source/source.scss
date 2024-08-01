@@ -1,0 +1,94 @@
+@import "../../responsive.scss";
+
+.source {
+    display: flex;
+    flex-direction: column;
+
+    .title {
+        font-size: 36px;
+        color: rgb(75, 75, 75);
+        border-bottom: 1px solid rgba(75, 75, 75, 0.504);
+        ;
+        margin-bottom: 30px;
+    }
+
+    .bottom {
+        display: flex;
+        gap: 20px;
+
+        .left {
+            display: flex;
+            flex-direction: column;
+            width: 350px;
+            color: rgb(75, 75, 75);
+            gap: 10px;
+
+            h3 {
+                font-weight: 400;
+                font-size: 19px;
+            }
+
+            span{
+                font-size: 14px;
+            }
+        }
+
+        .right {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.462);
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+            padding: 10px;
+            border-radius: 5px;
+
+            .item {
+                display: flex;
+
+                input {
+                    color: rgb(75, 75, 75);
+                    padding: 8px;
+                    height: 30px;
+
+                    ::placeholder {
+                        color: rgb(75, 75, 75);
+                        opacity: 1;
+                      }
+                }
+            }
+
+            .buttons {
+                display: flex;
+                justify-content: space-between;
+
+                .saveButton {
+                    width: 150px;
+                    border: none;
+                    border-radius: 5px;
+                    background-color: #0063c6;
+                    color: white;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    transition: 0.3s ease;
+
+                    &:hover {
+                        background-color: #0077ee;
+                    }
+                }
+
+                .plusButtonCover {
+                    width: 36px;
+                    height: 36px;
+
+                    .plusButton {
+                        font-size: 36px;
+                        cursor: pointer;
+                        color: rgb(75, 75, 75);
+                    }
+                }
+            }
+
+
+        }
+    }
+}

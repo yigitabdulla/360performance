@@ -73,12 +73,13 @@ export default function Reviews() {
     </div>
 
     <div className="reviewsContainer">
+
       <div className="reviewNavbar"><ReviewsNavbar /></div>
       {render ? (
         <>
           <div className='title'>
             <h1>Değerlendirmeler</h1>
-            <a href='/reviews/add'>Değerlendirme Oluştur</a>
+            <a  href='/reviews/add'>Değerlendirme Oluştur</a>
           </div>
           <div style={{ height: 400, width: '100%' }}>
             <ReviewFilter applyFilters={applyFilters} />
@@ -91,6 +92,7 @@ export default function Reviews() {
               slots={{ toolbar: selectionModel.length > 0 ? CustomToolbar : null }}
             />
           </div>
+          
         </>
       ) : (
         renderComponent()

@@ -1,0 +1,243 @@
+@import "../../responsive.scss";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+.competencies{
+    display: flex;
+    gap: 10px;
+    margin-top: 30px;
+
+    @include md{
+        flex-direction: column;
+    }
+
+    .left{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .title{
+            font-size: 36px;
+            color: rgb(75, 75, 75);
+        }
+
+        .text{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            color: rgb(75, 75, 75);
+        }
+
+        button{
+            width: 300px;
+            padding: 5px;
+            border: none;
+            background-color: #0063c6;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s ease;
+
+            &:hover{
+                background-color: #0077ee;
+            }
+        }
+    }
+
+    .right{
+        display: flex;
+
+        @include md{
+            align-self: center;
+        }
+
+        img{
+            height: 500px;
+            width: 400px;
+        }
+    }
+}
+
+.competenciesForm{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    
+    .top{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .title{
+            font-size: 36px;
+            color: rgb(75, 75, 75);
+        }
+
+        .buttons{
+            display: flex;
+            gap: 15px;
+
+            a{
+                color: rgb(75, 75, 75);
+                gap: 3px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                cursor: pointer;
+
+                .button-icon{
+                    font-size: 22px;
+                }
+            }
+        }
+
+        .text{
+            color: rgb(75, 75, 75);
+            display: flex;
+        }
+
+        .addCompetencies{
+            width: 200px;
+            padding: 5px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #0063c6;
+            transition: 0.3s ease;
+            color: white;
+            margin-bottom: 20px;
+
+            &:hover{
+                background-color: #0077ee;
+            }
+        }
+
+        .competenceContainer{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            color: rgb(75, 75, 75);
+            
+    
+            .competenceTitle{
+                display: flex;
+                justify-content: space-between;
+                border: 1px solid gray;
+                padding: 5px;
+
+                h2{
+                    font-weight: 400;
+                    font-size: 14px;
+                }
+        
+                .sections{
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+
+                    button{
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding: 2px;
+                        width: 20px;
+                        height: 20px;
+                        background-color: #0063c6;
+                        color: white;
+                        border: none;
+                        cursor: pointer;
+                    }
+                }
+            }
+    
+            ul{
+                display: flex;
+                flex-direction: column;
+                margin-left: 30px;
+                list-style: none;
+                gap: 10px;
+    
+                @include sm{
+                    margin-left: 0;
+                }
+    
+                
+    
+                li{
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    border: 1px solid gray;
+                    font-size: 14px;
+                    padding: 3px;
+                    justify-content: space-between;
+    
+                    @include md{
+                        flex-direction: column;
+                        align-items: flex-start;
+                    }
+                    
+    
+                    .questionButtons{
+                        display: flex;
+                        gap: 10px;
+    
+                        button{
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            padding: 2px;
+                            width: 20px;
+                            height: 20px;
+                            background-color: #0063c6;
+                            color: white;
+                            border: none;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+    
+            .addQuestion{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-left: 30px;
+                margin-bottom: 30px;
+                width: 150px;
+                background-color: #0063c6;
+                border: none;
+                color: white;
+                padding: 5px;
+                border-radius: 5px;
+                transition: 0.3s ease;
+                cursor: pointer;
+                margin-top: 10px;
+    
+                @include sm{
+                    margin-left: 0;
+                }
+    
+                &:hover{
+                    background-color: #0077ee;
+                }
+            }
+        }
+    }
+
+    
+}
+
+.item{
+    display: flex;
+    flex-direction: column;
+    
+    input{
+        margin-bottom: 20px;
+
+    }
+
+    #competencies-explanation{
+        height: 200px;
+    }
+}
