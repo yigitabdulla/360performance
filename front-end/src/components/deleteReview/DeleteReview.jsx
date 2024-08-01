@@ -3,8 +3,8 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch } from 'react-redux';
+import {showToast} from "../../redux/slices/toastifySlice"
 import "./deleteReview.scss"
 
 const style = {
@@ -20,10 +20,16 @@ const style = {
 };
 
 export default function DeleteReview({ openDeleteModal, handleDeleteOpen, handleDeleteClose }) {
+    const dispatch = useDispatch();
+
+    const notifyDelete = () => {
+        dispatch(showToast({ message: "Değerlendirme silindi!", type: 'success' }));
+    };
+
     const [isDeleting, setIsDeleting] = useState(false);
 
     const notify = () => {
-        toast("Değerlendirme silindi!");
+        notifyDelete()
         setIsDeleting(false);
         handleDeleteClose();
         console.log("Notify called");
@@ -62,7 +68,6 @@ export default function DeleteReview({ openDeleteModal, handleDeleteOpen, handle
                     </Typography>
                 </Box>
             </Modal>
-            <ToastContainer containerId={1} position="bottom-right" />
         </>
     )
 }

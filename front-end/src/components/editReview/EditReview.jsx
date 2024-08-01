@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { Typography } from '@mui/material';
 import './editReview.scss'
+import { useDispatch } from 'react-redux';
+import {showToast} from "../../redux/slices/toastifySlice"
 
 const style = {
     position: 'absolute',
@@ -53,8 +53,6 @@ export default function EditReview({ openEditModal, handleEditClose }) {
             setInnerEditOpen(false);
         };
 
-        const notify = () => toast("Değerlendirmeler güncellendi!")
-
         return (
             <React.Fragment>
                 <div className="editButtons">
@@ -82,6 +80,12 @@ export default function EditReview({ openEditModal, handleEditClose }) {
             </React.Fragment>
         );
     }
+
+    const dispatch = useDispatch();
+
+    const notify = () => {
+        dispatch(showToast({ message: "Değerlendirmeler güncellendi!", type: 'success' }));
+    };
 
     return (
         <>
@@ -125,7 +129,6 @@ export default function EditReview({ openEditModal, handleEditClose }) {
                     <ChildModal />
                 </Box>
             </Modal>
-            <ToastContainer containerId={2} position="bottom-right" />
         </>
     )
 }

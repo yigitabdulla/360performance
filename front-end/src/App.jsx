@@ -4,6 +4,8 @@ import {
   RouterProvider,
   Navigate
 } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Home from "./routes/homePage/Home"
 import Login from "./routes/login/Login"
 import Reset from "./routes/resetPassword/Reset"
@@ -53,19 +55,19 @@ function App() {
         },
         {
           path: "/employees/add",
-          element:<ProtectedRoute> <AddEmployee /></ProtectedRoute>
+          element: <ProtectedRoute> <AddEmployee /></ProtectedRoute>
         },
         {
           path: "/employees/addExcel",
-          element:<ProtectedRoute> <AddEmployeeExcel /></ProtectedRoute>
+          element: <ProtectedRoute> <AddEmployeeExcel /></ProtectedRoute>
         },
         {
           path: "/comptencies/addExcel",
-          element:<ProtectedRoute> <AddComptenciesExcel /></ProtectedRoute>
+          element: <ProtectedRoute> <AddComptenciesExcel /></ProtectedRoute>
         },
         {
           path: "/reviews",
-          element:<ProtectedRoute> <Reviews /></ProtectedRoute>
+          element: <ProtectedRoute> <Reviews /></ProtectedRoute>
         },
         {
           path: "/reviews/add",
@@ -83,14 +85,17 @@ function App() {
           path: "/register",
           element: <Register />
         },
-        
+
       ]
     }
   ]);
 
   return (
+    <>
+      <ToastContainer position='bottom-right'/>
+      <RouterProvider router={router} />
+    </>
 
-    <RouterProvider router={router} />
   );
 
 

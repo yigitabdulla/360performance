@@ -3,6 +3,7 @@ import employeesReducer from "./slices/employeesSlice"
 import stepReducer from "./slices/reviewsNavbarSlice"
 import formDataReducer from "./slices/formDataSlice"
 import authReducer from "./slices/authSlice"
+import toastifyReducer from "./slices/toastifySlice"
 
 export default configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export default configureStore({
     step: stepReducer,
     formData: formDataReducer,
     auth: authReducer,
+    toastify: toastifyReducer,
     
   },
 })
