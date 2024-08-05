@@ -4,6 +4,7 @@ import stepReducer from "./slices/reviewsNavbarSlice"
 import formDataReducer from "./slices/formDataSlice"
 import authReducer from "./slices/authSlice"
 import toastifyReducer from "./slices/toastifySlice"
+import reviewsReducer from "./slices/reviewsSlice"
 
 export default configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export default configureStore({
     formData: formDataReducer,
     auth: authReducer,
     toastify: toastifyReducer,
+    reviews: reviewsReducer
     
   },
 })

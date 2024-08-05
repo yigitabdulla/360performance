@@ -1,4 +1,4 @@
-.close-button{
+.close-button {
     display: flex;
     align-self: flex-end;
     justify-content: flex-end;
@@ -6,4 +6,39 @@
     font-size: 18px;
     cursor: pointer;
     padding: 5px;
+}
+
+.edit-buttons {
+    display: flex;
+    justify-content: space-between;
+
+    .cancel-button {
+        padding: 5px;
+        background-color: white;
+        border: 1px solid black;
+        color: black;
+        width: 100px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .deleteButton {
+        padding: 5px;
+        background-color: #004c99;
+        border: none;
+        cursor: pointer;
+        width: 100px;
+        color: white;
+        transition: 0.3s ease;
+        border-radius: 5px;
+
+        &:hover {
+            background-color: #0063c6;
+        }
+
+        &:disabled {
+            background-color: gray;
+        }
+    }
+
 }

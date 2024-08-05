@@ -1,18 +1,21 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState , useEffect } from 'react'
 import "./addEmployeeExcel.scss"
 import * as XLSX from 'xlsx';
 import SideNavbar from '../../components/navbar/sideNavbar/SideNavbar';
 import ArrowRightOutlinedIcon from '@mui/icons-material/ArrowRightOutlined';
-import { useDispatch , useSelector } from "react-redux"
-import { updateEmployees } from '../../redux/slices/employeesSlice'
+import { useDispatch, useSelector } from "react-redux"
+import { updateEmployees , fetchEmployees, addEmployeesExcel } from '../../redux/slices/employeesSlice'
+import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
 
 export default function AddEmployeeExcel() {
-
+    const [cookies, setCookie] = useCookies(['access_token']);
+    const navigate = useNavigate();
     const [tempColumns, setTempColumns] = useState([]);
     const [tempRows, setTempRows] = useState([]);
 
     const dispatch = useDispatch();
-    const employees = useSelector(state => state.employees);
+    const realRows = useSelector(state => state.employees.rows);
 
     const handleFileUpload = (event) => {
         const file = event.target.files[0];
@@ -47,12 +50,57 @@ export default function AddEmployeeExcel() {
         reader.readAsArrayBuffer(file);
     };
 
-    const handleSave = () => {
-        localStorage.setItem('columns', JSON.stringify(tempColumns));
-        localStorage.setItem('rows', JSON.stringify(tempRows));
+    const token = cookies.access_token
 
-        dispatch(updateEmployees({ rows: tempRows,columns: tempColumns }));
+    useEffect(() => {
+
+        if (token) {
+            dispatch(fetchEmployees(token));
+        }
+    }, [token]);
+
+    const handleSave = () => {
+        const updatedRows = []
+        const rows = []
+        tempRows.map(row => rows.push({
+            firstName: row[0],
+            lastName: row[1],
+            email: row[2],
+            position: row[3],
+            status: row[4]
+        }))
         
+        if (realRows.length >= rows.length) {
+
+            for (let j = 0; j < realRows.length; j++) {
+                let flag = 0
+                for (let i = 0; i < rows.length; i++) {
+                    if (realRows[j].email === rows[i].email) {
+                        flag++
+                    }
+                    
+                }
+                flag === 0 && updatedRows.push(realRows[j])
+                
+            }
+        }
+        else {
+
+            for (let j = 0; j < rows.length; j++) {
+                let flag = 0
+                for (let i = 0; i < realRows.length; i++) {
+                    if (rows[j].email === realRows[i].email) {
+                        flag++
+                    }
+                    
+                }
+                flag === 0 && updatedRows.push(rows[j])
+                
+            }
+        }
+        console.log(updatedRows)
+        dispatch(addEmployeesExcel(updatedRows))
+        navigate("/employees")
     };
 
     return (

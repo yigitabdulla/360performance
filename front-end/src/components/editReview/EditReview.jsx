@@ -3,8 +3,12 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { Typography } from '@mui/material';
 import './editReview.scss'
-import { useDispatch } from 'react-redux';
-import {showToast} from "../../redux/slices/toastifySlice"
+import { useDispatch, useSelector } from 'react-redux';
+import { showToast } from "../../redux/slices/toastifySlice"
+import { useCookies } from 'react-cookie';
+import axios from 'axios'
+import { updateReviewSuccess } from '../../redux/slices/reviewsSlice';
+
 
 const style = {
     position: 'absolute',
@@ -20,9 +24,14 @@ const style = {
     pb: 3,
 };
 
-export default function EditReview({ openEditModal, handleEditClose }) {
+export default function EditReview({ openEditModal, handleEditClose, selectedRows }) {
+    const [cookies, setCookie] = useCookies(['access_token']);
+    const data = useSelector(state => state.reviews.data);
 
     const [selectedOption, setSelectedOption] = useState('');
+    const [selectedDate, setSelectedDate] = useState('');
+
+    const selectedReviews = data.filter(review => selectedRows.includes(review.id));
 
     const handleSelectChange = (e) => {
         const { value } = e.target;
@@ -36,6 +45,55 @@ export default function EditReview({ openEditModal, handleEditClose }) {
         };
 
         return options[value] || "";
+    };
+
+    const handleDate = (e) => {
+        setSelectedDate(e.target.value)
+    }
+
+
+    const updateReview = async (review, token) => {
+        try {
+            const response = await axios.put(`http://localhost:8080/api/evaluations/editEvaluation/${review.id}`, {
+                termName: review.termName,
+                internalEvaluation: review.internalEvaluation,
+                evaluationName: review.evaluationName,
+                email: review.email,
+                phone: review.phone,
+                startDate: selectedOption === 'start' ? selectedDate : review.startDate,
+                endDate: selectedOption === 'finish' ? selectedDate : review.endDate,
+
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response.data;
+        } catch (error) {
+            console.error('Error updating review:', error);
+            throw error;
+        }
+    };
+
+    const handleUpdate = async (reviews) => {
+
+        try {
+            const updateRequests = reviews.map(review =>
+                updateReview(review, cookies.access_token)
+            );
+            const updatedReviews = await Promise.all(updateRequests);
+
+            // Dispatch the action to update the Redux state with the updated reviews
+            updatedReviews.forEach(updatedReview => {
+                dispatch(updateReviewSuccess(updatedReview));
+            });
+
+            notify();
+            console.log('All selected rows have been updated');
+        } catch (error) {
+            console.error('Error updating selected rows:', error);
+            notifyError();
+        }
     };
 
     useEffect(() => {
@@ -72,7 +130,7 @@ export default function EditReview({ openEditModal, handleEditClose }) {
                             <span style={{ marginBottom: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '5px', textAlign: 'center' }}>Güncellemek istediğinize emin misiniz ?</span>
                             <span className="editButtons">
                                 <button onClick={handleClose}>İptal</button>
-                                <button onClick={notify} style={{ backgroundColor: '#1976d2' }}>Evet</button>
+                                <button onClick={() => handleUpdate(selectedReviews)} style={{ backgroundColor: '#1976d2' }}>Evet</button>
                             </span>
                         </Typography>
                     </Box>
@@ -85,6 +143,10 @@ export default function EditReview({ openEditModal, handleEditClose }) {
 
     const notify = () => {
         dispatch(showToast({ message: "Değerlendirmeler güncellendi!", type: 'success' }));
+    };
+
+    const notifyError = () => {
+        dispatch(showToast({ message: "Değerlendirmeler güncellenemedi!", type: 'error' }));
     };
 
     return (
@@ -113,6 +175,7 @@ export default function EditReview({ openEditModal, handleEditClose }) {
                                                 {handleSelect(selectedOption)} Seçiniz
                                             </span>
                                             <input
+                                                onChange={handleDate}
                                                 style={{ color: 'rgb(75, 75, 75)', marginTop: '5px', padding: '3px' }}
                                                 required
                                                 type="date"

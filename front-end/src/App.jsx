@@ -21,6 +21,8 @@ import Employee from './routes/employee/Employee';
 import Register from './routes/register/Register';
 import ProtectedRoute from './components/protectedRoute/ProtectedRoute';
 import AddComptenciesExcel from './components/addComptenciesExcel/AddCompetenciesExcel';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 function App() {
 
@@ -92,8 +94,10 @@ function App() {
 
   return (
     <>
-      <ToastContainer position='bottom-right'/>
-      <RouterProvider router={router} />
+      <DndProvider backend={HTML5Backend}>
+        <ToastContainer position='bottom-right'/>
+        <RouterProvider router={router} />
+      </DndProvider>
     </>
 
   );

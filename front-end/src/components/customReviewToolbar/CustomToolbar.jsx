@@ -6,7 +6,7 @@ import EditReview from '../editReview/EditReview';
 import DeleteReview from '../deleteReview/DeleteReview';
 
 
-const CustomToolbar = () => {
+const CustomToolbar = ({selectedRows}) => {
 
   const [openEditModal, setOpenEditModal] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
@@ -50,8 +50,8 @@ const CustomToolbar = () => {
       <a className='item' href="/reviews/finish">
         Bitir
       </a>
-      <EditReview openEditModal={openEditModal} handleEditClose={handleEditClose}/>
-      <DeleteReview openDeleteModal={openDeleteModal} handleDeleteOpen={handleDeleteOpen} handleDeleteClose={handleDeleteClose}/>
+      <EditReview openEditModal={openEditModal} handleEditClose={handleEditClose} selectedRows={selectedRows}/>
+      <DeleteReview openDeleteModal={openDeleteModal} handleDeleteOpen={handleDeleteOpen} handleDeleteClose={handleDeleteClose} selectedRows={selectedRows}/>
     </GridToolbarContainer>
   );
 };

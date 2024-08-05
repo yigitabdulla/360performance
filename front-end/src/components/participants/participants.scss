@@ -1,25 +1,25 @@
 @import "../../responsive.scss";
 
-.participants{
+.participants {
     display: flex;
     gap: 10px;
     margin-top: 30px;
 
-    @include md{
+    @include md {
         flex-direction: column;
     }
 
-    .left{
+    .left {
         display: flex;
         flex-direction: column;
         gap: 20px;
 
-        .title{
+        .title {
             font-size: 36px;
             color: rgb(75, 75, 75);
         }
 
-        .text{
+        .text {
             width: 500px;
             display: flex;
             align-items: flex-start;
@@ -29,20 +29,20 @@
             color: rgb(75, 75, 75);
         }
 
-        .buttons{
+        .buttons {
             display: flex;
             justify-content: space-between;
 
-            @include md{
+            @include md {
                 flex-direction: column;
                 gap: 10px;
             }
 
-            a{
+            a {
                 cursor: pointer;
             }
 
-            button{
+            button {
                 width: 300px;
                 padding: 5px;
                 border: none;
@@ -51,22 +51,22 @@
                 border-radius: 5px;
                 cursor: pointer;
                 transition: 0.3s ease;
-    
-                &:hover{
+
+                &:hover {
                     background-color: #0077ee;
                 }
             }
         }
     }
 
-    .right{
+    .right {
         display: flex;
 
-        @include md{
+        @include md {
             align-self: center;
         }
 
-        img{
+        img {
             padding: 5px;
             height: 500px;
             width: 400px;
@@ -74,32 +74,218 @@
     }
 }
 
-.participantsForm{
+.participantsForm {
     display: flex;
     flex-direction: column;
 
-    .title{
+    .title {
         font-size: 36px;
         color: rgb(75, 75, 75);
         border-bottom: 1px solid rgba(75, 75, 75, 0.425);
         margin-bottom: 20px;
     }
 
-    .selectEmployee{
+    .selectEmployee {
         display: flex;
         flex-direction: column;
         gap: 20px;
         padding: 20px;
-        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        background-color: white;
+        border: 1px solid rgba(128, 128, 128, 0.311);
+        border-radius: 5px;
         width: 500px;
 
-        select{
+        select {
             height: 30px;
         }
 
-        h3{
+        h3 {
             font-weight: 400;
             font-size: 24px;
+        }
+    }
+}
+
+.selectEmployeeForm {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    .selectEmployeeFormTitle {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        h3 {
+            font-size: 36px;
+            font-weight: 400;
+            color: rgb(75, 75, 75);
+        }
+
+        a {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            color: rgb(75, 75, 75);
+        }
+    }
+
+    .selectSection {
+        display: flex;
+        gap: 40px;
+        margin-bottom: 30px;
+
+        @include md {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .left {
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            border: 1px solid rgba(128, 128, 128, 0.311);
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 10px;
+            width: 400px;
+            gap: 5px;
+            height: 450px;
+            overflow-y: auto;
+            color: rgb(75, 75, 75);
+
+            @include sm {
+                width: 90vw;
+            }
+
+            select {
+                padding: 3px;
+                color: rgb(75, 75, 75);
+            }
+
+            span {
+                margin-top: 5px;
+                border-bottom: 1px solid rgba(128, 128, 128, 0.652);
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+                .inputs {
+                    color: rgb(75, 75, 75);
+                    .item {
+                        color: rgb(75, 75, 75);
+                        &:nth-child(5) {
+                            display: flex;
+                            flex-direction: column;
+
+                            span {
+                                display: flex;
+                                border: none;
+                                align-items: center;
+                                gap: 10px;
+                                border: 1px solid gray;
+                                height: 30px;
+                                padding: 10px;
+
+                                #self {
+                                    margin-top: 20px;
+                                }
+                            }
+                        }
+                    }
+
+                    .participantsList {
+                        margin-top: 20px;
+                        margin-bottom: 20px;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 10px;
+
+                        .participant {
+                            display: flex;
+                            justify-content: space-between;
+                            width: 100%;
+                            gap: 10px;
+                        }
+
+                    }
+                }
+
+                .saveParticipantButton {
+                    width: 150px;
+                    align-self: flex-end;
+                    margin-top: 5px;
+                    margin-bottom: 5px;
+                    padding: 5px;
+                    background-color: #004c99;
+                    border: none;
+                    transition: 0.3s ease;
+                    color: white;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: #0063c6;
+                    }
+                }
+            }
+        }
+
+        .right {
+            display: flex;
+            flex-direction: column;
+            width: 400px;
+            background-color: white;
+            border: 1px solid rgba(128, 128, 128, 0.311);
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 10px;
+            gap: 5px;
+            height: 450px;
+            color: rgb(75, 75, 75);
+
+            @include sm {
+                width: 90vw;
+            }
+
+            .title {
+                display: flex;
+                align-self: flex-start;
+                flex-direction: column;
+                gap: 5px;
+                width: 100%;
+
+                span {
+                    align-self: flex-start;
+                }
+
+                input {
+                    padding: 2px;
+                    width: 100%;
+                    margin-bottom: 10px;
+                }
+            }
+
+            .employees {
+                border: 1px solid gray;
+                padding: 15px;
+                display: flex;
+                flex-direction: column;
+                max-height: 400px;
+                overflow-y: scroll;
+
+                .singleEmployee {
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    border: 1px solid gray;
+                    padding: 3px;
+
+                }
+            }
         }
     }
 }

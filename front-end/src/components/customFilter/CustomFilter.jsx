@@ -4,8 +4,8 @@ import "./customFilter.scss";
 
 const CustomFilter = ({ applyFilters }) => {
   const [filters, setFilters] = useState({
-    name: '',
-    lastname: '',
+    firstName: '',
+    lastName: '',
     email: '',
     position: '',
     status: ''
@@ -27,10 +27,10 @@ const CustomFilter = ({ applyFilters }) => {
       <div className='gridContainer'>
         <div className="inputContainer">
           <div className='singleGrid'>
-            <input placeholder='Ad' className='gridText' onChange={handleInputChange} value={filters.name} id="name" name="name" type="text" />
+            <input placeholder='Ad' className='gridText' onChange={handleInputChange} value={filters.firstName} id="firstName" name="firstName" type="text" />
           </div>
           <div className='singleGrid'>
-            <input placeholder='Soyad' className='gridText' onChange={handleInputChange} value={filters.lastname} id="lastname" name="lastname" type="text" />
+            <input placeholder='Soyad' className='gridText' onChange={handleInputChange} value={filters.lastName} id="lastName" name="lastName" type="text" />
           </div>
           <div className='singleGrid'>
             <input placeholder='Pozisyon' className='gridText' onChange={handleInputChange} value={filters.position} id="position" name="position" type="text" />

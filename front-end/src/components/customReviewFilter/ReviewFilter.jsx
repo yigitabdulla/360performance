@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import "./reviewFilter.scss";
+import { useSelector } from 'react-redux';
 
 const ReviewFilter = ({ applyFilters }) => {
+  const data = useSelector(state => state.reviews.data);
   const [filters, setFilters] = useState({
-    ilerleme: '',
-    ad: '',
-    durum: '',
-    period: ''
+    id: '',
+    evaluationName: '',
+    termName: '',
+    startDate: ''
+    //durum: '',
+    //period: ''
   });
 
   const handleInputChange = (e) => {
@@ -23,20 +27,19 @@ const ReviewFilter = ({ applyFilters }) => {
       <div className='gridReviewContainer'>
         <div className="inputReviewContainer">
           <div className='singleReviewGrid'>
-            <input placeholder='Değerlendirmeleri filtrele' className='gridText' onChange={handleInputChange} value={filters.ad} id="ad" name="ad" type="text" />
+            <input placeholder='Değerlendirmeleri filtrele' className='gridText' onChange={handleInputChange} value={filters.evaluationName} id="evaluationName" name="evaluationName" type="text" />
           </div>
           {/* <div className='singleReviewGrid'>
             <input placeholder='İlerleme' className='gridText' onChange={handleInputChange} value={filters.ilerleme} id="ilerleme" name="ilerleme" type="text" />
           </div> */}
           <div className='singleReviewGrid'>
-            <select style={{color:'#8d8d8d'}} onChange={handleInputChange} name="period" value={filters.period}>
+            <select style={{color:'#8d8d8d'}} onChange={handleInputChange} name="termName" value={filters.termName}>
               <option value="">Tüm Dönemler</option>
-              <option value="true">1.dönem</option>
-              <option value="false">2.dönem</option>
+              {data?.map(review => <option key={review.id} value={review.termName}>{review.termName}</option>)}
             </select>
           </div>
           <div className='singleReviewGrid'>
-            <select style={{color:'#8d8d8d'}} onChange={handleInputChange} name="durum" value={filters.durum}>
+            <select style={{color:'#8d8d8d'}} onChange={handleInputChange} name="id" value={filters.id}>
               <option value="">Tüm Durumlar</option>
               <option value="true">Aktif</option>
               <option value="false">Pasif</option>

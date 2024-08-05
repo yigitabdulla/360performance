@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { useDispatch } from 'react-redux';
 import {showToast} from "../../redux/slices/toastifySlice"
 import "./deleteReview.scss"
+import { useCookies } from 'react-cookie';
+import axios from 'axios'
+import { deleteReviewsSuccess } from '../../redux/slices/reviewsSlice';
 
 const style = {
     position: 'absolute',
@@ -19,11 +21,16 @@ const style = {
     p: 4,
 };
 
-export default function DeleteReview({ openDeleteModal, handleDeleteOpen, handleDeleteClose }) {
+export default function DeleteReview({ openDeleteModal, handleDeleteOpen, handleDeleteClose, selectedRows }) {
     const dispatch = useDispatch();
+    const [cookies, setCookie] = useCookies(['access_token']);
 
     const notifyDelete = () => {
         dispatch(showToast({ message: "Değerlendirme silindi!", type: 'success' }));
+    };
+
+    const notifyError = () => {
+        dispatch(showToast({ message: "Değerlendirme silinemedi!", type: 'error' }));
     };
 
     const [isDeleting, setIsDeleting] = useState(false);
@@ -35,15 +42,35 @@ export default function DeleteReview({ openDeleteModal, handleDeleteOpen, handle
         console.log("Notify called");
     };
 
-    const handleDelete = () => {
+    const handleDelete = async () => {
         if (isDeleting) {
-            return;
+          return;
         }
         setIsDeleting(true);
-        console.log("Handle delete called");
-        notify();
-        
-    };
+      
+        try {
+          const deleteRequests = selectedRows.map(id =>
+            axios.delete(`http://localhost:8080/api/evaluations/deleteEvaluation/${id}`, {
+              headers: {
+                Authorization: `Bearer ${cookies.access_token}`
+              }
+            })
+          );
+          await Promise.all(deleteRequests);
+          notify();
+      
+          // Dispatch the action to update the Redux state
+          dispatch(deleteReviewsSuccess(selectedRows));
+      
+          console.log('All selected rows have been deleted');
+        } catch (error) {
+          console.error('Error deleting selected rows:', error);
+          notifyError();
+        } finally {
+          setIsDeleting(false);
+        }
+      };
+    
 
     return (
         <>
@@ -61,9 +88,9 @@ export default function DeleteReview({ openDeleteModal, handleDeleteOpen, handle
                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                         
                         <span style={{ marginBottom: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '5px', textAlign: 'center' }}>Değerlendirmeyi silmek istediğinize emin misiniz? Bu işlem geri alınamaz.</span>
-                            <span className="editButtons">
-                                <button onClick={handleDeleteClose}>İptal</button>
-                                <button disabled={isDeleting} onClick={handleDelete} style={{ backgroundColor: '#1976d2' }}>Evet</button>
+                            <span className="edit-buttons">
+                                <button onClick={handleDeleteClose} className='cancel-button'>İptal</button>
+                                <button disabled={isDeleting} onClick={handleDelete} className='deleteButton'>Evet</button>
                             </span>
                     </Typography>
                 </Box>

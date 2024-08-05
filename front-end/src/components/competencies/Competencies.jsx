@@ -25,6 +25,8 @@ const style = {
 
 export default function Competencies() {
 
+  const [isUploading, setIsUploading] = useState(false)
+
   const [openCompetenceModal, setOpenCompetenceModal] = useState(false);
   const [openQuestionModal, setOpenQuestionModal] = useState(false);
   const [currentCompetenceIndex, setCurrentCompetenceIndex] = useState(null);
@@ -129,6 +131,43 @@ export default function Competencies() {
     setCompetencies(updatedCompetencies);
   };
 
+  const handleFileUpload = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      const data = new Uint8Array(e.target.result);
+      const workbook = XLSX.read(data, { type: 'array' });
+      const worksheet = workbook.Sheets[workbook.SheetNames[0]];
+      const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
+      const [header, ...dataRows] = jsonData;
+      const cols = header.map((col, index) => ({ field: index.toString(), headerName: col, width: 150 }));
+      const rowData = dataRows.map((row, index) => {
+        const rowObj = {};
+        row.forEach((cell, cellIndex) => {
+          rowObj[cellIndex.toString()] = cell;
+        });
+        return { id: index, ...rowObj };
+      });
+
+      const transformedColumns = cols.map((col) => ({
+        ...col,
+        headerName: col.headerName.charAt(0).toUpperCase() + col.headerName.slice(1).toLowerCase(),
+      }));
+
+      setTempColumns(transformedColumns);
+      setTempRows(rowData);
+
+    };
+
+    reader.readAsArrayBuffer(file);
+  };
+
+  const handleUpload = () => {
+    setIsUploading(!isUploading)
+  };
+
   return (
     (!selectedReview || selectedReview === "all") ? (
       <div className='competencies'>
@@ -145,12 +184,12 @@ export default function Competencies() {
         </div>
       </div>
     ) : (
-      <div className="competenciesForm">
+      (!isUploading ? <div className="competenciesForm">
         <div className="top">
           <div className="title">Yetkinlikler</div>
           <div className="buttons">
             <a><InsertDriveFileOutlinedIcon className='button-icon' /> Boş Şablon</a>
-            <a href='/comptencies/addExcel'><DescriptionOutlinedIcon className='button-icon' /> Örnek Şablon</a>
+            <a onClick={handleUpload}><DescriptionOutlinedIcon className='button-icon' /> Örnek Şablon</a>
             <a><RemoveRedEyeOutlinedIcon className='button-icon' /> Ön İzle</a>
             <a><SettingsOutlinedIcon className='button-icon' /> Ayarlar</a>
           </div>
@@ -275,6 +314,30 @@ export default function Competencies() {
           </Box>
         </Modal>
       </div>
+        :
+        <div className="competenciesContainer">
+          <div className='competenciesContainerTitle'>
+            <h1>Yetkinlikler</h1>
+            <div className="templates">
+              <div className="buttons">
+                <a><InsertDriveFileOutlinedIcon /> Boş Şablon</a>
+                <a><DescriptionOutlinedIcon /> Örnek Şablon</a>
+                <a><RemoveRedEyeOutlinedIcon /> Ön İzle</a>
+                <a><SettingsOutlinedIcon /> Ayarlar</a>
+              </div>
+            </div>
+            <hr />
+          </div>
+
+          <div className="info">
+            <span><ExploreOutlinedIcon />Örnek şablonu inceleyebilirsiniz, boş şablonu güncelleyerek yükleyebilirsiniz.</span>
+            <span><ExploreOutlinedIcon />Dosyanızı seçerek kaydet butonuna tıklayın. Sadece xlsx uzantılı dosya yükleyebilirsiniz. Dosya boyutu en fazla 2MB, satır sayısı en fazla 1500 satır olmalıdır.</span>
+          </div>
+          <div className="buttons">
+            <input id="fileInput" type="file" accept=".xlsx, .xls" onChange={handleFileUpload} />
+            <button onClick={handleUpload}>Kaydet</button>
+          </div>
+        </div>)
     )
   );
 }

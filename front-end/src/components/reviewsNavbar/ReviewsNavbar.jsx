@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useRef } from 'react';
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
@@ -7,17 +8,22 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import "./reviewsNavbar.scss"
 import { useDispatch, useSelector } from "react-redux"
-import { updateStep, resetSteps , allStepsCompleted, updateRender , updateSelectedReview } from '../../redux/slices/reviewsNavbarSlice';
+import { updateStep, resetSteps, allStepsCompleted, updateRender, updateSelectedReview } from '../../redux/slices/reviewsNavbarSlice';
+import { updateReviewFormData } from '../../redux/slices/formDataSlice';
 
 export default function HorizontalNonLinearStepper() {
+    const selectRef = useRef(null);
     const dispatch = useDispatch();
+
     const activeStep = useSelector(state => state.step.activeStep);
     const completed = useSelector(state => state.step.completed);
     const steps = useSelector(state => state.step.steps);
+    const reviewFormData = useSelector(state => state.formData.reviewFormData);
+    const data = useSelector(state => state.reviews.data);
 
     const handleStep = (step) => () => {
         dispatch(updateStep(step));
-        dispatch(updateRender({render:false}))
+        dispatch(updateRender({ render: false }))
     };
 
     const handleReset = () => {
@@ -26,25 +32,53 @@ export default function HorizontalNonLinearStepper() {
 
     const handleSelect = (event) => {
         const selectedValue = event.target.value;
-        dispatch(updateSelectedReview({selectedReview:selectedValue}))
+        dispatch(updateSelectedReview({ selectedReview: selectedValue }));
         if (selectedValue === "all") {
             dispatch(updateRender({ render: true }));
             dispatch(updateStep(null));
             dispatch(resetSteps());
+            dispatch(updateReviewFormData({
+                email: "",
+                phone: "",
+                reviewName: "",
+                endDate: "",
+                startDate: "",
+                period: "",
+                internalReviewName: ""
+            }));
+            selectRef.current.value = "";  // Reset the select value to the default
         } else {
+            for (let index = 0; index < data.length; index++) {
+                if(data[index].evaluationName === selectedValue) {
+                    dispatch(updateReviewFormData({
+                        email: data[index].email,
+                        phone: data[index].phone,
+                        reviewName: data[index].evaluationName,
+                        endDate: data[index].endDate,
+                        startDate: data[index].startDate,
+                        period: data[index].termName,
+                        internalReviewName: data[index].internalEvaluation
+                    }));
+                }
+                
+            }
             dispatch(updateRender({ render: false }));
         }
-    }
-
-    
+    };
 
     return (
         <div className="reviewsNavbar">
-            <select onChange={handleSelect} className='select-review' style={{ color: 'rgb(75, 75, 75)' }} name="review" defaultValue="">
+            <select
+                onChange={handleSelect}
+                className='select-review'
+                style={{ color: 'rgb(75, 75, 75)' }}
+                name="review"
+                defaultValue=""
+                ref={selectRef}  // Attach the ref here
+            >
                 <option disabled hidden value="">360° Değerlendirme Seçin</option>
                 <option value="all">Tüm değerlendirmeler</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
+                {data.map(review => <option key={review.id} value={review.evaluationName}>{review.evaluationName}</option>)}
             </select>
 
             <div className="stepperContainer">

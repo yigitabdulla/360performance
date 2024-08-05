@@ -5,15 +5,17 @@ import { DataGrid } from '@mui/x-data-grid';
 import { useNavigate } from 'react-router-dom';
 import CustomToolbar from "../../components/toolbar/GridToolbar"
 import CustomFilter from '../../components/customFilter/CustomFilter';
-import {useSelector} from "react-redux"
-
+import { useDispatch, useSelector } from "react-redux"
+import { fetchEmployees , updateEmployees } from '../../redux/slices/employeesSlice';
+import { useEffect } from 'react';
+import { useCookies } from 'react-cookie';
 
 
 export default function Employees() {
   const navigate = useNavigate();
-
-  const rows = useSelector(state => state.employees.rows)
-  const columns = useSelector(state => state.employees.columns)
+  const [cookies, setCookie] = useCookies(['access_token']);
+  const dispatch = useDispatch();
+  const { rows, columns, status, error } = useSelector((state) => state.employees);
 
   const [filteredRows, setFilteredRows] = useState(rows);
 
@@ -28,15 +30,31 @@ export default function Employees() {
   const applyFilters = (filters) => {
     const filteredData = rows.filter(row => {
       return (
-        (filters.name ? row[0]?.toLowerCase().includes(filters.name.toLowerCase()) : true) &&
-        (filters.lastname ? row[1]?.toLowerCase().includes(filters.lastname.toLowerCase()) : true) &&
+        (filters.firstName ? row.firstName.toLowerCase().includes(filters.firstName.toLowerCase()) : true) &&
+        (filters.lastName ? row.lastName.toLowerCase().includes(filters.lastName.toLowerCase()) : true) &&
         /* (filters.email ? row[2]?.toLowerCase().includes(filters.email.toLowerCase()) : true) && */
-        (filters.position ? row[3]?.toLowerCase().includes(filters.position.toLowerCase()) : true) &&
-        (filters.status ? row[4] === filters.status : true)
+        (filters.position ? row.position.toLowerCase().includes(filters.position.toLowerCase()) : true) &&
+        (filters.status ? row.status === filters.status : true)
       );
     });
     setFilteredRows(filteredData);
   };
+
+  
+  const token = cookies.access_token
+
+  useEffect(() => {
+    
+    if (token) {
+      dispatch(fetchEmployees(token));
+    }
+  }, [token]);
+
+  useEffect(() => {
+    if (rows.length > 0) {
+      setFilteredRows(rows);
+    }
+  }, [rows]);
 
   return (
     <div className='employees'>
@@ -52,7 +70,9 @@ export default function Employees() {
           </div>
         </div>
         <CustomFilter applyFilters={applyFilters} />
-        <div style={{ height: 500, width: '80vw' }}>
+        {status === 'loading' && <p>Loading...</p>}
+        {status === 'failed' && <p>Error: {error}</p>}
+        {status === 'succeeded' && (<div style={{ height: 500, width: '80vw' }}>
           <DataGrid
             className='dataGrid'
             checkboxSelection
@@ -85,7 +105,8 @@ export default function Employees() {
               columnMenuManageColumns: 'Kolonları yönet',
             }}
           />
-        </div>
+        </div>)}
+        
       </div>
     </div>
   )
